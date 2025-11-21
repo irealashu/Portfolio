@@ -392,13 +392,20 @@
             margin-top: 10px; 
         }
         
-        /* --- NEW FIX HERE: Ensure the Hero content is perfectly centered on mobile --- */
+        /* --- Hero Content Fix --- */
         .hero-content {
             width: 100%;
             text-align: center;
+            /* Added padding to prevent text touching screen edges */
+            padding: 0 10px; 
             margin: 0 auto;
         }
-        /* --- END NEW FIX --- */
+        /* --- CTA Button Fix --- */
+        .cta-button {
+            display: block; 
+            margin: 20px auto 0; /* Center button horizontally */
+        }
+        /* --- END Hero Fixes --- */
 
         .about-flex {
             flex-direction: column;
@@ -510,7 +517,7 @@
                         <span class="emoji">⚙️</span> <strong>System Type:</strong> GxP Digitalization Tool (Replacing Paper-Based Logbooks)
                     </p>
                     <p>
-                        <span class="emoji">🔬</span> <strong>Compliance Focus:</strong> 21 CFR Part 11 (Electronic Records/Signatures), EU Annex 11, GxP Category 5 (Custom Software).
+                        <span class="emoji">🧪</span> <strong>Compliance Focus:</strong> 21 CFR Part 11 (Electronic Records/Signatures), EU Annex 11, GxP Category 5 (Custom Software).
                     </p>
                     <ul>
                         <li>Developed comprehensive Validation Plans (VP) and user requirement specifications (URS).</li>
@@ -528,7 +535,7 @@
                         <span class="emoji">⚙️</span> <strong>System Type:</strong> Laboratory Instrument Control & Data Acquisition System
                     </p>
                     <p>
-                        <span class="emoji">🔬</span> <strong>Compliance Focus:</strong> GLP, GxP, 21 CFR Part 11, GAMP 5 Category 3/4.
+                        <span class="emoji">🧪</span> <strong>Compliance Focus:</strong> GLP, GxP, 21 CFR Part 11, GAMP 5 Category 3/4.
                     </p>
                     <ul>
                         <li>Managed the full CSV Lifecycle for deployment and major upgrades (IQ/OQ/PQ).</li>
@@ -546,7 +553,7 @@
                         <span class="emoji">⚙️</span> <strong>System Type:</strong> Spectrophotomety Data System 
                     </p>
                     <p>
-                        <span class="emoji">🔬</span> <strong>Compliance Focus:</strong> GMP, 21 CFR Part 11 (Audit Trail/Security), EU Annex 11.
+                        <span class="emoji">🧪</span> <strong>Compliance Focus:</strong> GMP, 21 CFR Part 11 (Audit Trail/Security), EU Annex 11.
                     </p>
                     <ul>
                         <li>Developed and executed validation protocols ensuring reliable data capture and processing.</li>
@@ -564,7 +571,7 @@
                         <span class="emoji">⚙️</span> <strong>System Type:</strong> Specialized Instrument Control Software
                     </p>
                     <p>
-                        <span class="emoji">🔬</span> <strong>Compliance Focus:</strong> GxP, Data Integrity, Custom Software Validation (Risk-Based Approach).
+                        <span class="emoji">🧪</span> <strong>Compliance Focus:</strong> GxP, Data Integrity, Custom Software Validation (Risk-Based Approach).
                     </p>
                     <ul>
                         <li>Developed a risk-based validation strategy for this custom/specialized system.</li>
