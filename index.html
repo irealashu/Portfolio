@@ -385,13 +385,21 @@
         }
         
         .header nav {
-            width: 100%; /* Ensures the NAV element spans full width */
+            width: 100%; 
         }
         .nav-list {
-            justify-content: center; /* Centers the links horizontally */
-            margin-top: 10px; /* Adds space below the name */
+            justify-content: center; 
+            margin-top: 10px; 
         }
         
+        /* --- NEW FIX HERE: Ensure the Hero content is perfectly centered on mobile --- */
+        .hero-content {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+        }
+        /* --- END NEW FIX --- */
+
         .about-flex {
             flex-direction: column;
         }
