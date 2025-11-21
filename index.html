@@ -52,21 +52,6 @@
         background: var(--primary-color);
         margin: 10px auto 0;
     }
-    
-    /* --- FIXED: SKIP LINK (Moved further up to hide yellow bar) --- */
-    .skip-link {
-        position: absolute;
-        top: -100px; /* Changed from -40px to -100px to fully hide it */
-        left: 0;
-        background: var(--primary-color);
-        color: var(--secondary-color);
-        padding: 8px;
-        z-index: 9999;
-        transition: top 0.3s;
-    }
-    .skip-link:focus {
-        top: 0;
-    }
 
     /* -------------------- HEADER STYLES -------------------- */
     .header {
@@ -115,7 +100,7 @@
         transition: all 0.3s ease;
     }
     
-    /* Hover effect (Color change only, no yellow bar/underline) */
+    /* Hover effect (Color change only, no underline) */
     .nav-list a:hover {
         color: var(--primary-color);
     }
@@ -419,8 +404,6 @@
 </style>
 </head>
 <body>
-
-<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="header">
     <img src="profile.jpg" alt="Ashutosh Singh Profile Picture/Logo">
