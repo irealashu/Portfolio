@@ -15,7 +15,8 @@ body {
     color: var(--secondary-color);
     line-height: 1.6;
     scroll-behavior: smooth;
-    padding-top: 0;
+    /* Added padding-top to account for the sticky header height on initial load */
+    padding-top: 100px; 
 }
 a {
     text-decoration: none;
@@ -46,9 +47,10 @@ h2::after {
     margin: 10px auto 0;
 }
 
-/* --- HEADER STYLES (Mobile View) --- */
+/* --- HEADER STYLES --- */
 .header-wrapper {
-    position: static; /* Mobile: Not sticky */
+    position: sticky; /* MADE STICKY ACROSS ALL SCREENS */
+    top: 0; 
     width: 100%;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -57,9 +59,9 @@ h2::after {
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* PUSHES NAME/NAV TO EDGES */
     padding: 10px 20px;
-    flex-direction: column; /* Mobile: Stack elements */
+    flex-direction: column; /* Mobile: Stack elements (will be overridden on desktop) */
 }
 .header img {
     height: 80px;
@@ -70,16 +72,16 @@ h2::after {
 }
 .name {
     font-family: 'Cinzel', serif;
-    font-size: 24px; /* Mobile Font Size */
+    font-size: 24px; 
     letter-spacing: 2px;
     font-weight: 700;
     color: var(--secondary-color);
     margin: 10px 0;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows the name to take space, pushing nav right (on desktop) */
     text-align: center;
 }
 .header nav {
-    width: 100%;
+    width: 100%; /* Important for mobile alignment */
 }
 .nav-list {
     list-style: none;
@@ -118,18 +120,18 @@ h2::after {
     padding: 0;
 }
 .hero-content h1 {
-    font-size: 45px; /* Mobile Font Size */
+    font-size: 45px;
     margin-bottom: 10px;
     font-family: 'Cinzel', serif;
 }
 .hero-content p {
-    font-size: 20px; /* Mobile Font Size */
+    font-size: 20px;
     margin-bottom: 30px;
     font-weight: 300;
     color: var(--primary-color);
 }
 .cta-button {
-    display: block; /* Mobile: Block button */
+    display: block;
     padding: 12px 30px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -154,7 +156,7 @@ h2::after {
 }
 .about-flex {
     display: flex;
-    flex-direction: column; /* Mobile: Stack sections */
+    flex-direction: column;
     gap: 40px;
     align-items: flex-start;
 }
@@ -163,7 +165,7 @@ h2::after {
 }
 .impact-metrics {
     display: flex;
-    flex-direction: column; /* Mobile: Stack metrics */
+    flex-direction: column;
     gap: 15px;
     margin: 20px 0 40px;
 }
@@ -198,7 +200,7 @@ h2::after {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr; /* Mobile: Single column */
+    grid-template-columns: 1fr;
     gap: 15px;
 }
 .skills-list li {
@@ -292,7 +294,7 @@ h2::after {
 }
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Mobile: Single column */
+    grid-template-columns: 1fr;
     max-width: 1000px;
     margin: 30px auto 40px;
     text-align: center;
@@ -363,9 +365,9 @@ footer a:focus {
         font-size: 40px;
     }
     
-    /* --- Header Overrides --- */
+    /* --- Header Overrides (RESTORES HORIZONTAL LAYOUT AND RIGHT ALIGNMENT) --- */
     .header-wrapper {
-        position: sticky; /* Desktop: Sticky header */
+        /* Sticky is now in the base style */
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
@@ -384,7 +386,13 @@ footer a:focus {
         flex-direction: row; /* Desktop: Horizontal nav */
         gap: 30px;
         margin: 0;
+        /* Aligns buttons to the right edge of the nav container */
+        justify-content: flex-end; 
     }
+    .header nav {
+        width: auto; /* Allow nav to shrink */
+    }
+
 
     /* --- Hero Overrides --- */
     #home {
@@ -397,24 +405,24 @@ footer a:focus {
         font-size: 24px;
     }
     .cta-button {
-        display: inline-block; /* Desktop: Inline button */
+        display: inline-block;
         margin: 0;
     }
 
     /* --- About Overrides --- */
     .about-flex {
-        flex-direction: row; /* Desktop: Side-by-side */
+        flex-direction: row;
     }
     .impact-metrics {
-        flex-direction: row; /* Desktop: Horizontal metrics */
+        flex-direction: row;
         gap: 20px;
     }
     .skills-list ul {
-        grid-template-columns: repeat(2, 1fr); /* Desktop: Two columns */
+        grid-template-columns: repeat(2, 1fr);
     }
     
     /* --- Contact Overrides --- */
     .contact-grid {
-        grid-template-columns: repeat(4, 1fr); /* Desktop: Four columns */
+        grid-template-columns: repeat(4, 1fr);
     }
 }
