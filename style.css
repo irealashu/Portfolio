@@ -1,0 +1,420 @@
+/* -------------------- ROOT VARIABLES -------------------- */
+:root {
+    --primary-color: #ffaa00; /* Gold/Orange */
+    --secondary-color: #333;
+    --background-light: #f7f7f7;
+    --background-dark: #222;
+    --text-light: #fff;
+}
+
+/* -------------------- BASE/MOBILE-FIRST STYLES (< 769px) -------------------- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--background-light);
+    margin: 0;
+    color: var(--secondary-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    padding-top: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+section {
+    padding: 50px 20px; /* Mobile Padding */
+    min-height: auto; /* Mobile Height */
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+h2 {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 30px; /* Mobile Font Size */
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+    position: relative;
+}
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
+}
+
+/* --- HEADER STYLES (Mobile View) --- */
+.header-wrapper {
+    position: static; /* Mobile: Not sticky */
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-direction: column; /* Mobile: Stack elements */
+}
+.header img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    object-fit: cover;
+}
+.name {
+    font-family: 'Cinzel', serif;
+    font-size: 24px; /* Mobile Font Size */
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin: 10px 0;
+    flex-grow: 1;
+    text-align: center;
+}
+.header nav {
+    width: 100%;
+}
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: column; /* Mobile: Stack links vertically */
+    gap: 10px;
+    align-items: center;
+}
+.nav-list a {
+    font-weight: 600;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+/* Hover and FOCUS effect */
+.nav-list a:hover,
+.nav-list a:focus {
+    color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* --- 1. HOME (HERO) SECTION --- */
+#home {
+    background: var(--background-dark);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    min-height: 500px;
+    padding: 0;
+}
+.hero-content h1 {
+    font-size: 45px; /* Mobile Font Size */
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif;
+}
+.hero-content p {
+    font-size: 20px; /* Mobile Font Size */
+    margin-bottom: 30px;
+    font-weight: 300;
+    color: var(--primary-color);
+}
+.cta-button {
+    display: block; /* Mobile: Block button */
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 20px auto 0;
+}
+.cta-button:hover,
+.cta-button:focus {
+    background-color: #e59400;
+    outline: 3px solid var(--text-light);
+    outline-offset: 4px;
+}
+
+/* --- 2. ABOUT SECTION --- */
+#about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.about-flex {
+    display: flex;
+    flex-direction: column; /* Mobile: Stack sections */
+    gap: 40px;
+    align-items: flex-start;
+}
+.about-text {
+    flex: 1;
+}
+.impact-metrics {
+    display: flex;
+    flex-direction: column; /* Mobile: Stack metrics */
+    gap: 15px;
+    margin: 20px 0 40px;
+}
+.metric {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    flex: 1;
+    transition: transform 0.3s ease;
+}
+.metric:hover {
+    transform: translateY(-5px);
+}
+.metric strong {
+    display: block;
+    font-size: 32px;
+    color: var(--primary-color);
+    font-family: 'Cinzel', serif;
+}
+.metric span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0f0f0;
+    text-transform: uppercase;
+}
+.skills-list {
+    flex: 1;
+}
+.skills-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: Single column */
+    gap: 15px;
+}
+.skills-list li {
+    background: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+.skills-list li:hover {
+    background: #444;
+    border-left-color: #e59400;
+    border-left-width: 8px;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 3. PORTFOLIO SECTION --- */
+#portfolio h2 {
+    color: var(--secondary-color);
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.project-card {
+    background: #333;
+    color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    min-height: 250px;
+    position: relative;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 0 8px 0 8px;
+    background-color: var(--primary-color);
+    z-index: 10;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+}
+.project-info {
+    padding: 20px;
+}
+.project-info h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+.project-info p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #eee;
+}
+.project-info ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+.project-info ul li {
+    font-size: 13px;
+    margin-bottom: 3px;
+    color: #ddd;
+}
+.project-info strong {
+    color: var(--primary-color);
+    font-size: 14px;
+}
+.project-info .emoji {
+    margin-right: 5px;
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+/* --- 4. CONTACT SECTION STYLES --- */
+#contact h2 {
+    color: var(--secondary-color);
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: Single column */
+    max-width: 1000px;
+    margin: 30px auto 40px;
+    text-align: center;
+    gap: 20px;
+}
+.contact-item {
+    background: #333;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    color: #fff;
+}
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+.contact-item h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+.contact-item p {
+    color: #ddd;
+}
+.contact-item a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+.contact-item a:focus {
+    color: var(--primary-color);
+    outline: 2px dashed var(--primary-color);
+    border-radius: 2px;
+    outline-offset: 2px;
+}
+
+/* --- FOOTER STYLES --- */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: var(--secondary-color);
+    color: var(--text-light);
+    font-size: 14px;
+}
+footer a {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: underline;
+}
+footer a:hover,
+footer a:focus {
+    color: #e59400;
+    outline: 1px solid #e59400;
+}
+
+
+/* -------------------- DESKTOP-FIRST OVERRIDES (>= 769px) -------------------- */
+@media (min-width: 769px) {
+    
+    /* --- General Desktop Overrides --- */
+    section {
+        padding: 80px 40px;
+        min-height: 80vh;
+    }
+    h2 {
+        font-size: 40px;
+    }
+    
+    /* --- Header Overrides --- */
+    .header-wrapper {
+        position: sticky; /* Desktop: Sticky header */
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10px 40px;
+        flex-direction: row; /* Desktop: Horizontal layout */
+    }
+    .name {
+        font-size: 30px;
+        margin: 0 20px;
+        text-align: left;
+    }
+    .nav-list {
+        flex-direction: row; /* Desktop: Horizontal nav */
+        gap: 30px;
+        margin: 0;
+    }
+
+    /* --- Hero Overrides --- */
+    #home {
+        min-height: 600px;
+    }
+    .hero-content h1 {
+        font-size: 60px;
+    }
+    .hero-content p {
+        font-size: 24px;
+    }
+    .cta-button {
+        display: inline-block; /* Desktop: Inline button */
+        margin: 0;
+    }
+
+    /* --- About Overrides --- */
+    .about-flex {
+        flex-direction: row; /* Desktop: Side-by-side */
+    }
+    .impact-metrics {
+        flex-direction: row; /* Desktop: Horizontal metrics */
+        gap: 20px;
+    }
+    .skills-list ul {
+        grid-template-columns: repeat(2, 1fr); /* Desktop: Two columns */
+    }
+    
+    /* --- Contact Overrides --- */
+    .contact-grid {
+        grid-template-columns: repeat(4, 1fr); /* Desktop: Four columns */
+    }
+}
