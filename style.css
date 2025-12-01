@@ -8,6 +8,7 @@
 }
 
 /* -------------------- BASE/MOBILE-FIRST STYLES (< 769px) -------------------- */
+/* Base styles apply to mobile first */
 body {
     font-family: 'Open Sans', sans-serif;
     background: var(--background-light);
@@ -15,7 +16,7 @@ body {
     color: var(--secondary-color);
     line-height: 1.6;
     scroll-behavior: smooth;
-    padding-top: 0; 
+    padding-top: 0; /* Ensures no blank space above fixed header */
 }
 a {
     text-decoration: none;
@@ -23,7 +24,7 @@ a {
 }
 section {
     padding: 50px 20px; /* Mobile Padding */
-    min-height: auto; /* Mobile Height */
+    min-height: auto; 
 }
 .container {
     max-width: 1200px;
@@ -46,9 +47,9 @@ h2::after {
     margin: 10px auto 0;
 }
 
-/* --- HEADER STYLES --- */
+/* --- HEADER STYLES (Fixed and Minimized) --- */
 .header-wrapper {
-    position: fixed; 
+    position: fixed; /* Fixed position */
     top: 0; 
     width: 100%;
     background-color: white;
@@ -58,21 +59,20 @@ h2::after {
 .header {
     display: flex;
     justify-content: space-between; 
-    padding: 0 20px; /* MINIMIZED: Vertical padding removed */
-    flex-direction: column; 
+    padding: 0 20px; /* Minimal vertical padding (0) */
+    flex-direction: column; /* Mobile stack */
 }
 .header img {
-    height: 60px; /* MINIMIZED: Reduced logo size */
+    height: 60px; /* Minimized logo size */
     width: 60px; 
     border-radius: 50%;
     border: 3px solid var(--primary-color);
     object-fit: cover;
+    margin: 5px 0; /* Minimal vertical margin for separation */
 }
 .logo-name-group {
     display: flex;
     align-items: center; 
-    margin-bottom: 5px; 
-    margin-top: 5px; /* Added small margin to create space between logo and header edge */
 }
 .name {
     font-family: 'Cinzel', serif;
@@ -90,9 +90,9 @@ h2::after {
 .nav-list {
     list-style: none;
     padding: 0;
-    margin: 5px 0 5px; /* MINIMIZED: Reduced vertical margin */
+    margin: 5px 0 5px; /* Minimal vertical margin for nav block */
     display: flex;
-    flex-direction: column; 
+    flex-direction: column; /* Mobile stack */
     gap: 10px;
     align-items: center;
 }
@@ -102,7 +102,7 @@ h2::after {
     transition: all 0.3s ease;
     padding: 5px 0;
 }
-/* Hover and FOCUS effect */
+/* Hover and FOCUS effect (A11Y) */
 .nav-list a:hover,
 .nav-list a:focus {
     color: var(--primary-color);
@@ -113,7 +113,7 @@ h2::after {
 
 /* --- 1. HOME (HERO) SECTION --- */
 #home {
-    /* MINIMIZED: Reduced mobile margin-top to match smaller header height */
+    /* Responsive margin-top to clear the fixed, taller mobile header */
     margin-top: 150px; 
     background: var(--background-dark);
     color: var(--text-light);
@@ -134,7 +134,7 @@ h2::after {
     font-size: 20px;
     margin-bottom: 30px;
     font-weight: 300;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Correct color application */
 }
 .cta-button {
     display: block;
@@ -154,22 +154,214 @@ h2::after {
     outline-offset: 4px;
 }
 
-/* --- (Other sections remain the same for brevity) --- */
+/* --- 2. ABOUT SECTION (Dark Cards) --- */
+#about {
+    background: var(--background-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.about-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+}
+.about-text {
+    flex: 1;
+}
+.impact-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0 40px;
+}
+.metric {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    flex: 1;
+    transition: transform 0.3s ease;
+}
+.metric:hover {
+    transform: translateY(-5px);
+}
+.metric strong {
+    display: block;
+    font-size: 32px;
+    color: var(--primary-color); /* Correct color application */
+    font-family: 'Cinzel', serif;
+}
+.metric span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0f0f0; /* Improved contrast */
+    text-transform: uppercase;
+}
+.skills-list {
+    flex: 1;
+}
+.skills-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.skills-list li {
+    background: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border-left: 4px solid var(--primary-color); /* Correct color application */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+.skills-list li:hover {
+    background: #444;
+    border-left-color: #e59400;
+    border-left-width: 8px;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 3. PORTFOLIO SECTION (Dark Cards) --- */
+#portfolio {
+    background: var(--background-light);
+    color: var(--secondary-color);
+}
+#portfolio h2 {
+    color: var(--secondary-color);
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.project-card {
+    background: #333;
+    color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    min-height: 250px;
+    position: relative;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 0 8px 0 8px;
+    background-color: var(--primary-color); /* Correct color application */
+    z-index: 10;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+}
+.project-info {
+    padding: 20px;
+}
+.project-info h3 {
+    margin-top: 0;
+    color: var(--primary-color); /* Correct color application */
+    font-size: 20px;
+}
+.project-info p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #eee;
+}
+.project-info ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+.project-info ul li {
+    font-size: 13px;
+    margin-bottom: 3px;
+    color: #ddd;
+}
+.project-info strong {
+    color: var(--primary-color); /* Correct color application */
+    font-size: 14px;
+}
+.project-info .emoji {
+    margin-right: 5px;
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+/* --- 4. CONTACT SECTION STYLES (Dark Cards) --- */
+#contact {
+    background: var(--background-light);
+    padding-bottom: 80px;
+}
+#contact h2 {
+    color: var(--secondary-color);
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1000px;
+    margin: 30px auto 40px;
+    text-align: center;
+    gap: 20px;
+}
+.contact-item {
+    background: #333;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    color: #fff;
+}
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+.contact-item h3 {
+    color: var(--primary-color); /* Correct color application */
+    margin-top: 0;
+}
+.contact-item p {
+    color: #ddd;
+}
+.contact-item a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+.contact-item a:focus {
+    color: var(--primary-color);
+    outline: 2px dashed var(--primary-color);
+    border-radius: 2px;
+    outline-offset: 2px;
+}
 
 /* --- FOOTER STYLES --- */
 footer {
     text-align: center;
-    padding: 0; /* MINIMIZED: Footer padding removed */
+    padding: 0; /* Minimal vertical padding */
     background: var(--secondary-color);
     color: var(--text-light);
     font-size: 14px;
 }
 footer p {
-    padding: 10px 0; /* Added padding to the paragraph to provide visual space */
-    margin: 0; /* Ensures the paragraph padding works */
+    padding: 10px 0; /* Content padding for spacing */
+    margin: 0; 
 }
 footer a {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Correct color application */
     font-weight: 700;
     text-decoration: underline;
 }
@@ -200,9 +392,12 @@ footer a:focus {
     .header {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 40px; /* MINIMIZED: Vertical padding removed */
+        padding: 0 40px; /* Minimal vertical padding */
         flex-direction: row; 
         align-items: center; 
+    }
+    .header img {
+        margin: 5px 0; /* Minimal vertical margin */
     }
     .logo-name-group {
         margin-bottom: 0; 
@@ -224,8 +419,7 @@ footer a:focus {
 
     /* --- Hero Overrides --- */
     #home {
-        /* MINIMIZED: Reduced desktop margin-top to match smaller header height */
-        margin-top: 80px; 
+        margin-top: 85px; /* Responsive content spacing for desktop */
         min-height: 600px;
     }
     .hero-content h1 {
@@ -239,7 +433,7 @@ footer a:focus {
         margin: 0;
     }
     
-    /* --- (Rest of the desktop overrides...) --- */
+    /* --- Other desktop overrides --- */
     .about-flex {
         flex-direction: row;
     }
