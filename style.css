@@ -1,18 +1,21 @@
 /* -------------------- ROOT VARIABLES -------------------- */
 :root {
-    --primary-color: #ff5722; /* Burnt Orange/Red accent for contrast */
+    --primary-color: #ff5722; /* Burnt Orange/Red accent */
     --secondary-color: #000; /* Primary Text/Dark elements */
     --background-light: #fff; /* Bright White */
-    --background-accent: #f5f5f5; /* Light Gray Accent */
+    --background-accent: #f7f7f7; /* Light Gray Accent */
     --background-dark: #222;
     --text-light: #fff;
     --shadow-depth: 0 8px 20px rgba(0, 0, 0, 0.15); 
 }
 
-/* -------------------- BASE/MOBILE-FIRST STYLES (< 769px) -------------------- */
+/* GLOBAL RESET AND CORE STYLES */
+*, *::before, *::after {
+    box-sizing: border-box; /* 💡 FIX: Prevents padding/border from causing overflow */
+}
 body {
     font-family: 'Open Sans', sans-serif;
-    background: var(--background-light);
+    background: var(--background-accent); /* Light Gray Background */
     margin: 0;
     color: var(--secondary-color);
     line-height: 1.65; 
@@ -22,27 +25,28 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+    transition: color 0.2s ease, transform 0.1s ease;
 }
 section {
     padding: 50px 20px; 
     min-height: auto; 
 }
 .container {
-    max-width: 1100px; /* Slightly narrower container for sleekness */
+    max-width: 1100px;
     margin: 0 auto;
 }
+
+/* HEADINGS */
 h2 {
-    font-family: 'Cinzel', serif;
-    text-align: left; /* Aligned left, as per reference style */
+    font-family: 'Open Sans', sans-serif; /* Cleaner font for h2 */
+    text-align: left; 
     font-size: 30px; 
     margin-bottom: 40px;
     color: var(--secondary-color);
-    position: relative;
-    letter-spacing: 1px;
-    font-weight: 700;
+    font-weight: 800; /* Extra bold */
+    letter-spacing: -1px;
 }
 h2::after {
-    /* Removed h2 line divider for cleaner look */
     content: none;
 }
 
@@ -52,20 +56,20 @@ h2::after {
     top: 0; 
     width: 100%;
     background-color: var(--background-light);
-    box-shadow: none; /* Removed header shadow for a very clean top bar */
+    box-shadow: none; 
     z-index: 1000;
-    border-bottom: 1px solid var(--background-accent); /* Added subtle dividing line */
+    border-bottom: 1px solid var(--background-accent); 
 }
 .header {
     display: flex;
     justify-content: space-between; 
-    padding: 10px 20px; /* Small padding */
+    padding: 10px 20px; 
     flex-direction: row; 
     flex-wrap: wrap; 
     align-items: center;
 }
 .name {
-    font-family: 'Open Sans', sans-serif; /* Changed name font for contrast */
+    font-family: 'Open Sans', sans-serif; 
     font-size: 16px; 
     letter-spacing: 0.5px;
     font-weight: 600;
@@ -76,7 +80,7 @@ h2::after {
     margin: 0;
 }
 
-/* 🍔 HAMBURGER MENU STYLES (Mobile Only) */
+/* 🍔 MOBILE TOGGLE & NAV */
 .nav-toggle {
     display: none; 
 }
@@ -85,7 +89,7 @@ h2::after {
     font-size: 30px;
     color: var(--secondary-color);
     cursor: pointer;
-    order: 2; /* Positions the toggle icon to the right */
+    order: 2; 
     padding: 0;
     margin-left: 10px;
 }
@@ -97,10 +101,8 @@ h2::after {
     transition: all 0.3s ease;
 }
 .nav-toggle:checked ~ .main-nav {
-    height: 140px; /* Adjusted height for new minimal nav */
+    height: 140px; 
 }
-
-/* --- Nav List (Mobile Menu) --- */
 .nav-list {
     list-style: none;
     padding: 10px 0;
@@ -108,26 +110,18 @@ h2::after {
     display: flex;
     flex-direction: column; 
     gap: 12px;
-    align-items: flex-end; /* Aligned right in the mobile menu */
+    align-items: flex-end; 
     text-align: right;
-}
-.nav-list a {
-    font-weight: 600;
-    color: var(--secondary-color);
-    transition: all 0.3s ease;
-    padding: 3px 0;
 }
 .nav-list a:hover,
 .nav-list a:focus {
     color: var(--primary-color);
     outline: none;
-    box-shadow: 0 1px 0 0 var(--primary-color); /* Underline effect */
+    box-shadow: 0 1px 0 0 var(--primary-color); 
 }
-
 
 /* --- 1. HOME (HERO) SECTION --- */
 #home {
-    /* Removed dark background */
     background: var(--background-light); 
     color: var(--secondary-color);
     display: block;
@@ -147,14 +141,15 @@ h2::after {
     margin: 0;
     color: var(--secondary-color);
     text-align: left;
-    letter-spacing: -2px; /* Tight kerning */
+    letter-spacing: -2px; 
+    word-break: break-word; /* Ensure large text doesn't overflow */
 }
 .hero-title-sub {
-    color: var(--primary-color); /* Accent color on sub-title */
+    color: var(--primary-color); 
     margin-bottom: 30px;
 }
 
-/* --- Profile/Intro Block --- */
+/* --- Profile/Intro Block Layout --- */
 .profile-intro-block {
     display: flex;
     flex-direction: column;
@@ -162,60 +157,84 @@ h2::after {
     gap: 20px;
     padding-top: 20px;
 }
+.profile-area {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center image on mobile */
+    margin-bottom: 20px;
+}
 .profile-image-wrap {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Two-tone circle background */
+    background: var(--primary-color); /* Single color accent circle */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .profile-image-wrap img {
-    width: 90px;
-    height: 90px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
     border: 3px solid var(--background-light);
 }
+
+/* --- Intro Text & CTA --- */
+.intro-text {
+    max-width: 100%; /* Ensures text block respects mobile boundaries */
+}
 .intro-text p {
     font-size: 16px;
     line-height: 1.7;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #444;
 }
 .cta-button {
     background-color: transparent;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 8px 15px;
+    padding: 10px 20px;
     font-weight: 600;
     margin-top: 15px;
     display: inline-block;
+    border-radius: 4px;
 }
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus {
     background-color: var(--primary-color);
     color: var(--background-light);
-    transform: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+/* 💡 Responsive Touch Feedback */
+.cta-button:active {
+    transform: translateY(1px); 
     box-shadow: none;
 }
 
-
 /* --- 2. ABOUT SECTION --- */
 #about {
-    background: var(--background-accent); /* Light gray background accent */
+    background: var(--background-accent); 
 }
 .about-text p {
     color: #444;
 }
 .metric {
-    background: var(--background-light); /* White cards on gray background */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Lighter shadow */
+    background: var(--background-light); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
     padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.metric:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .metric strong {
-    color: var(--secondary-color); /* Primary numbers are black */
+    color: var(--secondary-color); 
 }
 .metric span {
     color: #666; 
@@ -225,12 +244,13 @@ h2::after {
     color: var(--secondary-color);
     border-left: 5px solid var(--primary-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    border-radius: 4px;
 }
 .skills-list li:hover {
     background: var(--background-accent);
     transform: translateX(3px);
 }
-
 
 /* --- 3. PORTFOLIO SECTION --- */
 #portfolio {
@@ -240,10 +260,11 @@ h2::after {
     gap: 25px;
 }
 .project-card {
-    background: var(--background-dark); /* Kept dark theme for project cards */
+    background: var(--secondary-color); /* Kept dark theme for project cards */
     color: var(--text-light);
     border-radius: 10px; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 .project-card::before {
     background-color: var(--primary-color);
@@ -252,21 +273,25 @@ h2::after {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
+.project-info {
+    padding: 20px;
+}
 .project-info h3 {
     color: var(--primary-color); 
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 .project-info ul {
-    list-style-type: none; /* Removed disc list style */
+    list-style-type: none;
     padding-left: 0;
 }
 .project-info ul li::before {
-    content: "→"; /* Used arrow for list style */
+    content: "→"; 
     color: var(--primary-color);
     display: inline-block;
     width: 1em;
     margin-left: -1em;
 }
-
 
 /* --- FOOTER STYLES --- */
 footer {
@@ -275,6 +300,10 @@ footer {
 }
 footer a {
     color: var(--primary-color); 
+}
+footer p {
+    padding: 15px 0; 
+    margin: 0; 
 }
 
 
@@ -294,12 +323,12 @@ footer a {
         width: auto;
         order: initial;
     }
+    
+    /* --- Nav List (Desktop) --- */
     .header .name {
         flex-grow: 0;
         margin-right: 30px;
     }
-    
-    /* --- Nav List (Desktop) --- */
     .nav-list {
         flex-direction: row; 
         gap: 20px;
@@ -314,34 +343,28 @@ footer a {
         min-height: 70vh;
     }
     .hero-title-main {
-        font-size: 100px;
+        font-size: 110px;
     }
     .hero-title-sub {
-        font-size: 100px;
+        font-size: 110px;
         margin-bottom: 50px;
     }
     .profile-intro-block {
-        flex-direction: row; /* Horizontal layout */
-        align-items: flex-start;
+        flex-direction: row; 
         justify-content: space-between;
+        align-items: flex-start;
         padding-top: 50px;
     }
-    .profile-image-wrap {
-        width: 120px;
-        height: 120px;
-        order: 2; /* Move image to the right */
-    }
-    .profile-image-wrap img {
-        width: 110px;
-        height: 110px;
+    .profile-area {
+        width: 30%;
+        display: flex;
+        justify-content: flex-end; /* Move image to the right */
+        order: 2;
     }
     .intro-text {
         width: 65%;
-        order: 1; /* Keep text on the left */
+        order: 1; 
         padding-right: 50px;
-    }
-    .intro-text p {
-        font-size: 18px;
     }
     
     /* --- 2. ABOUT SECTION --- */
@@ -351,9 +374,6 @@ footer a {
     .impact-metrics {
         flex-direction: row;
         gap: 30px;
-    }
-    .metric strong {
-        font-size: 40px;
     }
     .skills-list ul {
         grid-template-columns: repeat(2, 1fr);
