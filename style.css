@@ -25,7 +25,7 @@ body {
 a {
     text-decoration: none;
     color: inherit;
-    transition: color 0.2s ease, transform 0.1s ease, background-color 0.2s ease;
+    transition: color 0.2s ease, transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease; /* Added box-shadow to transition */
 }
 section {
     padding: 50px 20px; 
@@ -74,7 +74,7 @@ h2 {
 .nav-list-top a:focus {
     color: var(--color-accent-orange);
     text-shadow: 0 0 5px rgba(255, 170, 0, 0.5);
-    transform: translateY(-1px);
+    transform: translateY(-2px); /* Slightly more pronounced lift */
 }
 
 /* --- 1. HOME (HERO) SECTION - GRID LAYOUT --- */
@@ -85,17 +85,24 @@ h2 {
 .hero-grid {
     display: grid;
     gap: 20px;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Default to single column for mobile */
 }
 .card {
     background: var(--color-dark-card);
     border-radius: var(--border-radius-card);
     padding: 30px;
     box-shadow: var(--shadow-light);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default; /* Indicate it's a card, not necessarily clickable */
 }
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+/* Active state for a "pressed" feel on click/tap */
 .card:active {
-    transform: scale(0.98); /* Touch/Cursor responsive click */
+    transform: translateY(0); 
+    box-shadow: var(--shadow-light);
 }
 
 /* Card 1: Main Intro */
@@ -171,10 +178,17 @@ h2 {
     color: var(--color-dark-bg);
     font-weight: 700;
     margin: 5px 0;
+    padding: 5px 0; /* Make clickable area larger */
+    border-radius: 3px;
 }
 .contact-link:hover {
     color: var(--color-dark-card);
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle background on hover */
     transform: scale(1.02);
+}
+.contact-link:active {
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: scale(1);
 }
 
 /* --- 2. ABOUT SECTION --- */
@@ -216,6 +230,13 @@ h2 {
     padding: 25px 20px;
     text-align: center;
     box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+    border: 1px solid transparent; /* Added for hover border effect */
+}
+.metric:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-accent-orange);
 }
 .metric strong {
     display: block;
@@ -248,10 +269,18 @@ h2 {
     border-radius: 5px;
     font-size: 14px;
     font-weight: 500;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
 }
 .skills-grid span:hover {
     background: var(--color-accent-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.skills-grid span:active {
+    background: #7a3e8e; /* Darker purple on click */
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 /* --- 3. PORTFOLIO SECTION (Project Cards) --- */
@@ -267,12 +296,19 @@ h2 {
     background: var(--color-dark-card);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.2s ease;
     border: 1px solid var(--color-border);
+    cursor: default;
 }
 .project-card-dark:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     border-color: var(--color-accent-orange);
+}
+.project-card-dark:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: var(--color-border);
 }
 .project-info {
     padding: 25px;
@@ -318,6 +354,19 @@ h2 {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
+}
+.contact-item-light:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-accent-purple);
+}
+.contact-item-light:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-light);
+    border-color: transparent;
 }
 .contact-item-light h3 {
     color: var(--color-accent-purple);
@@ -353,17 +402,18 @@ footer {
     
     /* --- 1. HOME (HERO) SECTION - GRID LAYOUT --- */
     .hero-grid {
-        grid-template-columns: 2fr 1fr; /* Two column layout */
+        grid-template-columns: 2fr 1fr; /* 2-column layout */
+        grid-template-rows: auto auto; /* Two rows for content */
         grid-template-areas: 
-            "intro image"
-            "focus contact";
-        max-width: 900px;
+            "intro image-accent"
+            "focus contact-cta";
+        max-width: 900px; /* Constrain width for a compact look */
         margin-left: 0; /* Align left */
     }
     .card-intro { grid-area: intro; }
-    .card-image-accent { grid-area: image; }
+    .card-image-accent { grid-area: image-accent; }
     .card-focus { grid-area: focus; }
-    .card-contact-cta { grid-area: contact; }
+    .card-contact-cta { grid-area: contact-cta; }
 
     .card-intro h1 {
         font-size: 56px;
@@ -405,16 +455,13 @@ footer {
 
 @media (min-width: 1100px) {
     .hero-grid {
-        grid-template-columns: 3fr 1fr 1fr;
+        grid-template-columns: 3fr 1.5fr 1.5fr; /* Adjust columns for more balanced cards */
         grid-template-rows: auto auto;
         grid-template-areas: 
-            "intro image image"
-            "focus contact contact";
-        max-width: 1200px;
+            "intro image-accent image-accent"
+            "focus contact-cta contact-cta";
+        max-width: 1200px; /* Allow wider layout on larger screens */
     }
-    .card-image-accent { grid-area: image; }
-    .card-focus { grid-area: focus; }
-    .card-contact-cta { grid-area: contact; }
     
     .card-intro {
         padding: 40px;
@@ -423,7 +470,6 @@ footer {
         font-size: 72px;
     }
     .card-image-accent {
-        grid-area: image-large;
         min-height: 350px;
     }
     .profile-image-wrap img {
