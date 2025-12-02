@@ -1,225 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ashutosh Singh - Compliance Expert | CSV & GAMP 5</title> 
-<meta name="description" content="Ashutosh Singh: Computerized System Validation (CSV) Expert specializing in GxP, 21 CFR Part 11, GAMP 5, and IT Compliance for the Pharmaceutical domain.">
-<meta name="keywords" content="CSV, GxP, 21 CFR Part 11, GAMP 5, IT Compliance, Quality Assurance, Pharma, SDLC">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashutosh Singh | Portfolio</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Portfolio of Ashutosh Singh – CSV Analyst, GxP Compliance Specialist, and Laboratory Informatics Expert." />
+  <meta name="keywords" content="CSV Analyst, GxP, Pharma IT, Data Integrity, Audit Readiness, Ashutosh Singh" />
+  <meta name="author" content="Ashutosh Singh" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#3b82f6" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <header>
+    <h2 class="logo">Ashutosh</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </header>
 
-<main id="main-content">
-<section id="header-bar">
-    <div class="container header-bar-content">
-        <div class="name-small">Ashutosh Singh</div>
-        <nav class="main-nav-top">
-            <ul class="nav-list-top">
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
-        </nav>
-    </div>
-</section>
+  <main>
+    <!-- HERO -->
+    <section class="hero fade-up">
+      <img src="icons/icon-192.png" alt="Profile Logo" class="hero-logo" />
+      <div>
+        <h1>Hello, I'm Ashutosh Singh</h1>
+        <p>CSV Analyst • GxP Compliance • Laboratory Informatics Specialist</p>
+        <a href="#projects" class="button-primary">View My Work</a>
+      </div>
+    </section>
 
-<section id="home">
-    <div class="container hero-grid">
-        
-        <div class="card card-intro">
-            <p class="greeting">Hi, I'm Ashutosh!</p>
-            <h1>Compliance Expert.</h1>
-            <p class="summary">
-                I specialize in <strong>Computerized System Validation (CSV)</strong> and <strong>GxP Quality Assurance</strong> within the Pharmaceutical domain. I bridge compliance with IT excellence, focusing on 21 CFR Part 11, EU Annex 11, and GAMP 5.
-            </p>
+    <!-- ABOUT -->
+    <section id="about" class="fade-up">
+      <h2>About Me</h2>
+      <p>
+        I am a Computerized System Validation (CSV) professional with expertise in 
+        GxP systems, data integrity, audit readiness, and laboratory digital transformation.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="fade-up">
+      <h2>Projects</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Lab System Validation</h3>
+          <p>Executed IQ/OQ/PQ for LIMS, Empower, and eLogbook systems ensuring GLP compliance.</p>
         </div>
 
-        <div class="card card-image-accent">
-            <div class="profile-image-wrap">
-                <img src="profile.jpg" alt="Ashutosh Singh Profile Picture" loading="lazy">
-            </div>
+        <div class="card">
+          <h3>Audit Support</h3>
+          <p>Supported multiple regulatory audits with zero critical observations.</p>
         </div>
 
-        <div class="card card-focus">
-            <h3>Currently focused on:</h3>
-            <p>Driving <strong>Data Integrity</strong> across complex GxP systems (LIMS, QMS) to ensure zero critical audit findings in USFDA and MHRA inspections.</p>
-            <p class="focus-detail">Deepening expertise in <strong>Cloud Compliance (GAMP 5 Annex 11)</strong> and validation automation strategies.</p>
+        <div class="card">
+          <h3>Data Integrity Assessment</h3>
+          <p>Implemented ALCOA+ aligned controls and performed DI reviews for electronic systems.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="card card-contact-cta">
-            <p class="contact-cta-title">Contact me</p>
-            <a href="mailto:kshatriya205902@gmail.com" class="contact-link">kshatriya205902@gmail.com</a>
-            <a href="https://www.linkedin.com/in/irealashu/" target="_blank" class="contact-link">LinkedIn Profile</a>
-        </div>
-    </div>
-</section>
+    <!-- CONTACT -->
+    <section id="contact" class="fade-up">
+      <h2>Contact</h2>
+      <p>Email: ashutosh@example.com</p>
+      <p>Phone: +91 9876543210</p>
+    </section>
+  </main>
 
-<section id="about" class="dark-section">
-    <div class="container">
-        <h2>About Me.</h2>
-        
-        <div class="about-flex">
-            <div class="about-text">
-                <p>
-                    I am a <strong>CSV QA Expert</strong>, focused on <strong>Bridging Pharma Compliance with IT Excellence</strong>. I am a results-driven CSV professional with over 5 years of experience specializing in <strong>Computerized System Validation (CSV)</strong> and Quality Assurance within the <strong>Pharmaceutical Domain</strong>. I am now strategically expanding my expertise into the broader IT domain as a dedicated CSV QA Specialist.
-                </p>
-                <p>
-                    I am adept at ensuring <strong>regulatory compliance, data integrity, and system reliability</strong> across GxP-regulated environments, with deep expertise in 21 CFR Part 11, EU Annex 11, GLP, and GAMP 5.
-                </p>
-                <p>
-                    I am skilled in managing the entire CSV lifecycle—from URS and FRS to Validation Planning, IQ, OQ, PQ, RTM, and VSR—ensuring seamless alignment with regulatory frameworks and IT quality standards. I am proficient in using <strong>TrackWise QMS</strong> for managing deviations, CAPA, incidents, and change controls. 
-                </p>
-                <p>
-                    I collaborate effectively with cross-functional IT and QA teams to implement robust validation strategies for enterprise systems. I have supported regulatory inspections (USFDA, MHRA, WHO) with <strong>zero critical observations</strong>.
-                </p>
-            </div>
-            
-            <div id="skills" class="skills-list">
-                <h3>Core Skills</h3>
-                <div class="skills-grid">
-                    <span>CSV</span>
-                    <span>GAMP 5</span>
-                    <span>SDLC</span>
-                    <span>21 CFR Part 11</span>
-                    <span>EU Annex 11</span>
-                    <span>TrackWise QMS</span>
-                    <span>Data Integrity</span>
-                    <span>Regulatory Support</span>
-                </div>
-            </div>
-        </div>
-        
-        <h3 class="stats-heading">Key Statistics</h3>
-        <div class="impact-metrics">
-            <div class="metric">
-                <strong>5+</strong>
-                <span>Years Experience</span>
-            </div>
-            <div class="metric">
-                <strong>Zero</strong>
-                <span>Critical Audit Findings</span>
-            </div>
-            <div class="metric">
-                <strong>10+</strong>
-                <span>GxP Systems Validated</span>
-            </div>
-        </div>
-    </div>
-</section>
+  <footer>
+    © 2025 Ashutosh Singh. All Rights Reserved.
+  </footer>
 
-<section id="portfolio" class="dark-section">
-    <div class="container">
-        <h2>Systems Validated.</h2>
-        
-        <div class="projects-grid-main">
-            
-            <article class="project-card project-card-dark">
-                <div class="project-info">
-                    <h3>eLogbook Validation & Implementation</h3>
-                    <p>
-                        <strong>System Type:</strong> GxP Digitalization Tool
-                    </p>
-                    <p>
-                        <strong>Compliance Focus:</strong> 21 CFR Part 11, EU Annex 11, GxP Category 5.
-                    </p>
-                    <h4>Key Deliverables:</h4>
-                    <ul>
-                        <li>Developed Validation Plans (VP) and URS.</li>
-                        <li>Executed IQ, OQ, and PQ protocols, focusing on e-signature and audit trails.</li>
-                        <li>Established Data Migration strategies and validated historical data transfer.</li>
-                    </ul>
-                </div>
-            </article>
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+    }
 
-            <article class="project-card project-card-dark">
-                <div class="project-info">
-                    <h3>Tiamo 2.5 (Laboratory Titration Software)</h3>
-                    <p>
-                        <strong>System Type:</strong> Laboratory Instrument Control & Data Acquisition System
-                    </p>
-                    <p>
-                        <strong>Compliance Focus:</strong> GLP, GxP, 21 CFR Part 11, GAMP 5 Category 3/4.
-                    </p>
-                    <h4>Key Deliverables:</h4>
-                    <ul>
-                        <li>Managed the full CSV Lifecycle for deployment and major upgrades (IQ/OQ/PQ).</li>
-                        <li>Validated control software's ability to accurately control hardware and securely handle analytical data.</li>
-                        <li>Authored protocols testing user roles/permissions and non-alterable audit trails.</li>
-                    </ul>
-                </div>
-            </article>
+    // Load theme
+    if (localStorage.getItem("theme")) {
+      document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+    }
 
-            <article class="project-card project-card-dark">
-                <div class="project-info">
-                    <h3>Spectrum ES 10.7.2 (FTIR Software)</h3>
-                    <p>
-                        <strong>System Type:</strong> Spectrophotomety Data System
-                    </p>
-                    <p>
-                        <strong>Compliance Focus:</strong> GMP, 21 CFR Part 11 (Audit Trail/Security), EU Annex 11.
-                    </p>
-                    <h4>Key Deliverables:</h4>
-                    <ul>
-                        <li>Developed and executed protocols ensuring reliable data capture and processing (ALCOA+).</li>
-                        <li>Conducted comprehensive Disaster Recovery testing for business continuity.</li>
-                        <li>Ensured system hardware and network environment met documented specifications.</li>
-                    </ul>
-                </div>
-            </article>
-            
-            <article class="project-card project-card-dark">
-                <div class="project-info">
-                    <h3>ICDAS 3.1 (Instrument Control System)</h3>
-                    <p>
-                        <strong>System Type:</strong> Specialized Instrument Control Software
-                    </p>
-                    <p>
-                        <strong>Compliance Focus:</strong> GxP, Data Integrity, Custom Software Validation (Risk-Based Approach).
-                    </p>
-                    <h4>Key Deliverables:</h4>
-                    <ul>
-                        <li>Developed a risk-based validation strategy for this specialized system.</li>
-                        <li>Created and executed functional testing (OQ/PQ) to confirm data capture accuracy and precision.</li>
-                        <li>Validated interfaces and data exchange points with other business systems.</li>
-                    </ul>
-                </div>
-            </article>
-
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="dark-section">
-    <div class="container">
-        <h2>Connect & Collaborate.</h2>
-        <div class="contact-grid-main">
-            <div class="contact-item contact-item-light">
-                <h3>Email</h3>
-                <p><a href="mailto:kshatriya205902@gmail.com">kshatriya205902@gmail.com</a></p>
-            </div>
-            <div class="contact-item contact-item-light">
-                <h3>LinkedIn</h3>
-                <p><a href="https://www.linkedin.com/in/irealashu/" target="_blank">View Profile</a></p>
-            </div>
-            <div class="contact-item contact-item-light">
-                <h3>Phone</h3>
-                <p><a href="tel:+918707322582">+91 8707322582</a></p>
-            </div>
-            <div class="contact-item contact-item-light">
-                <h3>Location</h3>
-                <p>Noida, India</p>
-            </div>
-        </div>
-    </div>
-</section>
-</main>
-
-<footer>
-    <p>Made with ❤️ by Ashutosh Singh &copy; 2025</p>
-</footer>
+    // PWA Service Worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 
 </body>
 </html>
