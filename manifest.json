@@ -1,0 +1,42 @@
+{
+  "name": "Ashutosh Portfolio",
+  "short_name": "Portfolio",
+  "description": "Portfolio website of Ashutosh Singh showcasing CSV, GAMP5 expertise, compliance, and technical experience.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "Quickly access my validated systems, documents and projects.",
+      "url": "index.html#projects"
+    },
+    {
+      "name": "Contact Me",
+      "short_name": "Contact",
+      "description": "Get in touch with me.",
+      "url": "index.html#contact"
+    }
+  ]
+}
