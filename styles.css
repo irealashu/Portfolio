@@ -1,25 +1,25 @@
 /* ======================
-   Theme Variables
+   Premium Theme Colors
 ====================== */
 :root {
-    --bg: #ffffff;
-    --text: #1a1a1a;
-    --subtext: #555;
-    --card-bg: #f7f7f7;
-    --accent: #3b82f6;
-    --accent-dark: #1e40af;
-    --shadow: rgba(0,0,0,0.15);
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --subtext: #d9d9d9;
+    --card-bg: #141414;
+    --accent: #c6a667;
+    --accent-dark: #b6934d;
+    --shadow: rgba(255, 215, 128, 0.08);
     --transition: 0.3s ease;
 }
 
-[data-theme="dark"] {
-    --bg: #0d1117;
-    --text: #e6edf3;
-    --subtext: #9ba1c6;
-    --card-bg: #161b22;
-    --accent: #3b82f6;
-    --accent-dark: #60a5fa;
-    --shadow: rgba(255,255,255,0.08);
+/* Light theme option if needed later */
+[data-theme="light"] {
+    --bg: #ffffff;
+    --text: #0a0a0a;
+    --subtext: #555;
+    --card-bg: #f1f1f1;
+    --accent: #c6a667;
+    --accent-dark: #a6834a;
 }
 
 /* ======================
@@ -36,20 +36,23 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    overflow-x: hidden;
-    transition: background var(--transition), color var(--transition);
-}
-
-a {
-    color: var(--accent);
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+    transition: all var(--transition);
 }
 
 /* ======================
-   Sections & Containers
+     Typography
+====================== */
+h1, h2, h3 {
+    color: var(--text);
+    font-weight: 700;
+}
+
+p, li {
+    color: var(--subtext);
+}
+
+/* ======================
+     Layout
 ====================== */
 .container {
     width: 85%;
@@ -60,19 +63,21 @@ a:hover {
 
 header {
     text-align: center;
-    padding: 40px 0;
+    padding-top: 30px;
 }
 header h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
+    font-size: 46px;
+    background: linear-gradient(to right, #c6a667, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 header p {
-    font-size: 18px;
     color: var(--subtext);
+    font-size: 18px;
 }
 
 /* ======================
-   Hero Section
+     Hero Section
 ====================== */
 .hero {
     display: flex;
@@ -80,85 +85,74 @@ header p {
     align-items: center;
     gap: 60px;
 }
-
 .hero-text h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-size: 34px;
+    color: var(--text);
 }
-
-.hero-text p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: var(--subtext);
-}
-
 .profile-logo {
-    width: 140px;
+    width: 130px;
     border-radius: 16px;
+    box-shadow: 0px 8px 35px rgba(198,166,103,0.25);
 }
 
-/* CTA Button */
+/* Premium Button */
 .btn-primary {
     display: inline-block;
     background: var(--accent);
-    color: #fff;
-    font-weight: 600;
-    padding: 14px 26px;
+    color: #000;
+    padding: 14px 28px;
     border-radius: 8px;
-    transition: background var(--transition);
+    font-weight: bold;
+    box-shadow: 0px 6px 20px rgba(198,166,103,0.4);
+    transition: transform var(--transition), background var(--transition);
 }
 .btn-primary:hover {
     background: var(--accent-dark);
+    transform: translateY(-3px);
 }
 
 /* ======================
-   Cards Grid
+     Card Section
 ====================== */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
     gap: 25px;
     margin-top: 25px;
 }
 
 .card {
     background: var(--card-bg);
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0px 8px 25px var(--shadow);
-    transition: transform var(--transition), box-shadow var(--transition);
+    padding: 24px;
+    border-radius: 15px;
+    border: 1px solid rgba(198,166,103,0.2);
+    box-shadow: 0px 6px 30px var(--shadow);
+    transition: transform var(--transition), border var(--transition);
 }
-
-.card h3 {
-    margin-bottom: 10px;
-}
-
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0px 10px 30px var(--shadow);
+    transform: translateY(-5px);
+    border-color: var(--accent);
 }
 
 /* ======================
-   About List
+    Lists
 ====================== */
 .highlight-list li {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     font-size: 17px;
 }
 
 /* ======================
-   Fade Animation
+    Fade Animation
 ====================== */
 .fade-up {
     opacity: 0;
     transform: translateY(25px);
-    animation: fadeUp 0.8s ease forwards;
+    animation: fadeUp 0.7s ease forwards;
 }
-
 @keyframes fadeUp {
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
