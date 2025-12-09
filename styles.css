@@ -1,305 +1,282 @@
-/* -----------------------------------------
-   GLOBAL DESIGN VARIABLES
------------------------------------------ */
+/* ----------------------------------------- */
+/*              GLOBAL VARIABLES             */
+/* ----------------------------------------- */
 :root {
     --gold: #d6a001;
-    --gold-soft: rgba(214, 160, 1, 0.8);
-    --tile-bg: #ffffff;
-    --fade-opacity: rgba(0,0,0,0.08);
-    --text-dark: #1a1a1a;
-    --text-light-dark: #444;
-    --section-bg: #fafafa;
+    --gold-soft: rgba(214, 160, 1, 0.7);
+    --bg: #ffffff;
+    --light-bg: #fafafa;
+    --dark: #111;
+    --light-dark: #555;
+    --shadow-soft: 0px 6px 16px rgba(0, 0, 0, 0.10);
+    --shadow-hover: 0px 12px 28px rgba(214, 160, 1, 0.35);
 }
 
-/* -----------------------------------------
-   GLOBAL STYLE RESET
------------------------------------------ */
+/* ----------------------------------------- */
+/*             GLOBAL RESET STYLES           */
+/* ----------------------------------------- */
 body {
     margin: 0;
     padding: 0;
     font-family: "Open Sans", sans-serif;
-    background: var(--tile-bg);
-    color: var(--text-dark);
-    scroll-behavior: smooth;
+    color: var(--dark);
+    background: var(--bg);
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
+/* Section short spacing */
 section {
-    padding: 80px 60px;
+    padding: 60px 6%;
 }
 
+/* Center section titles */
 h2 {
-    font-size: 38px;
-    text-align: center;
+    font-size: 34px;
     font-family: "Cinzel", serif;
-    color: var(--text-dark);
-    position: relative;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 35px;
 }
 
 h2::after {
     content: '';
-    width: 75px;
-    height: 4px;
     background: var(--gold);
+    height: 3px;
+    width: 65px;
     display: block;
-    margin: 14px auto 0;
+    margin: 10px auto 0;
 }
 
-/* -----------------------------------------
-   HEADER PREMIUM STYLING
------------------------------------------ */
+/* ----------------------------------------- */
+/*                 HEADER AREA               */
+/* ----------------------------------------- */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 70px;
-    background: var(--tile-bg);
-    border-bottom: 1px solid var(--fade-opacity);
+    padding: 18px 60px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: white;
     position: sticky;
     top: 0;
-    z-index: 99;
-    transition: 0.3s ease;
+    z-index: 100;
 }
 
-.logo-title {
+.header-left {
     display: flex;
     align-items: center;
     gap: 18px;
 }
 
 .logo {
-    width: 78px;
-    height: 78px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 3px solid var(--gold);
-    box-shadow: 0 0 15px rgba(214,160,1,0.65);
-    object-fit: cover;
+    box-shadow: 0 0 18px rgba(214, 160, 1, 0.55);
     transition: 0.3s ease;
 }
 
 .logo:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 23px rgba(214,160,1,0.85);
+    transform: scale(1.05);
 }
 
 .title {
-    font-size: 30px;
+    font-size: 28px;
     font-family: "Cinzel", serif;
-    letter-spacing: 1.2px;
-}
-
-.header nav {
-    display: flex;
-    align-items: center;
 }
 
 .header nav a {
-    margin-left: 40px;
-    font-size: 19px;
-    font-weight: 600;
+    margin-left: 32px;
     color: var(--gold);
-    transition: 0.25s ease;
+    font-weight: 600;
+    font-size: 18px;
+    transition: 0.3s;
 }
 
 .header nav a:hover {
-    color: var(--text-dark);
-    text-shadow: 0 0 8px rgba(214,160,1,0.75);
+    color: black;
+    text-shadow: 0px 0px 8px var(--gold);
 }
 
-/* -----------------------------------------
-   HERO SECTION
------------------------------------------ */
+/* ----------------------------------------- */
+/*                HERO SECTION               */
+/* ----------------------------------------- */
+
 #home {
     text-align: center;
-    padding-top: 70px;
+    padding-top: 45px;
 }
 
 .hero-title {
-    font-size: 50px;
-    font-family: "Cinzel", serif;
-    margin-bottom: 12px;
+    font-size: 48px;
+    margin-bottom: 8px;
+    font-family: "Cinzel";
 }
 
 .hero-sub {
-    font-size: 21px;
-    color: var(--text-light-dark);
+    font-size: 20px;
+    color: var(--light-dark);
+    margin-bottom: 25px;
 }
 
 .cta-main {
     display: inline-block;
-    margin-top: 32px;
     background: var(--gold);
-    padding: 14px 45px;
-    color: var(--text-dark);
+    padding: 12px 38px;
     font-weight: 700;
-    border-radius: 8px;
-    box-shadow: 0 5px 16px rgba(214,160,1,0.55);
-    transition: 0.3s ease;
+    border-radius: 6px;
+    transition: 0.3s;
+    color: black;
+    box-shadow: 0px 5px 16px var(--gold-soft);
 }
 
 .cta-main:hover {
     transform: translateY(-4px);
-    background: var(--text-dark);
+    background: black;
     color: var(--gold);
 }
 
-/* -----------------------------------------
-   ABOUT SECTION
------------------------------------------ */
-.about-block {
-    max-width: 1100px;
+/* ----------------------------------------- */
+/*                 ABOUT SECTION             */
+/* ----------------------------------------- */
+
+.about-text {
+    max-width: 950px;
     margin: auto;
-    text-align: justify;
+    font-size: 17px;
     line-height: 1.7;
-    color: var(--text-light-dark);
+    color: var(--light-dark);
 }
 
-/* -----------------------------------------
-   METRIC ROW
------------------------------------------ */
+/* ----------------------------------------- */
+/*        METRICS – compact & premium        */
+/* ----------------------------------------- */
+
 .metrics {
     display: flex;
-    justify-content: space-evenly;
-    margin: 50px auto;
-    max-width: 900px;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 35px;
 }
 
 .metric-box {
+    flex: 1;
+    max-width: 250px;
     background: white;
-    padding: 25px 30px;
+    padding: 20px 18px;
     border-left: 6px solid var(--gold);
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    transition: .35s ease;
-}
-
-.metric-box:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 13px 28px rgba(214,160,1,0.35);
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: 0.35s;
+    text-align: center;
 }
 
 .metric-box strong {
     display: block;
-    font-size: 34px;
+    font-size: 30px;
     font-family: "Cinzel";
-    margin-bottom: 5px;
+    color: var(--gold);
 }
 
-/* -----------------------------------------
-   SKILLS PANEL
------------------------------------------ */
+.metric-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ----------------------------------------- */
+/*              SKILLS GRID                  */
+/* ----------------------------------------- */
+
 .skills {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
     max-width: 900px;
-    margin: auto;
+    margin: 45px auto 20px;
 }
 
 .skills li {
     list-style: none;
-    padding: 14px;
     background: white;
+    padding: 12px 14px;
     border-left: 5px solid var(--gold);
     border-radius: 6px;
     font-weight: 600;
     transition: 0.3s;
+    cursor: pointer;
 }
 
+/* ANIMATION TOUCH EFFECTS */
 .skills li:hover {
-    padding-left: 22px;
-    background: #fff7dd;
+    background: #fff6b9;
+    padding-left: 25px;
+    box-shadow: 0px 8px 22px rgba(214, 160, 1, 0.30);
 }
 
-/* -----------------------------------------
-   SYSTEMS SECTION
------------------------------------------ */
+/* ----------------------------------------- */
+/*            SYSTEMS / CARD VIEW            */
+/* ----------------------------------------- */
+
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(380px,1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 18px;
 }
 
 .project-card {
-    padding: 25px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    padding: 18px 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
     transition: 0.3s;
 }
 
 .project-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 13px 30px rgba(214,160,1,0.35);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
 .project-card h3 {
     margin-top: 0;
     color: var(--gold);
+    font-size: 21px;
+    margin-bottom: 6px;
 }
 
-/* -----------------------------------------
-   CONTACT SECTION
------------------------------------------ */
+/* ----------------------------------------- */
+/*           CONTACT & FOOTER                */
+/* ----------------------------------------- */
+
 .contact-box {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 16px;
 }
 
 .contact-card {
     background: white;
-    padding: 25px 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
-    transition: 0.3s ease;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: 0.3s;
+    text-align: center;
 }
 
 .contact-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 13px 28px rgba(214,160,1,0.35);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
-/* -----------------------------------------
-   FOOTER
------------------------------------------ */
 footer {
-    padding: 25px;
-    background: var(--section-bg);
+    padding: 18px;
     text-align: center;
-    color: var(--text-light-dark);
-    font-size: 15px;
+    font-size: 14.5px;
+    background: var(--light-bg);
+    color: var(--light-dark);
 }
 
 footer a {
     color: var(--gold);
-    font-weight: bold;
-}
-
-/* -----------------------------------------
-   RESPONSIVE FIXES
------------------------------------------ */
-@media(max-width:860px) {
-    .header {
-        padding: 16px 28px;
-    }
-    .logo {
-        width: 60px;
-        height: 60px;
-    }
-    section {
-        padding: 45px 25px;
-    }
-    .skills {
-        grid-template-columns: 1fr;
-    }
-    .metrics {
-        flex-direction: column;
-        gap: 20px;
-    }
+    font-weight: 600;
 }
