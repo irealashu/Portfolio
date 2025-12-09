@@ -1,7 +1,7 @@
 /* ================= Global ================= */
 :root {
-    /* --- NEW COLOR PALETTE (Inspired by Data Dashboard UI) --- */
-    --primary-color: #6a6aff; /* Soft Purple/Indigo for emphasis, links, and text */
+    /* --- COLOR PALETTE (Data Dashboard UI) --- */
+    --primary-color: #6a6aff; /* Soft Purple/Indigo */
     --secondary-color: #a4a4ff; /* Lighter Purple/Accent */
     --background-light: #f7f9fd; /* Very soft off-white/light gray (Clean base) */
     --background-dark: #1e1e2c; /* Deep slate gray/navy for dark mode */
@@ -26,7 +26,7 @@ body {
     
     /* Background: Clean, soft base */
     background: var(--background-light); 
-    background-image: none; /* Removing previous complex gradients */
+    background-image: none; 
     background-attachment: fixed;
 }
 
@@ -56,7 +56,6 @@ a:focus, button:focus, input:focus {
     header {
         background: var(--card-background-dark);
         box-shadow: 0px 4px 15px rgba(255,255,255,0.08);
-        /* Applying Dark Mode gradient line accent */
         background-image: linear-gradient(90deg, 
                           rgba(42, 42, 65, 0) 0%, 
                           rgba(79, 79, 120, 0.5) 45%,
@@ -462,25 +461,40 @@ footer {
         position: absolute;
         /* Adjusted top position for the narrower header */
         top: 60px; 
-        left: 0;
-        width: 100%;
+        /* Match the off-canvas/floating menu look */
+        right: 18px; 
+        left: auto;
+        width: 80%; /* Takes up 80% of screen width */
+        max-width: 300px; /* Limits size on tablets */
         background: var(--card-background-light);
         flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
-        border-top: 1px solid #c8d3e0; /* Light border */
+        align-items: flex-start; /* Links start on the left */
+        padding: 15px 0;
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.2); /* Deeper shadow for floating effect */
+        
+        /* Smooth Squircle Effect */
+        border-radius: 16px; 
+        border-top: none; /* No top line */
+        transition: transform 0.3s ease-out;
+        transform: scale(0.95) translateY(-10px); /* Start slightly scaled down */
+        transform-origin: top right;
     }
 
     .nav-links.open {
         display: flex; /* Shown when the 'open' class is toggled by JS */
+        transform: scale(1) translateY(0);
     }
     
     .nav-links a {
-        padding: 12px 0;
-        width: 90%;
-        text-align: center;
-        border-bottom: 1px solid #c8d3e0;
+        padding: 10px 20px; /* More padding */
+        width: 100%;
+        text-align: left; /* Text starts on the left */
+        border-bottom: 1px solid #f0f0f0; /* Use a light divider */
+    }
+
+    /* Remove border on the last link */
+    .nav-links a:last-child {
+        border-bottom: none;
     }
     
     .menu-toggle {
