@@ -70,6 +70,10 @@ a:focus, button:focus, input:focus {
         color: var(--text-color-dark);
     }
     
+    .contact-card p { /* Dark mode adjustment for paragraph text */
+        color: var(--text-color-dark) !important;
+    }
+
     footer {
         background: #222;
         color: var(--text-muted-dark);
@@ -169,7 +173,7 @@ section h2 {
     line-height: 1.6;
 }
 
-/* Styling for CTA button (retained, but the element itself was removed in HTML) */
+/* CTA button styling retained but button element is removed from HTML */
 .cta-btn {
     padding: 14px 45px; 
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
@@ -200,6 +204,7 @@ section h2 {
 }
 
 .skill-tag {
+    /* Styling as a button/pill */
     padding: 16px 25px;
     border-radius: 12px;
     background: var(--card-background-light);
@@ -214,6 +219,13 @@ section h2 {
 .skill-tag:hover {
     transform: translateY(-4px);
     box-shadow: 0px 8px 25px rgba(0,0,0,0.18);
+}
+
+/* TOUCH/ACTIVE ENHANCEMENT */
+.skill-tag:active {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.18);
+    transition: none; /* Instant feedback on press */
 }
 
 .skill-tag h3 {
@@ -255,6 +267,13 @@ section h2 {
     box-shadow: 0px 12px 38px rgba(0,0,0,0.22);
 }
 
+/* TOUCH/ACTIVE ENHANCEMENT */
+.system-card:active {
+    transform: translateY(-6px);
+    box-shadow: 0px 12px 38px rgba(0,0,0,0.22);
+    transition: none; /* Instant feedback on press */
+}
+
 .system-card h3 {
     color: var(--primary-color);
     font-size: 20px;
@@ -266,7 +285,7 @@ section h2 {
 .system-card p {
     color: var(--text-muted-light);
     font-size: 15px;
-    margin-bottom: 12px; /* Increased margin for better separation from list */
+    margin-bottom: 12px;
     line-height: 1.5;
 }
 
@@ -302,7 +321,8 @@ section h2 {
 /* ================ Contact ================= */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    /* FIX: Force 4 columns to stay on one line for wide screens */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 24px;
     max-width: 900px;
     margin: auto;
@@ -314,6 +334,21 @@ section h2 {
     border-radius: 14px;
     background: var(--card-background-light);
     box-shadow: 0px 5px 22px rgba(0,0,0,0.1);
+    /* Transition added to support hover and active effects */
+    transition: 0.3s ease; 
+}
+
+/* CONTACT CARD HOVER (Subtle lift) */
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+}
+
+/* CONTACT CARD TOUCH/ACTIVE ENHANCEMENT */
+.contact-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+    transition: none; /* Instant feedback on press */
 }
 
 .contact-card h4 {
@@ -331,6 +366,14 @@ section h2 {
 
 .contact-card a:hover {
     color: var(--primary-color);
+}
+
+/* Style for non-link text (e.g., Location paragraph) */
+.contact-card p {
+    color: var(--text-color-light);
+    font-weight: 500;
+    margin: 0;
+    transition: 0.2s ease;
 }
 
 /* ================= Footer =============== */
@@ -364,6 +407,11 @@ footer {
 @media (max-width:768px){
     header {
         padding: 14px 18px;
+    }
+    
+    /* FIX: Allow contact cards to stack on mobile */
+    .contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     
     /* New: Mobile Navigation */
