@@ -1,288 +1,305 @@
-/* -------------------------------------------------------------
-   GLOBAL VARIABLES (GOLD THEME)
-------------------------------------------------------------- */
+/* -----------------------------------------
+   GLOBAL DESIGN VARIABLES
+----------------------------------------- */
 :root {
-    --gold: #ffb400;
-    --black-text: #121212;
-    --body-white: #fbfbfb;
+    --gold: #d6a001;
+    --gold-soft: rgba(214, 160, 1, 0.8);
     --tile-bg: #ffffff;
-    --border-gold: rgba(255,180,0,0.45);
-    --shadow-gold: 0 12px 30px rgba(255,180,0,0.28);
-    --fade-opacity: rgba(0,0,0,0.06);
+    --fade-opacity: rgba(0,0,0,0.08);
+    --text-dark: #1a1a1a;
+    --text-light-dark: #444;
+    --section-bg: #fafafa;
 }
 
-/* -------------------------------------------------------------
-   BASE STYLES
-------------------------------------------------------------- */
+/* -----------------------------------------
+   GLOBAL STYLE RESET
+----------------------------------------- */
 body {
     margin: 0;
-    background: var(--body-white);
+    padding: 0;
     font-family: "Open Sans", sans-serif;
-    color: var(--black-text);
-    overflow-x: hidden;
+    background: var(--tile-bg);
+    color: var(--text-dark);
+    scroll-behavior: smooth;
 }
 
-/* Smooth Fade Animation on Load */
-body {
-    animation: bodyFade 0.8s ease-in-out;
-}
-@keyframes bodyFade {
-    from {opacity: 0;}
-    to {opacity: 1;}
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-/* -------------------------------------------------------------
-   HEADER
-------------------------------------------------------------- */
+section {
+    padding: 80px 60px;
+}
+
+h2 {
+    font-size: 38px;
+    text-align: center;
+    font-family: "Cinzel", serif;
+    color: var(--text-dark);
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 75px;
+    height: 4px;
+    background: var(--gold);
+    display: block;
+    margin: 14px auto 0;
+}
+
+/* -----------------------------------------
+   HEADER PREMIUM STYLING
+----------------------------------------- */
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 18px 40px;
+    align-items: center;
+    padding: 22px 70px;
     background: var(--tile-bg);
     border-bottom: 1px solid var(--fade-opacity);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
     z-index: 99;
-    animation: slideDown 0.8s ease;
-}
-
-@keyframes slideDown {
-    from {transform: translateY(-40px); opacity: 0;}
-    to {transform: translateY(0); opacity: 1;}
+    transition: 0.3s ease;
 }
 
 .logo-title {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
 }
 
 .logo {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
+    width: 78px;
+    height: 78px;
     border-radius: 50%;
-    border: 4px solid var(--gold);
-    box-shadow: 0 0 18px rgba(255,180,0,0.56);
-    transition: transform 0.3s ease, box-shadow 0.3s;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 15px rgba(214,160,1,0.65);
+    object-fit: cover;
+    transition: 0.3s ease;
 }
 
 .logo:hover {
-    transform: rotate(3deg) scale(1.06);
-    box-shadow: 0 0 25px rgba(255,180,0,0.8);
+    transform: scale(1.06);
+    box-shadow: 0 0 23px rgba(214,160,1,0.85);
 }
 
 .title {
+    font-size: 30px;
     font-family: "Cinzel", serif;
-    font-size: 32px;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.2px;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
 }
 
 .header nav a {
-    margin-left: 25px;
+    margin-left: 40px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--gold);
     transition: 0.25s ease;
 }
 
 .header nav a:hover {
-    color: var(--black-text);
-    text-shadow: 0px 0px 6px rgba(255,180,0,0.6);
+    color: var(--text-dark);
+    text-shadow: 0 0 8px rgba(214,160,1,0.75);
 }
 
-/* -------------------------------------------------------------
-   SECTION TITLES
-------------------------------------------------------------- */
-.section-title {
-    font-family: "Cinzel", serif;
-    text-align: center;
-    margin-top: 65px;
-    font-size: 38px;
-    color: var(--gold);
-    position: relative;
-    animation: fadeInTitle 0.7s ease forwards;
-}
-@keyframes fadeInTitle {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
-}
-
-.section-title::after {
-    content: "";
-    width: 80px;
-    height: 4px;
-    background: var(--gold);
-    display: block;
-    margin: 10px auto;
-    border-radius: 4px;
-}
-
-/* -------------------------------------------------------------
+/* -----------------------------------------
    HERO SECTION
-------------------------------------------------------------- */
-.hero {
+----------------------------------------- */
+#home {
     text-align: center;
-    padding: 100px 35px;
+    padding-top: 70px;
 }
 
-.hero-content h2 {
-    font-family: "Cinzel";
-    font-size: 48px;
-    letter-spacing: 1px;
+.hero-title {
+    font-size: 50px;
+    font-family: "Cinzel", serif;
+    margin-bottom: 12px;
 }
-.hero-content p {
-    margin-top: 12px;
-    opacity: 0.8;
+
+.hero-sub {
+    font-size: 21px;
+    color: var(--text-light-dark);
 }
-.cta {
+
+.cta-main {
     display: inline-block;
-    margin-top: 20px;
-    padding: 14px 36px;
+    margin-top: 32px;
     background: var(--gold);
-    color: #111;
-    border-radius: 6px;
+    padding: 14px 45px;
+    color: var(--text-dark);
     font-weight: 700;
-    letter-spacing: 0.5px;
-    box-shadow: var(--shadow-gold);
-    transition: 0.25s ease;
-    animation: zoomIn 0.7s ease;
-}
-@keyframes zoomIn {
-    from {transform: scale(0.85); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+    border-radius: 8px;
+    box-shadow: 0 5px 16px rgba(214,160,1,0.55);
+    transition: 0.3s ease;
 }
 
-.cta:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 12px 28px rgba(255,180,0,0.56);
+.cta-main:hover {
+    transform: translateY(-4px);
+    background: var(--text-dark);
+    color: var(--gold);
 }
 
-/* -------------------------------------------------------------
+/* -----------------------------------------
    ABOUT SECTION
-------------------------------------------------------------- */
-.about-text {
-    text-align: center;
-    width: 70%;
+----------------------------------------- */
+.about-block {
+    max-width: 1100px;
     margin: auto;
-    font-size: 18px;
-    line-height: 1.65;
-    animation: fadeInUp 0.8s ease;
-}
-@keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(25px);}
-    to {opacity: 1; transform: translateY(0);}
+    text-align: justify;
+    line-height: 1.7;
+    color: var(--text-light-dark);
 }
 
+/* -----------------------------------------
+   METRIC ROW
+----------------------------------------- */
 .metrics {
     display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 40px;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 50px auto;
+    max-width: 900px;
 }
 
 .metric-box {
-    background: var(--tile-bg);
-    padding: 24px 30px;
-    border-left: 7px solid var(--gold);
-    border-radius: 8px;
-    box-shadow: var(--shadow-gold);
-    text-align: center;
-    width: 210px;
-    animation: metricPulse 0.9s ease;
-}
-@keyframes metricPulse {
-    from {opacity:0; transform: scale(0.6);}
-    to {opacity:1; transform: scale(1);}
+    background: white;
+    padding: 25px 30px;
+    border-left: 6px solid var(--gold);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: .35s ease;
 }
 
-.metric-val {
-    font-size: 36px;
-    font-weight: bold;
-    color: var(--gold);
+.metric-box:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 13px 28px rgba(214,160,1,0.35);
 }
 
-/* -------------------------------------------------------------
-   PORTFOLIO SECTION
-------------------------------------------------------------- */
-.portfolio-grid {
+.metric-box strong {
+    display: block;
+    font-size: 34px;
+    font-family: "Cinzel";
+    margin-bottom: 5px;
+}
+
+/* -----------------------------------------
+   SKILLS PANEL
+----------------------------------------- */
+.skills {
     display: grid;
-    padding: 50px;
-    gap: 28px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.card {
-    background: var(--tile-bg);
-    padding: 26px;
-    border-radius: 8px;
-    border-top: 5px solid var(--gold);
-    border-left: 1px solid var(--border-gold);
-    box-shadow: var(--shadow-gold);
-    transition: 0.25s ease;
-    animation: fadeScale 0.6s ease;
-}
-
-@keyframes fadeScale {
-    from {opacity:0; transform: translateY(30px) scale(0.92);}
-    to {opacity:1; transform: translateY(0) scale(1);}
-}
-
-.card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(255,180,0,0.45);
-}
-
-.card h3 {
-    color: var(--gold);
-    font-size: 22px;
-}
-.card ul {
-    padding-left: 20px;
-}
-.card li {
-    margin-bottom: 8px;
-}
-
-/* -------------------------------------------------------------
-   CONTACT SECTION
-------------------------------------------------------------- */
-.contact-grid {
-    display: grid;
-    width: 65%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 900px;
     margin: auto;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 18px;
-    margin-top: 35px;
 }
-.contact-grid div {
-    background: #ffffff;
-    padding: 18px;
-    border-left: 7px solid var(--gold);
-    border-radius: 8px;
-    font-size: 17px;
-    box-shadow: var(--shadow-gold);
+
+.skills li {
+    list-style: none;
+    padding: 14px;
+    background: white;
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.skills li:hover {
+    padding-left: 22px;
+    background: #fff7dd;
+}
+
+/* -----------------------------------------
+   SYSTEMS SECTION
+----------------------------------------- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(380px,1fr));
+    gap: 25px;
+}
+
+.project-card {
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 13px 30px rgba(214,160,1,0.35);
+}
+
+.project-card h3 {
+    margin-top: 0;
+    color: var(--gold);
+}
+
+/* -----------------------------------------
+   CONTACT SECTION
+----------------------------------------- */
+.contact-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.contact-card {
+    background: white;
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
     transition: 0.3s ease;
 }
-.contact-grid div:hover {
-    transform: translateX(6px);
-    box-shadow: 0 22px 38px rgba(255,180,0,0.45);
+
+.contact-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 13px 28px rgba(214,160,1,0.35);
 }
 
-.contact-grid a {
-    color: var(--black-text);
-    font-weight: 600;
-}
-
-/* -------------------------------------------------------------
+/* -----------------------------------------
    FOOTER
-------------------------------------------------------------- */
+----------------------------------------- */
 footer {
+    padding: 25px;
+    background: var(--section-bg);
     text-align: center;
-    padding: 18px;
-    background: #ffffff;
-    margin-top: 60px;
-    font-size: 14px;
-    opacity: 0.7;
+    color: var(--text-light-dark);
+    font-size: 15px;
+}
+
+footer a {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+/* -----------------------------------------
+   RESPONSIVE FIXES
+----------------------------------------- */
+@media(max-width:860px) {
+    .header {
+        padding: 16px 28px;
+    }
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    section {
+        padding: 45px 25px;
+    }
+    .skills {
+        grid-template-columns: 1fr;
+    }
+    .metrics {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
