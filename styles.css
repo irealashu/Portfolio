@@ -111,7 +111,8 @@ header {
     top: 0;
     /* Base header color is white/light */
     background: var(--card-background-light); 
-    padding: 16px 60px;
+    /* ADJUSTMENT HERE: Reduced vertical padding from 16px to 10px */
+    padding: 10px 60px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -452,7 +453,8 @@ footer {
 /* ================= Responsive Enhancement (Mobile First) =============== */
 @media (max-width:768px){
     header {
-        padding: 14px 18px;
+        /* Adjusted mobile header padding to match desktop adjustment */
+        padding: 10px 18px; 
     }
     
     /* FIX: Allow contact cards to stack on mobile */
