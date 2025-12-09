@@ -1,0 +1,118 @@
+:root {
+    --gold: #ffb400;
+    --bg-dark: #0f0f0f;
+    --text-light: #ffffff;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    font-family: "Open Sans", sans-serif;
+    color: var(--text-light);
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background-color: #111;
+    border-bottom: 1px solid #222;
+}
+
+.header nav a {
+    margin-left: 25px;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* HERO SECTION */
+.hero {
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#111, #000);
+}
+
+.hero-content h2 {
+    font-family: "Cinzel";
+    font-size: 48px;
+}
+
+.cta {
+    padding: 10px 26px;
+    background: var(--gold);
+    color: #111;
+    margin-top: 18px;
+    display: inline-block;
+}
+
+/* SECTION HEADERS */
+.section-title {
+    text-align: center;
+    font-family: "Cinzel";
+    margin-top: 50px;
+    color: var(--gold);
+}
+
+/* ABOUT */
+.about-text {
+    width: 75%;
+    margin: auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.metrics {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    gap: 25px;
+}
+
+.metric-box {
+    background: #181818;
+    padding: 20px;
+    border-left: 5px solid var(--gold);
+}
+
+.metric-val {
+    font-size: 34px;
+    display: block;
+    font-weight: 700;
+}
+
+/* PORTFOLIO */
+.portfolio-grid {
+    display: grid;
+    padding: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #1d1d1d;
+    padding: 25px;
+    border-top: 4px solid var(--gold);
+}
+
+.card h3 {
+    color: var(--gold);
+}
+
+/* CONTACT */
+.contact-grid {
+    display: grid;
+    width: 60%;
+    margin: auto;
+    grid-template-columns: repeat(2,1fr);
+    text-align: center;
+    gap: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #111;
+}
