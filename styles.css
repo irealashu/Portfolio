@@ -1,118 +1,288 @@
+/* -------------------------------------------------------------
+   GLOBAL VARIABLES (GOLD THEME)
+------------------------------------------------------------- */
 :root {
     --gold: #ffb400;
-    --bg-dark: #0f0f0f;
-    --text-light: #ffffff;
+    --black-text: #121212;
+    --body-white: #fbfbfb;
+    --tile-bg: #ffffff;
+    --border-gold: rgba(255,180,0,0.45);
+    --shadow-gold: 0 12px 30px rgba(255,180,0,0.28);
+    --fade-opacity: rgba(0,0,0,0.06);
 }
 
+/* -------------------------------------------------------------
+   BASE STYLES
+------------------------------------------------------------- */
 body {
     margin: 0;
-    background: var(--bg-dark);
+    background: var(--body-white);
     font-family: "Open Sans", sans-serif;
-    color: var(--text-light);
+    color: var(--black-text);
+    overflow-x: hidden;
 }
 
-/* HEADER */
+/* Smooth Fade Animation on Load */
+body {
+    animation: bodyFade 0.8s ease-in-out;
+}
+@keyframes bodyFade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* -------------------------------------------------------------
+   HEADER
+------------------------------------------------------------- */
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 15px 40px;
-    background-color: #111;
-    border-bottom: 1px solid #222;
+    padding: 18px 40px;
+    background: var(--tile-bg);
+    border-bottom: 1px solid var(--fade-opacity);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    animation: slideDown 0.8s ease;
+}
+
+@keyframes slideDown {
+    from {transform: translateY(-40px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    box-shadow: 0 0 18px rgba(255,180,0,0.56);
+    transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.logo:hover {
+    transform: rotate(3deg) scale(1.06);
+    box-shadow: 0 0 25px rgba(255,180,0,0.8);
+}
+
+.title {
+    font-family: "Cinzel", serif;
+    font-size: 32px;
+    letter-spacing: 1.8px;
 }
 
 .header nav a {
     margin-left: 25px;
     font-weight: 600;
     color: var(--gold);
+    transition: 0.25s ease;
 }
 
-/* HERO SECTION */
+.header nav a:hover {
+    color: var(--black-text);
+    text-shadow: 0px 0px 6px rgba(255,180,0,0.6);
+}
+
+/* -------------------------------------------------------------
+   SECTION TITLES
+------------------------------------------------------------- */
+.section-title {
+    font-family: "Cinzel", serif;
+    text-align: center;
+    margin-top: 65px;
+    font-size: 38px;
+    color: var(--gold);
+    position: relative;
+    animation: fadeInTitle 0.7s ease forwards;
+}
+@keyframes fadeInTitle {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+.section-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: var(--gold);
+    display: block;
+    margin: 10px auto;
+    border-radius: 4px;
+}
+
+/* -------------------------------------------------------------
+   HERO SECTION
+------------------------------------------------------------- */
 .hero {
-    height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(#111, #000);
+    text-align: center;
+    padding: 100px 35px;
 }
 
 .hero-content h2 {
     font-family: "Cinzel";
     font-size: 48px;
+    letter-spacing: 1px;
 }
-
+.hero-content p {
+    margin-top: 12px;
+    opacity: 0.8;
+}
 .cta {
-    padding: 10px 26px;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 36px;
     background: var(--gold);
     color: #111;
-    margin-top: 18px;
-    display: inline-block;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-gold);
+    transition: 0.25s ease;
+    animation: zoomIn 0.7s ease;
+}
+@keyframes zoomIn {
+    from {transform: scale(0.85); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
 }
 
-/* SECTION HEADERS */
-.section-title {
-    text-align: center;
-    font-family: "Cinzel";
-    margin-top: 50px;
-    color: var(--gold);
+.cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 28px rgba(255,180,0,0.56);
 }
 
-/* ABOUT */
+/* -------------------------------------------------------------
+   ABOUT SECTION
+------------------------------------------------------------- */
 .about-text {
-    width: 75%;
-    margin: auto;
     text-align: center;
-    line-height: 1.6;
+    width: 70%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.65;
+    animation: fadeInUp 0.8s ease;
+}
+@keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(25px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
 .metrics {
     display: flex;
     justify-content: center;
-    margin-top: 35px;
     gap: 25px;
+    margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .metric-box {
-    background: #181818;
-    padding: 20px;
-    border-left: 5px solid var(--gold);
+    background: var(--tile-bg);
+    padding: 24px 30px;
+    border-left: 7px solid var(--gold);
+    border-radius: 8px;
+    box-shadow: var(--shadow-gold);
+    text-align: center;
+    width: 210px;
+    animation: metricPulse 0.9s ease;
+}
+@keyframes metricPulse {
+    from {opacity:0; transform: scale(0.6);}
+    to {opacity:1; transform: scale(1);}
 }
 
 .metric-val {
-    font-size: 34px;
-    display: block;
-    font-weight: 700;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--gold);
 }
 
-/* PORTFOLIO */
+/* -------------------------------------------------------------
+   PORTFOLIO SECTION
+------------------------------------------------------------- */
 .portfolio-grid {
     display: grid;
     padding: 50px;
+    gap: 28px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 22px;
 }
 
 .card {
-    background: #1d1d1d;
-    padding: 25px;
-    border-top: 4px solid var(--gold);
+    background: var(--tile-bg);
+    padding: 26px;
+    border-radius: 8px;
+    border-top: 5px solid var(--gold);
+    border-left: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-gold);
+    transition: 0.25s ease;
+    animation: fadeScale 0.6s ease;
+}
+
+@keyframes fadeScale {
+    from {opacity:0; transform: translateY(30px) scale(0.92);}
+    to {opacity:1; transform: translateY(0) scale(1);}
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255,180,0,0.45);
 }
 
 .card h3 {
     color: var(--gold);
+    font-size: 22px;
+}
+.card ul {
+    padding-left: 20px;
+}
+.card li {
+    margin-bottom: 8px;
 }
 
-/* CONTACT */
+/* -------------------------------------------------------------
+   CONTACT SECTION
+------------------------------------------------------------- */
 .contact-grid {
     display: grid;
-    width: 60%;
+    width: 65%;
     margin: auto;
-    grid-template-columns: repeat(2,1fr);
-    text-align: center;
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 35px;
+}
+.contact-grid div {
+    background: #ffffff;
+    padding: 18px;
+    border-left: 7px solid var(--gold);
+    border-radius: 8px;
+    font-size: 17px;
+    box-shadow: var(--shadow-gold);
+    transition: 0.3s ease;
+}
+.contact-grid div:hover {
+    transform: translateX(6px);
+    box-shadow: 0 22px 38px rgba(255,180,0,0.45);
 }
 
+.contact-grid a {
+    color: var(--black-text);
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------- */
 footer {
     text-align: center;
-    padding: 15px 0;
-    background-color: #111;
+    padding: 18px;
+    background: #ffffff;
+    margin-top: 60px;
+    font-size: 14px;
+    opacity: 0.7;
 }
