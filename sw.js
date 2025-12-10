@@ -4,6 +4,8 @@ const urlsToCache = [
   '/index.html',
   '/styles.css',
   '/manifest.webmanifest',
+  // PWA Enhancement: Added Google Font URL for offline reliability
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap',
   // Include all critical assets for offline use:
   '/icons/icon-128.png',
   '/icons/icon-192x192.png',

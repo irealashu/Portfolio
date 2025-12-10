@@ -5,16 +5,22 @@
     --secondary-color: #a4a4ff; /* Lighter Purple/Accent */
     --background-light: #f7f9fd; /* Very soft off-white/light gray (Clean base) */
     --background-dark: #1e1e2c; /* Deep slate gray/navy for dark mode */
+    
+    /* Lighter Muted Text for Better Hierarchy */
     --text-color-light: #181a25; /* Dark text for high contrast */
     --text-color-dark: #e6e6f2; /* Pale text on dark background */
-    --text-muted-light: #5d6878; /* Medium gray for muted text */
+    --text-muted-light: #7b879a; /* Softer gray for less focus */
     --text-muted-dark: #9da5b3; /* Light gray for muted text */
+    
     --card-background-light: white; /* Pure white cards for high contrast */
     --card-background-dark: #2a2a41; /* Slightly lighter dark card */
     
     /* NEW: Pastel colors for visual separation/bars (used in skills/cards) */
     --pastel-blue: #e0e6ff;
     --pastel-purple: #f2e6ff;
+
+    /* NEW VARIABLE for Subtle Background Gradient Color */
+    --background-accent-light: #f1f3f7; /* Slightly deeper shade of your base */
 }
 
 body {
@@ -24,11 +30,18 @@ body {
     cursor: default;
     transition: background-color 0.3s, color 0.3s;
     
-    /* Background: Clean, soft base */
-    background: var(--background-light); 
-    background-image: none; 
-    background-attachment: fixed;
+    /* IMPLEMENTATION: Subtle vertical gradient for page depth */
+    background: linear-gradient(180deg, 
+                var(--background-light) 0%, 
+                var(--background-accent-light) 100%);
+    background-attachment: fixed; /* Keeps the gradient stable while scrolling */
 }
+
+/* Consistent Line Height for Readability */
+section p, .skill-tag p, .system-card p, .system-card li {
+    line-height: 1.5;
+}
+
 
 html {
     scroll-behavior: smooth;
@@ -37,6 +50,13 @@ html {
 * {
     box-sizing: border-box;
 }
+
+/* UX Polish: Custom Selection Color for Brand Consistency */
+::selection {
+    background-color: var(--secondary-color); 
+    color: white; 
+}
+
 
 /* Accessibility: Enhanced Focus States for Material Look */
 a:focus, button:focus, input:focus {
@@ -48,22 +68,18 @@ a:focus, button:focus, input:focus {
 /* ================= Dark Mode Enhancement ================= */
 @media (prefers-color-scheme: dark) {
     body {
+        /* Revert to solid dark color to maintain clarity in dark mode */
         background: var(--background-dark);
         color: var(--text-color-dark);
         background-image: none;
     }
     
+    /* Dark Mode Header (Frosted Glass) */
     header {
-        background: var(--card-background-dark);
+        background: rgba(42, 42, 65, 0.9); /* Slightly translucent */
+        backdrop-filter: blur(8px);
         box-shadow: 0px 4px 15px rgba(255,255,255,0.08);
-        background-image: linear-gradient(90deg, 
-                          rgba(42, 42, 65, 0) 0%, 
-                          rgba(79, 79, 120, 0.5) 45%,
-                          rgba(58, 58, 94, 0.5) 55%, 
-                          rgba(42, 42, 65, 0) 100%);
-        background-size: 100% 1px;
-        background-repeat: no-repeat;
-        background-position: bottom;
+        background-image: none; /* Remove gradient line */
     }
 
     .logo-group img {
@@ -97,30 +113,26 @@ a:focus, button:focus, input:focus {
     }
 }
 
-/* ================= Header ================= */
+/* ================= Header (Frosted Glass Look) ================= */
 header {
     position: sticky;
     top: 0;
-    /* Base header color is white/light */
-    background: var(--card-background-light); 
-    /* Narrower vertical padding: 10px top/bottom */
+    /* Frosted Glass Effect: Light translucent background with blur */
+    background: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(8px);
+    
     padding: 10px 60px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Sharp shadow typical of dashboards */
-    box-shadow: 0px 2px 10px rgba(0,0,0,0.08); 
+    
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.06); /* Softer shadow */
     z-index: 999;
     
-    /* --- HEADER GRADIENT LINE ACCENT (FADED) --- */
-    background-image: linear-gradient(90deg, 
-                      rgba(255, 255, 255, 0) 0%, 
-                      rgba(164, 164, 255, 0.5) 45%, /* FADED SECONDARY COLOR */
-                      rgba(106, 106, 255, 0.5) 55%, /* FADED PRIMARY COLOR */
-                      rgba(255, 255, 255, 0) 100%);
-    background-size: 100% 1px; 
-    background-repeat: no-repeat;
-    background-position: bottom; 
+    background-image: none; 
+    
+    /* Setting a fixed height */
+    height: 82px; 
 }
 
 .logo-group {
@@ -133,14 +145,14 @@ header {
     width: 62px;
     height: 62px;
     border-radius: 50%;
-    /* Use the primary color as the border accent */
     border: 4px solid var(--primary-color); 
     padding: 2px;
     background: var(--card-background-light);
 }
 
+/* Typography Polish: Slight size reduction for balance */
 .logo-text {
-    font-size: 26px;
+    font-size: 24px; /* Reduced from 26px */
     font-weight: 700;
 }
 
@@ -150,20 +162,18 @@ header {
 }
 
 .nav-links a {
-    /* Adjusted font size for compact look */
     font-size: 16px; 
     font-weight: 500;
     text-decoration: none;
     color: var(--text-color-light);
     transition: 0.2s ease;
     padding: 4px 8px; 
-    border-radius: 8px; /* Slightly larger radius for softer look */
+    border-radius: 8px;
 }
 
 /* IMPROVED LINK HOVER EFFECT */
 .nav-links a:hover {
     color: var(--primary-color);
-    /* Soft hover background using pastel blue */
     background-color: var(--pastel-blue); 
     box-shadow: none; 
 }
@@ -175,6 +185,7 @@ header {
     border: none;
     cursor: pointer;
     color: var(--primary-color);
+    line-height: 1; /* Ensures X and Hamburger are centered properly */
 }
 
 /* ================ Section Formatting ================= */
@@ -189,18 +200,22 @@ section h2 {
     margin-bottom: 16px;
 }
 
+/* Typography Polish: Add subtle letter spacing to tagline */
 .tagline {
     color: var(--primary-color);
     font-weight: 500;
     font-size: 17px;
     margin-bottom: 40px; 
+    letter-spacing: 0.02em; 
 }
 
 /* ================ Hero Section ================= */
+/* Typography Polish: Increase font size for impact */
 #home h1 {
-    font-size: 46px; 
+    font-size: 52px; /* Increased from 46px */
     font-weight: 800;
     margin-bottom: 20px;
+    line-height: 1.15; /* Slightly tighter line height */
 }
 
 #home p {
@@ -211,10 +226,14 @@ section h2 {
     line-height: 1.6;
 }
 
-/* CTA button styling retained but button element is removed from HTML */
+/* Optimized CTA Button Gradient and Hover */
 .cta-btn {
     padding: 14px 45px; 
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    /* Diagonal gradient for more visual interest */
+    background: linear-gradient(135deg, 
+                var(--primary-color) 0%,
+                #8f8fff 50%, /* Middle highlight color */
+                var(--secondary-color) 100%);
     border: none;
     border-radius: 35px;
     color: white;
@@ -222,12 +241,17 @@ section h2 {
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.3s ease;
-    /* Use soft pastel shadow */
+    
+    /* Added background size for position shift effect */
+    background-size: 200% 100%; 
+    transition: all 0.4s ease; /* Transition ALL properties smoothly */
+    
     box-shadow: 0px 8px 18px rgba(106, 106, 255, 0.4); 
 }
 
 .cta-btn:hover {
+    /* Shift background to the right for a subtle animation/pulse */
+    background-position: right center; 
     transform: translateY(-2px); 
     box-shadow: 0px 14px 28px rgba(106, 106, 255, 0.45);
 }
@@ -246,13 +270,11 @@ section h2 {
     padding: 16px 25px;
     border-radius: 12px;
     background: var(--card-background-light);
-    /* Softer, cleaner shadow */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
     text-align: left;
     transition: 0.3s ease;
     max-width: 300px;
     flex: 1 1 250px;
-    /* Use pastel background for accent instead of a border line */
     border-top: 3px solid var(--pastel-blue); 
 }
 
@@ -280,7 +302,6 @@ section h2 {
     color: var(--text-muted-light);
     font-size: 14px;
     margin: 0;
-    line-height: 1.4;
 }
 
 /* ================ Systems Validated (Enhanced Material Card) ================= */
@@ -290,14 +311,15 @@ section h2 {
     gap: 30px;
     max-width: 1100px;
     margin: auto;
-    margin-top: 35px;
+    /* Increase top margin for better separation from the tagline/h2 */
+    margin-top: 45px; 
 }
 
 .system-card {
     background: var(--card-background-light);
     padding: 25px;
     border-radius: 14px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.08); /* Clean dashboard card shadow */
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.08); 
     text-align: left;
     transition: 0.4s ease;
 }
@@ -314,6 +336,17 @@ section h2 {
     transition: none; 
 }
 
+/* Highlight the primary system card */
+.system-card.active-highlight {
+    border-left: 6px solid var(--primary-color); 
+    box-shadow: 0px 6px 20px rgba(106, 106, 255, 0.2); 
+    padding-left: 19px; 
+}
+
+.system-card.active-highlight:hover {
+    box-shadow: 0px 10px 25px rgba(106, 106, 255, 0.3);
+}
+
 .system-card h3 {
     color: var(--primary-color);
     font-size: 20px;
@@ -326,12 +359,11 @@ section h2 {
     color: var(--text-muted-light);
     font-size: 15px;
     margin-bottom: 12px;
-    line-height: 1.5;
 }
 
 /* Styling for the new unordered list inside the card */
 .system-card ul {
-    list-style-type: none; /* Remove default bullets */
+    list-style-type: none; 
     padding-left: 0;
     margin-top: 0;
     margin-bottom: 0;
@@ -342,7 +374,6 @@ section h2 {
     padding-left: 20px;
     font-size: 14px;
     color: var(--text-muted-light);
-    line-height: 1.5;
     margin-bottom: 4px;
 }
 
@@ -361,7 +392,6 @@ section h2 {
 /* ================ Contact ================= */
 .contact-grid {
     display: grid;
-    /* FIX: Force 4 columns to stay on one line for wide screens */
     grid-template-columns: repeat(4, 1fr); 
     gap: 24px;
     max-width: 900px;
@@ -418,7 +448,8 @@ section h2 {
 /* ================= Footer =============== */
 footer {
     margin-top: 50px;
-    padding: 16px;
+    /* Increase padding for visual breathing room */
+    padding: 20px 16px; 
     font-size: 14px;
     background: #e0e6ec; /* Light cool gray */
     color: var(--text-muted-light);
@@ -445,8 +476,9 @@ footer {
 
 /* ================= Responsive Enhancement (Mobile First) =============== */
 @media (max-width:768px){
+    /* Mobile Polish: Allow header height to adapt */
     header {
-        /* Adjusted mobile header padding to match desktop adjustment */
+        height: auto; 
         padding: 10px 18px; 
     }
     
@@ -459,38 +491,43 @@ footer {
     .nav-links {
         display: none; 
         position: absolute;
-        /* Adjusted top position for the narrower header */
+        /* Adjusted top position to correctly clear the dynamic header height */
         top: 60px; 
-        /* Match the off-canvas/floating menu look */
         right: 18px; 
         left: auto;
-        width: 80%; /* Takes up 80% of screen width */
-        max-width: 300px; /* Limits size on tablets */
+        width: 80%; 
+        max-width: 300px; 
         background: var(--card-background-light);
         flex-direction: column;
-        align-items: flex-start; /* Links start on the left */
+        align-items: flex-start; 
         padding: 15px 0;
-        box-shadow: 0px 4px 20px rgba(0,0,0,0.2); /* Deeper shadow for floating effect */
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.2); 
         
-        /* Smooth Squircle Effect */
         border-radius: 16px; 
-        border-top: none; /* No top line */
+        border-top: none; 
         transition: transform 0.3s ease-out;
-        transform: scale(0.95) translateY(-10px); /* Start slightly scaled down */
+        transform: scale(0.95) translateY(-10px); 
         transform-origin: top right;
     }
 
     .nav-links.open {
-        display: flex; /* Shown when the 'open' class is toggled by JS */
+        display: flex; 
         transform: scale(1) translateY(0);
     }
     
     .nav-links a {
-        padding: 10px 20px; /* More padding */
+        padding: 10px 20px; 
         width: 100%;
-        text-align: left; /* Text starts on the left */
-        border-bottom: 1px solid #f0f0f0; /* Use a light divider */
+        text-align: left; 
+        border-bottom: 1px solid #f0f0f0; 
     }
+    /* Dark mode mobile menu link separator */
+    @media (prefers-color-scheme: dark) {
+        .nav-links a {
+            border-bottom: 1px solid #3c3c54; 
+        }
+    }
+
 
     /* Remove border on the last link */
     .nav-links a:last-child {
@@ -505,8 +542,9 @@ footer {
         padding: 45px 24px;
     }
 
+    /* Mobile Polish: Adjust title back down slightly for mobile screens */
     #home h1 {
-        font-size: 38px;
+        font-size: 40px; /* Adjusted from 38px */
     }
 
     .cta-btn {

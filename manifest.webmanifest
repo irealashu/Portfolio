@@ -4,7 +4,7 @@
   "description": "Professional portfolio for Ashutosh Singh, GxP & CSV Compliance Specialist.",
   "start_url": "/index.html",
   "scope": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#f7f9fd",
   "theme_color": "#6a6aff",
   "icons": [
