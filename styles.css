@@ -1,3 +1,62 @@
+/* ================= CUSTOM FONT DEFINITION (Self-Hosted) ================= 
+  The TTF files are assumed to be located in a folder named 'fonts' 
+  one directory level up from this styles.css file.
+*/
+
+/* --- 1. Regular (400) */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* --- 2. Medium (500) */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* --- 3. SemiBold (600) */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* --- 4. Bold (700) */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* --- 5. ExtraBold (800) */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* --- 6. Italic (Optional, for browser use of <em>/<i> tags) */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Italic.ttf') format('truetype');
+    font-weight: 400; 
+    font-style: italic;
+    font-display: swap; 
+}
+
 /* ================= Global ================= */
 :root {
     /* --- COLOR PALETTE (Data Dashboard UI) --- */
@@ -275,12 +334,15 @@ section h2 {
     transition: 0.3s ease;
     max-width: 300px;
     flex: 1 1 250px;
-    border-top: 3px solid var(--pastel-blue); 
+    
+    /* MODIFIED: Use primary color for the top accent border */
+    border-top: 3px solid var(--primary-color); 
 }
 
 .skill-tag:hover {
     transform: translateY(-4px);
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.12);
+    /* MODIFIED: Use subtle purple glow on hover for consistency */
+    box-shadow: 0px 8px 25px rgba(106, 106, 255, 0.25);
 }
 
 /* TOUCH/ACTIVE ENHANCEMENT */
@@ -319,14 +381,25 @@ section h2 {
     background: var(--card-background-light);
     padding: 25px;
     border-radius: 14px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.08); 
+    
+    /* MODIFIED: Apply the highlight border to ALL cards for consistency */
+    border-left: 6px solid var(--primary-color); 
+    
+    /* MODIFIED: Apply the enhanced shadow to ALL cards for consistency */
+    box-shadow: 0px 6px 20px rgba(106, 106, 255, 0.2); 
+    
+    /* MODIFIED: Adjust padding to account for the new border */
+    padding-left: 19px; 
+    
     text-align: left;
     transition: 0.4s ease;
 }
 
 .system-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+    
+    /* MODIFIED: Use the enhanced hover shadow */
+    box-shadow: 0px 10px 25px rgba(106, 106, 255, 0.3);
 }
 
 /* TOUCH/ACTIVE ENHANCEMENT */
@@ -336,16 +409,7 @@ section h2 {
     transition: none; 
 }
 
-/* Highlight the primary system card */
-.system-card.active-highlight {
-    border-left: 6px solid var(--primary-color); 
-    box-shadow: 0px 6px 20px rgba(106, 106, 255, 0.2); 
-    padding-left: 19px; 
-}
-
-.system-card.active-highlight:hover {
-    box-shadow: 0px 10px 25px rgba(106, 106, 255, 0.3);
-}
+/* REMOVED: .system-card.active-highlight rule is no longer needed. */
 
 .system-card h3 {
     color: var(--primary-color);
@@ -405,12 +469,16 @@ section h2 {
     background: var(--card-background-light);
     box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
     transition: 0.3s ease; 
+    
+    /* MODIFIED: Add a top accent border for consistency */
+    border-top: 3px solid var(--primary-color);
 }
 
 /* CONTACT CARD HOVER (Subtle lift) */
 .contact-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+    /* MODIFIED: Use a subtle purple glow on hover for consistency */
+    box-shadow: 0px 6px 15px rgba(106, 106, 255, 0.2);
 }
 
 /* CONTACT CARD TOUCH/ACTIVE ENHANCEMENT */
