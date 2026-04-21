@@ -1,4 +1,4 @@
-const CACHE_NAME = 'csv-portfolio-v2'; // FINAL IMPROVEMENT 3: Cache version bumped to force update
+const CACHE_NAME = 'portfolio-v2';
 const urlsToCache = [
   '/',
   '/index.html',
