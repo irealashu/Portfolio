@@ -1,7 +1,7 @@
 {
-  "name": "Ashutosh Singh - CSV Portfolio",
-  "short_name": "Ashutosh CSV",
-  "description": "Professional portfolio for Ashutosh Singh, GxP & CSV Compliance Specialist.",
+  "name": "Ashutosh Singh",
+  "short_name": "Ashutosh Singh",
+  "description": "Professional portfolio for Ashutosh Singh",
   "start_url": "/index.html",
   "scope": "/",
   "display": "fullscreen",
