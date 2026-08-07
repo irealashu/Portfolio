@@ -5,6 +5,9 @@
   "start_url": "/index.html",
   "scope": "/",
   "display": "fullscreen",
+  "orientation": "portrait",
+  "lang": "en",
+  "id": "/"
   "background_color": "#f7f9fd",
   "theme_color": "#6a6aff",
   "icons": [
