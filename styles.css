@@ -91,7 +91,8 @@ body {
     
     /* IMPLEMENTATION: Subtle vertical gradient for page depth */
     background: linear-gradient(180deg, 
-                var(--background-light) 0%, 
+                var(--background-light) 0%,
+                #cfecff 50%,
                 var(--background-accent-light) 100%);
     background-attachment: fixed; /* Keeps the gradient stable while scrolling */
 }
