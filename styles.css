@@ -83,18 +83,97 @@
 }
 
 body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    color: var(--text-color-light);
-    cursor: default;
-    transition: background-color 0.3s, color 0.3s;
-    
-    /* IMPLEMENTATION: Subtle vertical gradient for page depth */
-    background: linear-gradient(135deg, 
-                #eaf6ff 0%,
-                #d6eeff 55%
-                #f3fbff 100%);
-    background-attachment: fixed; /* Keeps the gradient stable while scrolling */
+margin: 0;
+font-family: "Poppins", sans-serif;
+color: var(--text-color-light);
+cursor: default;
+overflow-x: hidden;
+
+background:
+radial-gradient(circle at 15% 20%,
+rgba(0, 229, 255, 0.18) 0%,
+transparent 30%),
+
+radial-gradient(circle at 85% 25%,
+rgba(124, 58, 237, 0.20) 0%,
+transparent 35%),
+
+radial-gradient(circle at 60% 80%,
+rgba(0, 255, 179, 0.12) 0%,
+transparent 30%),
+
+linear-gradient(
+135deg,
+#030712 0%,
+#071224 25%,
+#0c142f 50%,
+#08121f 75%,
+#030712 100%
+);
+
+background-attachment: fixed;
+background-size: cover;
+position: relative;
+min-height: 100vh;
+
+transition:
+background-color 0.4s ease,
+color 0.4s ease;
+}
+
+/* Floating Aurora Layer */
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+
+background:
+radial-gradient(
+circle at 20% 30%,
+rgba(0, 229, 255, 0.15),
+transparent 45%
+),
+radial-gradient(
+circle at 80% 70%,
+rgba(124, 58, 237, 0.18),
+transparent 45%
+);
+
+filter: blur(80px);
+z-index: -2;
+animation: auroraMove 15s ease-in-out infinite alternate;
+}
+
+/* Noise / Futuristic Texture */
+body::after {
+content: "";
+position: fixed;
+inset: 0;
+
+background-image:
+linear-gradient(
+rgba(255,255,255,0.015) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,0.015) 1px,
+transparent 1px
+);
+
+background-size: 40px 40px;
+pointer-events: none;
+z-index: -1;
+}
+
+/* Aurora Animation */
+@keyframes auroraMove {
+0% {
+transform: translate(-5%, -3%) scale(1);
+}
+100% {
+transform: translate(5%, 3%) scale(1.15);
+}
 }
 
 /* Consistent Line Height for Readability */
