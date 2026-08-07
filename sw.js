@@ -60,15 +60,23 @@ self.addEventListener('fetch', event => {
   } else {
     // Strategy for Assets (CSS, Fonts, Images): Cache-First (for speed)
     event.respondWith(
-      caches.match(event.request)
-        .then(response => {
-          // Cache hit - return response
-          if (response) {
+      caches.match(event.request).then(cached => {
+
+        const networkFetch = fetch(event.request)
+          .then(response => {
+
+            if (response && response.status === 200) {
+              caches.open(CACHE_NAME).then(cache => {
+                cache.put(event.request, response.clone());
+              });
+            }
+
             return response;
-          }
-          // No cache hit - fetch from network
-          return fetch(event.request);
-        })
+          })
+          .catch(() => cached);
+
+        return cached || networkFetch;
+      })
     );
   }
 });
