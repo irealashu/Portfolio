@@ -522,7 +522,7 @@ footer {
     padding: 20px 16px; 
     font-size: 14px;
     background: #e0e6ec; /* Light cool gray */
-    color: var(--text-muted-light);
+    color: #e6f6ff;
     text-align: center;
 }
 
