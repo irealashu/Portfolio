@@ -90,9 +90,10 @@ body {
     transition: background-color 0.3s, color 0.3s;
     
     /* IMPLEMENTATION: Subtle vertical gradient for page depth */
-    background: linear-gradient(180deg, 
-                var(--background-light) 0%, 
-                var(--background-accent-light) 100%);
+    background: linear-gradient(135deg, 
+                #eaf6ff 0%,
+                #d6eeff 55%
+                #f3fbff 100%);
     background-attachment: fixed; /* Keeps the gradient stable while scrolling */
 }
 
