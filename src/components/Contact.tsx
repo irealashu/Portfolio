@@ -49,12 +49,12 @@ export const Contact: React.FC<ContactProps> = () => {
   ];
 
   return (
-    <section id="contact" className="py-10 sm:py-12 px-4 sm:px-6 max-w-[800px] mx-auto text-center">
-      <div className="mb-8">
-        <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5 inline-block">
+    <section id="contact" className="py-10 sm:py-14 px-4 sm:px-6 max-w-[800px] mx-auto text-center relative">
+      <div className="mb-9">
+        <span className="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent mb-1.5 inline-block">
           Let's Connect
         </span>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2 text-balance">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2.5 text-balance">
           Get in Touch
         </h2>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed text-balance">
@@ -62,7 +62,7 @@ export const Contact: React.FC<ContactProps> = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
         {contactItems.map((item) => (
           <a
             key={item.id}
@@ -71,7 +71,7 @@ export const Contact: React.FC<ContactProps> = () => {
             rel={item.isExternal ? 'noopener noreferrer' : undefined}
             aria-label={item.title}
             title={item.title}
-            className="w-12 h-12 rounded-full border border-slate-200/80 dark:border-slate-800/90 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-600 hover:border-blue-600 dark:hover:border-blue-600 shadow-sm hover:shadow-md hover:shadow-blue-500/20 hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
+            className="interactive-icon-btn w-12 h-12 rounded-full border border-slate-200/80 dark:border-slate-800/90 flex items-center justify-center text-slate-700 dark:text-slate-200 shadow-sm hover:scale-115 active:scale-95 transition-all duration-300 cursor-pointer"
           >
             {item.icon}
           </a>
