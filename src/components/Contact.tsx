@@ -49,7 +49,7 @@ export const Contact: React.FC<ContactProps> = () => {
   ];
 
   return (
-    <section id="contact" className="py-10 sm:py-14 px-4 sm:px-6 max-w-[800px] mx-auto text-center relative">
+    <section id="contact" className="py-10 sm:py-14 px-4 sm:px-6 max-w-[800px] mx-auto text-center relative scroll-mt-24">
       <div className="mb-9">
         <span className="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent mb-1.5 inline-block">
           Let's Connect

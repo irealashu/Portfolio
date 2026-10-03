@@ -3,7 +3,7 @@ import { METRICS } from '../data/portfolioData.ts';
 
 export const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative pt-20 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 overflow-hidden">
+    <section id="home" className="relative pt-20 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 overflow-hidden scroll-mt-24">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[380px] bg-gradient-to-tr from-blue-600/15 via-indigo-500/15 to-cyan-400/15 dark:from-blue-500/25 dark:via-indigo-500/20 dark:to-cyan-400/15 blur-[100px] rounded-full pointer-events-none -z-10 animate-pulse-glow" />
 
       <div className="max-w-[900px] mx-auto text-center relative z-10">

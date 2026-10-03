@@ -8,7 +8,7 @@ interface SystemsProps {
 
 export const Systems: React.FC<SystemsProps> = ({ onSelectSystem }) => {
   return (
-    <section id="systems" className="py-10 sm:py-14 px-4 sm:px-6 max-w-[1200px] mx-auto relative">
+    <section id="systems" className="py-10 sm:py-14 px-4 sm:px-6 max-w-[1200px] mx-auto relative scroll-mt-24">
       <div className="text-center mb-9">
         <span className="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent mb-1.5 inline-block">
           Validated Systems

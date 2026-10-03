@@ -35,6 +35,28 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'Contact', href: '#contact', id: 'contact', icon: Mail },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      const headerOffset = 85;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <div
@@ -47,7 +69,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="pointer-events-auto relative w-full max-w-[1060px] flex items-center justify-between px-3.5 sm:px-5 py-2 rounded-[22px] sm:rounded-[26px] bg-white/85 dark:bg-[#0c1222]/85 backdrop-blur-xl border border-slate-200/90 dark:border-slate-800/90 shadow-xl shadow-slate-900/10 dark:shadow-black/50 transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/30 dark:before:via-blue-400/30 before:to-transparent before:rounded-t-[26px]">
           <a
             href="#home"
-            className="flex items-center gap-2.5 sm:gap-3 group outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl p-0.5"
+            onClick={handleLogoClick}
+            className="flex items-center gap-2.5 sm:gap-3 group outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl p-0.5 cursor-pointer"
             aria-label="Ashutosh Singh - Home"
           >
             <div className="relative w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shrink-0 shadow-xs group-hover:border-blue-500/50 transition-colors">
@@ -72,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
 
           <nav
-            className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-slate-800/80 p-1 rounded-full border border-slate-200/60 dark:border-slate-700/60"
+            className="hidden md:flex items-center gap-1.5 bg-slate-100/90 dark:bg-slate-800/90 p-1.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 shadow-xs"
             aria-label="Primary Navigation"
           >
             {navItems.map((item) => {
@@ -81,10 +104,11 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`text-xs font-semibold px-3.5 sm:px-4 py-1.5 rounded-full transition-all duration-300 whitespace-nowrap ${
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`text-xs font-semibold px-4 py-1.5 rounded-full transition-all duration-250 whitespace-nowrap cursor-pointer select-none ${
                     isActive
-                      ? 'btn-dynamic-gradient text-white shadow-md shadow-blue-500/30'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-950/40 dark:hover:to-indigo-950/40 hover:scale-[1.02]'
+                      ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white shadow-md shadow-blue-500/30 scale-100 font-bold'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-700/70 active:scale-95'
                   }`}
                 >
                   {item.label}
@@ -160,8 +184,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       key={item.id}
                       href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                         isActive
                           ? 'btn-dynamic-gradient text-white shadow-sm shadow-blue-500/25'
                           : 'text-slate-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-950/50 dark:hover:to-indigo-950/50 hover:text-blue-600 dark:hover:text-sky-400'
