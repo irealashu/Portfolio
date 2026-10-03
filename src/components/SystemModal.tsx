@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, CheckCircle2 } from 'lucide-react';
 import { ValidatedSystem } from '../data/portfolioData.ts';
-import { handleSpotlightMove } from '../hooks/useSpotlight.ts';
 
 interface SystemModalProps {
   system: ValidatedSystem | null;
@@ -32,7 +31,6 @@ export const SystemModal: React.FC<SystemModalProps> = ({ system, onClose }) => 
       aria-modal="true"
     >
       <div
-        onMouseMove={handleSpotlightMove}
         className="card-dynamic-gradient relative w-full max-w-xl max-h-[85vh] overflow-y-auto p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl shadow-slate-950/50 animate-in zoom-in-95 duration-200 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-blue-600 before:via-indigo-500 before:to-cyan-400 before:rounded-t-2xl"
         onClick={(e) => e.stopPropagation()}
       >

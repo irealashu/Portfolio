@@ -1,7 +1,6 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { VALIDATED_SYSTEMS, ValidatedSystem } from '../data/portfolioData.ts';
-import { handleSpotlightMove } from '../hooks/useSpotlight.ts';
 
 interface SystemsProps {
   onSelectSystem: (system: ValidatedSystem) => void;
@@ -27,7 +26,6 @@ export const Systems: React.FC<SystemsProps> = ({ onSelectSystem }) => {
           <div
             key={system.id}
             onClick={() => onSelectSystem(system)}
-            onMouseMove={handleSpotlightMove}
             className="card-dynamic-gradient group relative flex flex-col p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/25 dark:before:via-blue-400/25 before:to-transparent before:rounded-t-2xl"
           >
             <div className="flex flex-wrap gap-1.5 mb-2.5">

@@ -21,7 +21,6 @@ export const App: React.FC = () => {
   const [selectedSystem, setSelectedSystem] = useState<ValidatedSystem | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [isThemeTransitioning, setIsThemeTransitioning] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -56,21 +55,42 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = (e?: React.MouseEvent<HTMLButtonElement>) => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setIsThemeTransitioning(true);
 
     if (typeof document !== 'undefined' && 'startViewTransition' in document) {
-      (document as unknown as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
+      const x = e ? e.clientX : window.innerWidth - 60;
+      const y = e ? e.clientY : 30;
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      const transition = (document as unknown as {
+        startViewTransition: (cb: () => void) => { ready: Promise<void> };
+      }).startViewTransition(() => {
         setTheme(nextTheme);
+      });
+
+      transition.ready.then(() => {
+        const clipPath = [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${endRadius}px at ${x}px ${y}px)`,
+        ];
+        document.documentElement.animate(
+          {
+            clipPath: clipPath,
+          },
+          {
+            duration: 650,
+            easing: 'cubic-bezier(0.2, 0, 0, 1)',
+            pseudoElement: '::view-transition-new(root)',
+          }
+        );
       });
     } else {
       setTheme(nextTheme);
     }
-
-    setTimeout(() => {
-      setIsThemeTransitioning(false);
-    }, 1250);
   };
 
   const showToast = (message: string) => {
@@ -85,20 +105,13 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-slate-50 dark:bg-[#060913] text-slate-900 dark:text-slate-100 transition-colors duration-700 selection:bg-blue-600 selection:text-white overflow-hidden">
+    <div className="relative min-h-screen flex flex-col bg-slate-50 dark:bg-[#060913] text-slate-900 dark:text-slate-100 transition-colors duration-500 selection:bg-blue-600 selection:text-white overflow-hidden">
       <div className="fixed inset-0 pointer-events-none -z-20 overflow-hidden" aria-hidden="true">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-blue-400/15 via-indigo-400/10 to-transparent dark:from-blue-600/20 dark:via-indigo-600/15 dark:to-transparent blur-[120px] rounded-full" />
         <div className="absolute top-[35%] -left-40 w-[550px] h-[550px] bg-gradient-to-tr from-cyan-400/10 via-sky-300/10 to-transparent dark:from-cyan-500/10 dark:via-blue-600/10 dark:to-transparent blur-[130px] rounded-full" />
         <div className="absolute top-[65%] -right-40 w-[600px] h-[600px] bg-gradient-to-tl from-indigo-400/10 via-purple-300/10 to-transparent dark:from-indigo-600/15 dark:via-purple-600/10 dark:to-transparent blur-[140px] rounded-full" />
         <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-30 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
-
-      {isThemeTransitioning && (
-        <div
-          className="fixed inset-x-0 h-40 pointer-events-none z-[100] bg-gradient-to-b from-blue-500/15 via-cyan-400/25 to-transparent border-t border-cyan-400/40 blur-sm animate-theme-beam shadow-2xl"
-          aria-hidden="true"
-        />
-      )}
 
       <Header
         theme={theme}

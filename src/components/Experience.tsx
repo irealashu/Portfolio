@@ -1,7 +1,6 @@
 import React from 'react';
 import { MapPin, CheckCircle2 } from 'lucide-react';
 import { EXPERIENCES } from '../data/portfolioData.ts';
-import { handleSpotlightMove } from '../hooks/useSpotlight.ts';
 
 export const Experience: React.FC = () => {
   return (
@@ -24,7 +23,6 @@ export const Experience: React.FC = () => {
             <div className="absolute -left-[31px] sm:-left-[39px] top-2 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white dark:bg-[#0c1222] border-2 border-blue-600 dark:border-sky-400 group-hover:scale-125 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-indigo-600 group-hover:border-transparent transition-all duration-200 shadow-md shadow-blue-500/30" />
 
             <div
-              onMouseMove={handleSpotlightMove}
               className="card-dynamic-gradient relative p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/25 dark:before:via-blue-400/25 before:to-transparent before:rounded-t-2xl"
             >
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4 mb-3">

@@ -1,6 +1,5 @@
 import React from 'react';
 import { METRICS } from '../data/portfolioData.ts';
-import { handleSpotlightMove } from '../hooks/useSpotlight.ts';
 
 export const Hero: React.FC = () => {
   return (
@@ -27,7 +26,6 @@ export const Hero: React.FC = () => {
           {METRICS.map((metric, idx) => (
             <div
               key={idx}
-              onMouseMove={handleSpotlightMove}
               className="card-dynamic-gradient group relative flex flex-col items-center justify-center p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-700/50 hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:-translate-y-0.5 shadow-xs hover:shadow-lg hover:shadow-blue-500/10 cursor-default"
             >
               <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 dark:from-sky-300 dark:via-blue-400 dark:to-indigo-300 bg-clip-text text-transparent mb-0.5 tabular-numbers group-hover:scale-105 transition-transform duration-200">

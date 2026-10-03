@@ -3,7 +3,7 @@ import { Sun, Moon, Menu, X, ShieldCheck, Clock, Layers, Mail, ChevronRight, Ext
 
 interface HeaderProps {
   theme: 'light' | 'dark';
-  onToggleTheme: () => void;
+  onToggleTheme: (e: React.MouseEvent<HTMLButtonElement>) => void;
   activeSection: string;
 }
 
@@ -96,15 +96,17 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onToggleTheme}
-              className="relative w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-blue-600 hover:to-indigo-600 hover:border-transparent transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 shadow-xs hover:scale-110 active:scale-95 hover:shadow-md hover:shadow-blue-500/25"
+              className="relative w-8.5 h-8.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:bg-gradient-to-tr hover:from-blue-600 hover:to-indigo-600 hover:border-transparent transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 shadow-xs hover:scale-110 active:scale-95 hover:shadow-md hover:shadow-blue-500/25 overflow-hidden group"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {theme === 'dark' ? (
-                <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 group-hover:text-white transition-transform duration-300 rotate-0 hover:rotate-45" />
-              ) : (
-                <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-700 transition-transform duration-300 rotate-0 hover:-rotate-12" />
-              )}
+              <div className="relative w-4 h-4 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400 group-hover:text-white transition-all duration-300 rotate-0 scale-100" />
+                ) : (
+                  <Moon className="w-4 h-4 text-slate-700 group-hover:text-white transition-all duration-300 rotate-0 scale-100" />
+                )}
+              </div>
             </button>
 
             <button

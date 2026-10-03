@@ -1,7 +1,6 @@
 import React from 'react';
 import { ShieldCheck, CheckCircle2, FileText, Lock, ChevronRight } from 'lucide-react';
 import { PILLARS, Pillar } from '../data/portfolioData.ts';
-import { handleSpotlightMove } from '../hooks/useSpotlight.ts';
 
 const getIcon = (name: Pillar['iconName']) => {
   switch (name) {
@@ -35,7 +34,6 @@ export const Expertise: React.FC = () => {
         {PILLARS.map((pillar) => (
           <div
             key={pillar.id}
-            onMouseMove={handleSpotlightMove}
             className="card-dynamic-gradient group relative flex flex-col p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/25 dark:before:via-blue-400/25 before:to-transparent before:rounded-t-2xl"
           >
             <div className="flex items-start gap-3.5 mb-3.5">
