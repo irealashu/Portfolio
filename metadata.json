@@ -1,0 +1,8 @@
+{
+  "name": "Ashutosh Singh Portfolio",
+  "description": "Professional portfolio of Ashutosh Singh, Cyber & Digital Risk Advisory at PwC India specializing in Computerized System Validation (CSV), GxP compliance, and Data Integrity.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
