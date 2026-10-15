@@ -22,15 +22,6 @@ The site is designed as a responsive single-page portfolio and can be served loc
 - validated systems modal with detailed compliance context
 - contact links for email, GitHub, LinkedIn, and location
 
-## Tech stack
-
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS
-- Lucide React
-- Vite PWA plugin
-
 ## Project structure
 
 ```bash
@@ -52,55 +43,6 @@ The site is designed as a responsive single-page portfolio and can be served loc
 ├── README.md
 └── package-lock.json
 ```
-
-## Getting started
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/irealashu/Portfolio.git
-cd Portfolio
-```
-
-2. Install dependencies
-
-```bash
-npm install
-```
-
-3. Start the development server
-
-```bash
-npm run dev
-```
-
-The app will run on:
-
-- http://localhost:3000
-
-## Production build
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Deployment
-
-This project is a static frontend and can be deployed using:
-
-- GitHub Pages
-- Netlify
-- Vercel
-- Firebase Hosting
-- any static web host
-
-If you deploy on a custom domain, the repository includes a `CNAME` file for hostname configuration.
 
 ## Notes
 
