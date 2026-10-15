@@ -40,7 +40,7 @@ export const METRICS: Metric[] = [
   {
     value: '5+',
     label: 'Years of Experience',
-    detail: 'Pharma & Cyber Risk',
+    detail: 'Pharma & Risk Consulting',
   },
   {
     value: '10+',
@@ -55,14 +55,14 @@ export const METRICS: Metric[] = [
   {
     value: '100%',
     label: 'Data Integrity Focus',
-    detail: '21 CFR Part 11 & GAMP 5',
+    detail: 'GAMP 5, 21 CFR Part 11 & EU Annex 11',
   },
 ];
 
 export const PILLARS: Pillar[] = [
   {
     id: 'cyber-risk',
-    title: 'Cyber & Digital Risk Advisory',
+    title: 'Associate | Cyber & Digital Risk Advisory',
     badge: 'PwC India',
     iconName: 'shield',
     description:
@@ -190,7 +190,7 @@ export const VALIDATED_SYSTEMS: ValidatedSystem[] = [
     id: 'eurotherm-reviewer',
     name: 'Eurotherm Data Reviewer 5.3.0',
     category: 'process',
-    badges: ['GAMP 5 Cat 4', '21 CFR Part 11'],
+    badges: ['GAMP 5 Cat 3', '21 CFR Part 11'],
     description:
       'Validated and configured Eurotherm Data Reviewer to manage continuous temperature and batch records across manufacturing areas.',
     bullets: [
@@ -211,7 +211,7 @@ export const VALIDATED_SYSTEMS: ValidatedSystem[] = [
     id: 'eurotherm-bridge',
     name: 'Eurotherm Bridge 5.7',
     category: 'process',
-    badges: ['GAMP 5 Cat 4', 'Data Integrity'],
+    badges: ['GAMP 5 Cat 3', 'Data Integrity'],
     description:
       'Validated Eurotherm Bridge to ensure continuous, uninterrupted data transfer between plant instruments and central servers.',
     bullets: [
@@ -231,7 +231,7 @@ export const VALIDATED_SYSTEMS: ValidatedSystem[] = [
     id: 'elogbook',
     name: 'eLogbook System',
     category: 'records',
-    badges: ['GAMP 5 Cat 4', 'e-Signatures'],
+    badges: ['GAMP 5 Cat 5', 'e-Signatures'],
     description:
       'Validated an electronic logbook system to replace physical paper logs for equipment cleaning, calibration, and room usage.',
     bullets: [
@@ -291,7 +291,7 @@ export const VALIDATED_SYSTEMS: ValidatedSystem[] = [
     id: 'spreadsheets',
     name: 'GxP Validated Spreadsheets',
     category: 'spreadsheets',
-    badges: ['GAMP 5 Cat 3/5', 'QC Calculations'],
+    badges: ['GAMP 5 Cat 3/4/5', 'QC Calculations'],
     description:
       'Validated calculation spreadsheets used by QC analysts for drug assay formulas, dissolution rates, and standard calibrations.',
     bullets: [
