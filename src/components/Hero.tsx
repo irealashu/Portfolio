@@ -10,16 +10,16 @@ export const Hero: React.FC = () => {
         <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 leading-[1.14] mb-3.5 sm:mb-4 text-balance">
           Computerized System Validation &amp;{' '}
           <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-sky-300 dark:via-blue-400 dark:to-indigo-300 bg-clip-text text-transparent drop-shadow-xs">
-            Cyber Risk Advisory
+            Digital Risk Advisory
           </span>
         </h1>
 
         <p className="text-base sm:text-lg font-medium text-slate-700 dark:text-slate-200 leading-relaxed mb-3 max-w-2xl mx-auto text-balance">
-          Helping organizations keep their software, data, and lab systems secure, compliant, and ready for audits.
+          Helping organizations keep their software, data and lab systems secure, compliant and ready for audits.
         </p>
 
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto">
-          I work at <strong className="text-slate-800 dark:text-slate-100 font-semibold">PwC India</strong> helping clients manage technology risks. Before consulting, I spent years in the pharmaceutical industry qualifying lab instruments, validating production software, and making sure electronic records meet strict GAMP 5 and 21 CFR Part 11 requirements.
+          I work at <strong className="text-slate-800 dark:text-slate-100 font-semibold">PwC India</strong> helping clients manage technology risks. Before consulting, I spent years in the pharmaceutical industry qualifying lab instruments, validating production software and making sure electronic records meet strict GAMP-5 and 21 CFR Part 11 requirements.
         </p>
 
         <div className="relative grid grid-cols-2 md:grid-cols-4 gap-3 p-3.5 sm:p-4 bg-gradient-to-b from-white/80 via-slate-50/70 to-white/85 dark:from-[#0c1222]/85 dark:via-[#090e1c]/80 dark:to-[#0c1222]/90 backdrop-blur-xl rounded-2xl border border-slate-200/80 dark:border-slate-800/90 shadow-xl shadow-slate-900/5 dark:shadow-black/40 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/30 dark:before:via-blue-400/30 before:to-transparent before:rounded-t-2xl">
