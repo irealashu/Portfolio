@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
             Overview
           </a>
           <a href="#about" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
-            Skills
+            Expertise
           </a>
           <a href="#history" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
             Experience

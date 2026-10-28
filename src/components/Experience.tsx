@@ -23,11 +23,11 @@ export const Experience: React.FC = () => {
             <div className="absolute -left-[31px] sm:-left-[39px] top-2 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white dark:bg-[#0c1222] border-2 border-blue-600 dark:border-sky-400 shadow-[0_0_0_5px_rgba(59,130,246,0.1)] group-hover:scale-110 transition-transform" />
 
             <div
-              className="card-dynamic-gradient relative p-5 sm:p-6 rounded-[1.6rem] border border-slate-200/80 dark:border-slate-800/90 shadow-sm"
+              className="card-dynamic-gradient relative p-5.5 sm:p-6.5 rounded-[1.8rem] border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-400 dark:hover:border-sky-500"
             >
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4 mb-3">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-4 mb-3.5">
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors leading-snug">
                     {exp.role}
                   </h3>
                   <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
@@ -35,8 +35,8 @@ export const Experience: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 sm:gap-0.5 text-right mt-1 sm:mt-0">
-                  <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap">
+                <div className="flex sm:flex-col items-start sm:items-end justify-between sm:justify-start gap-2 text-right">
+                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border border-slate-200/70 dark:border-slate-700/70 whitespace-nowrap">
                     {exp.dates}
                   </span>
                   <span className="inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400">
@@ -46,20 +46,20 @@ export const Experience: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3.5">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                 {exp.summary}
               </p>
 
-              <ul className="space-y-1.5 mb-3.5">
+              <ul className="space-y-2 mb-4">
                 {exp.bullets.map((bullet, bIdx) => (
-                  <li key={bIdx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                  <li key={bIdx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400 shrink-0 mt-0.5" />
                     <span>{bullet}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-slate-100 dark:border-slate-800/80">
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100 dark:border-slate-800/80">
                 {exp.tags.map((tag, tIdx) => (
                   <span
                     key={tIdx}

@@ -34,30 +34,30 @@ export const Expertise: React.FC = () => {
         {PILLARS.map((pillar) => (
           <div
             key={pillar.id}
-            className="card-dynamic-gradient group relative flex flex-col p-5 sm:p-6 rounded-[1.6rem] border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50"
+            className="card-dynamic-gradient group relative flex flex-col p-6 rounded-[1.8rem] border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-400 dark:hover:border-sky-500"
           >
-            <div className="flex items-start gap-3.5 mb-3.5">
-              <div className="p-2.5 rounded-2xl bg-slate-50/90 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-indigo-600 dark:group-hover:from-sky-500 dark:group-hover:to-blue-600 transition-all duration-300 shadow-sm">
+            <div className="flex items-start gap-3.5 mb-4">
+              <div className="p-3 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-slate-200/70 dark:border-slate-700/70 shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-indigo-600 dark:group-hover:from-sky-500 dark:group-hover:to-blue-600 transition-all duration-300 shadow-xs">
                 {getIcon(pillar.iconName)}
               </div>
-              <div className="min-w-0">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
-                  {pillar.title}
-                </h3>
-                <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+              <div className="min-w-0 pt-0.5">
+                <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-sky-400 border border-blue-200/60 dark:border-blue-900/40 mb-1.5">
                   {pillar.badge}
                 </span>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
+                  {pillar.title}
+                </h3>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               {pillar.description}
             </p>
 
-            <ul className="mt-auto space-y-2">
+            <ul className="mt-auto space-y-2.5 pt-4 border-t border-slate-100 dark:border-slate-800/80">
               {pillar.points.map((point, pIdx) => (
-                <li key={pIdx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
-                  <ChevronRight className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400 shrink-0 mt-0.5 group-hover:translate-x-1 group-hover:text-indigo-500 transition-all" />
+                <li key={pIdx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                  <ChevronRight className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400 shrink-0 mt-0.5 group-hover:translate-x-0.5 group-hover:text-indigo-500 transition-all" />
                   <span>{point}</span>
                 </li>
               ))}

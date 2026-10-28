@@ -5,15 +5,23 @@ interface ContactProps {
   onShowToast?: (message: string) => void;
 }
 
-export const Contact: React.FC<ContactProps> = () => {
+export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
   const emailAddress = 'kshatriya205902@gmail.com';
   const mapsUrl = 'https://maps.app.goo.gl/2b4RYKTrYigT2LWn7?g_st=ac';
+
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(emailAddress);
+      onShowToast?.('Email copied to clipboard!');
+    }
+  };
 
   const contactItems = [
     {
       id: 'email',
-      title: 'Email: kshatriya205902@gmail.com',
+      title: 'Email: kshatriya205902@gmail.com (Click to open / copy)',
       href: `mailto:${emailAddress}`,
+      onClick: handleEmailClick,
       isExternal: false,
       icon: <Mail className="w-5 h-5" />,
     },
@@ -68,6 +76,7 @@ export const Contact: React.FC<ContactProps> = () => {
             <a
               key={item.id}
               href={item.href}
+              onClick={item.onClick}
               target={item.isExternal ? '_blank' : undefined}
               rel={item.isExternal ? 'noopener noreferrer' : undefined}
               aria-label={item.title}
