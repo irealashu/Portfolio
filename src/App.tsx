@@ -108,12 +108,12 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-slate-50 dark:bg-[#060913] text-slate-900 dark:text-slate-100 transition-colors duration-500 selection:bg-blue-600 selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen flex flex-col bg-slate-50 dark:bg-[#060913] text-slate-900 dark:text-slate-100 transition-colors duration-500 selection:bg-blue-600 selection:text-white">
       <div className="fixed inset-0 pointer-events-none -z-20 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-blue-400/15 via-indigo-400/10 to-transparent dark:from-blue-600/20 dark:via-indigo-600/15 dark:to-transparent blur-[120px] rounded-full" />
-        <div className="absolute top-[35%] -left-40 w-[550px] h-[550px] bg-gradient-to-tr from-cyan-400/10 via-sky-300/10 to-transparent dark:from-cyan-500/10 dark:via-blue-600/10 dark:to-transparent blur-[130px] rounded-full" />
-        <div className="absolute top-[65%] -right-40 w-[600px] h-[600px] bg-gradient-to-tl from-indigo-400/10 via-purple-300/10 to-transparent dark:from-indigo-600/15 dark:via-purple-600/10 dark:to-transparent blur-[140px] rounded-full" />
-        <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-30 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-blue-400/15 via-indigo-400/10 to-transparent dark:from-blue-600/20 dark:via-indigo-600/15 dark:to-transparent blur-3xl" />
+        <div className="absolute top-[35%] -left-40 w-[550px] h-[550px] bg-gradient-to-tr from-cyan-400/10 via-sky-300/10 to-transparent dark:from-cyan-500/10 dark:via-blue-600/10 dark:to-transparent blur-3xl" />
+        <div className="absolute top-[65%] -right-40 w-[600px] h-[600px] bg-gradient-to-tl from-indigo-400/10 via-purple-300/10 to-transparent dark:from-indigo-600/15 dark:via-purple-600/10 dark:to-transparent blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-25" />
       </div>
 
       <Header
@@ -122,12 +122,14 @@ export const App: React.FC = () => {
         activeSection={activeSection}
       />
 
-      <main className="flex-1 relative z-10">
-        <Hero />
-        <Expertise />
-        <Experience />
-        <Systems onSelectSystem={setSelectedSystem} />
-        <Contact onShowToast={showToast} />
+      <main className="relative z-10 flex-1">
+        <div className="mx-auto max-w-[1180px] px-3 sm:px-5">
+          <Hero />
+          <Expertise />
+          <Experience />
+          <Systems onSelectSystem={setSelectedSystem} />
+          <Contact onShowToast={showToast} />
+        </div>
       </main>
 
       <Footer />
@@ -139,17 +141,17 @@ export const App: React.FC = () => {
 
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-5 sm:bottom-6 right-5 sm:right-6 z-40 w-10 h-10 rounded-full bg-white/90 dark:bg-[#0c1222]/90 backdrop-blur-md border border-slate-200/90 dark:border-slate-800/90 text-slate-700 dark:text-slate-200 shadow-xl shadow-slate-900/15 dark:shadow-black/60 flex items-center justify-center hover:bg-gradient-to-tr hover:from-blue-600 hover:to-indigo-600 hover:text-white hover:border-transparent hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer ${
+        className={`fixed bottom-5 sm:bottom-6 right-5 sm:right-6 z-40 w-11 h-11 rounded-full bg-white/90 dark:bg-[#0c1222]/90 backdrop-blur-md border border-slate-200/90 dark:border-slate-800/90 shadow-lg shadow-slate-200/60 dark:shadow-slate-950/60 transition-all duration-300 hover:scale-105 hover:border-blue-300 dark:hover:border-blue-700 ${
           showBackToTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
         aria-label="Scroll back to top"
         title="Scroll to top"
       >
-        <ArrowUp className="w-4 h-4" />
+        <ArrowUp className="w-4 h-4 mx-auto" />
       </button>
 
       {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-900/95 dark:bg-white/95 backdrop-blur-md text-white dark:text-slate-900 shadow-xl shadow-slate-950/20 text-xs font-semibold animate-in fade-in slide-in-from-bottom-3 duration-200 border border-slate-800 dark:border-slate-200">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-900/95 dark:bg-white/95 backdrop-blur-md text-white dark:text-slate-900 shadow-lg shadow-slate-900/20 dark:shadow-slate-200/10">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 dark:text-emerald-600 shrink-0" />
           <span>{toastMessage}</span>
         </div>

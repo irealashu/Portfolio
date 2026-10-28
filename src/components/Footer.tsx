@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative py-8 sm:py-10 px-4 sm:px-6 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-[#0c1222]/60 backdrop-blur-md before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/20 dark:before:via-blue-400/20 before:to-transparent">
+    <footer className="relative py-8 sm:py-10 px-4 sm:px-6 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-[#0c1222]/60 backdrop-blur-md before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/40 before:to-transparent">
       <div className="max-w-[1200px] mx-auto text-center space-y-3">
         <div className="text-base font-bold text-slate-900 dark:text-white">
           Ashutosh Singh

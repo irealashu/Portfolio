@@ -66,14 +66,14 @@ export const Header: React.FC<HeaderProps> = ({
       />
 
       <header className="fixed top-3 sm:top-4 inset-x-0 z-40 px-3 sm:px-6 pointer-events-none flex justify-center">
-        <div className="pointer-events-auto relative w-full max-w-[1060px] flex items-center justify-between px-3.5 sm:px-5 py-2 rounded-[22px] sm:rounded-[26px] bg-white/85 dark:bg-[#0c1222]/85 backdrop-blur-xl border border-slate-200/90 dark:border-slate-800/90 shadow-xl shadow-slate-900/10 dark:shadow-black/50 transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/30 dark:before:via-blue-400/30 before:to-transparent before:rounded-t-[26px]">
+        <div className="pointer-events-auto relative w-full max-w-[1100px] flex items-center justify-between px-3.5 sm:px-5 py-2 rounded-[22px] sm:rounded-[26px] border border-slate-200/70 dark:border-slate-800/80 bg-white/80 dark:bg-[#0c1222]/80 backdrop-blur-xl shadow-[0_12px_30px_-18px_rgba(15,23,42,0.35)] dark:shadow-[0_18px_32px_-18px_rgba(2,6,23,0.9)]">
           <a
             href="#home"
             onClick={handleLogoClick}
             className="flex items-center gap-2.5 sm:gap-3 group outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl p-0.5 cursor-pointer"
             aria-label="Ashutosh Singh - Home"
           >
-            <div className="relative w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shrink-0 shadow-xs group-hover:border-blue-500/50 transition-colors">
+            <div className="relative w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shrink-0 shadow-xs group-hover:shadow-md transition-shadow duration-300">
               <img
                 src="/dp.jpg"
                 alt="Ashutosh Singh"
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
 
           <nav
-            className="hidden md:flex items-center gap-1.5 bg-slate-100/90 dark:bg-slate-800/90 p-1.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 shadow-xs"
+            className="hidden md:flex items-center gap-1.5 bg-slate-100/90 dark:bg-slate-800/90 p-1.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]"
             aria-label="Primary Navigation"
           >
             {navItems.map((item) => {
@@ -120,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onToggleTheme}
-              className="relative w-8.5 h-8.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:bg-gradient-to-tr hover:from-blue-600 hover:to-indigo-600 hover:border-transparent transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 shadow-xs hover:scale-110 active:scale-95 hover:shadow-md hover:shadow-blue-500/25 overflow-hidden group"
+              className="relative w-8.5 h-8.5 rounded-full border border-slate-200/80 dark:border-slate-700/80 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center shadow-sm transition-all duration-300 hover:scale-105 hover:border-blue-300 dark:hover:border-blue-700"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
@@ -135,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:bg-gradient-to-tr hover:from-blue-600 hover:to-indigo-600 hover:border-transparent cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-300 hover:scale-110 active:scale-95"
+              className="md:hidden w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center shadow-sm transition-all duration-300 hover:scale-105"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -155,7 +155,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setMobileMenuOpen(false)}
               aria-hidden="true"
             />
-            <div className="md:hidden fixed top-16 sm:top-18 left-4 right-4 bg-white/95 dark:bg-[#0c1222]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-slate-800/90 rounded-2xl p-4 shadow-2xl shadow-slate-950/30 z-50 pointer-events-auto animate-in fade-in slide-in-from-top-3 zoom-in-95 duration-200">
+            <div className="md:hidden fixed top-16 sm:top-18 left-4 right-4 bg-white/95 dark:bg-[#0c1222]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-slate-800/90 rounded-2xl p-4 shadow-[0_18px_40px_-24px_rgba(15,23,42,0.5)] z-50">
               <div className="flex items-center gap-3 pb-3 mb-3 border-b border-slate-100 dark:border-slate-800">
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shrink-0">
                   <img
@@ -188,7 +188,7 @@ export const Header: React.FC<HeaderProps> = ({
                       className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                         isActive
                           ? 'btn-dynamic-gradient text-white shadow-sm shadow-blue-500/25'
-                          : 'text-slate-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-950/50 dark:hover:to-indigo-950/50 hover:text-blue-600 dark:hover:text-sky-400'
+                          : 'text-slate-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-950/50 dark:hover:to-indigo-950/50 hover:text-blue-600 dark:hover:text-sky-300'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
@@ -221,7 +221,7 @@ export const Header: React.FC<HeaderProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 text-slate-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-blue-600 hover:via-blue-700 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-blue-500/25"
+                  className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 text-slate-900 dark:text-slate-100"
                 >
                   <span>Connect on LinkedIn</span>
                   <ExternalLink className="w-3 h-3" />

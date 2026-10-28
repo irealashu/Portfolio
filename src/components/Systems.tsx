@@ -8,7 +8,7 @@ interface SystemsProps {
 
 export const Systems: React.FC<SystemsProps> = ({ onSelectSystem }) => {
   return (
-    <section id="systems" className="py-10 sm:py-14 px-4 sm:px-6 max-w-[1200px] mx-auto relative scroll-mt-24">
+    <section id="systems" className="py-10 sm:py-14 px-3 sm:px-5 max-w-[1200px] mx-auto relative scroll-mt-24">
       <div className="text-center mb-9">
         <span className="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent mb-1.5 inline-block">
           Validated Systems
@@ -26,13 +26,13 @@ export const Systems: React.FC<SystemsProps> = ({ onSelectSystem }) => {
           <div
             key={system.id}
             onClick={() => onSelectSystem(system)}
-            className="card-dynamic-gradient group relative flex flex-col p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500/25 dark:before:via-blue-400/25 before:to-transparent before:rounded-t-2xl"
+            className="card-dynamic-gradient group relative flex flex-col p-5 rounded-[1.6rem] border border-slate-200/80 dark:border-slate-800/90 shadow-sm hover:border-blue-500/50 dark:hover:border-blue-400/50 cursor-pointer"
           >
             <div className="flex flex-wrap gap-1.5 mb-2.5">
               {system.badges.map((b, bIdx) => (
                 <span
                   key={bIdx}
-                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100/90 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700/60 group-hover:border-blue-400/40 transition-colors"
+                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100/90 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700/70"
                 >
                   {b}
                 </span>
