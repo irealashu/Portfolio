@@ -1,63 +1,92 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 
 export const CustomCursor: React.FC = () => {
-  const [isFinePointer, setIsFinePointer] = useState(false);
+  const dotRef = useRef<HTMLDivElement | null>(null);
+  const ringRef = useRef<HTMLDivElement | null>(null);
+  const glowRef = useRef<HTMLDivElement | null>(null);
+
   const [isVisible, setIsVisible] = useState(false);
-  const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
-
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  // Smooth spring physics for the outer trailing ring
-  const ringX = useSpring(cursorX, { stiffness: 420, damping: 28, mass: 0.45 });
-  const ringY = useSpring(cursorY, { stiffness: 420, damping: 28, mass: 0.45 });
-
-  // Snappy spring physics for the center precision dot
-  const dotX = useSpring(cursorX, { stiffness: 1000, damping: 42, mass: 0.15 });
-  const dotY = useSpring(cursorY, { stiffness: 1000, damping: 42, mass: 0.15 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(pointer: fine)');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let rafId = 0;
+    let hasInitialized = false;
 
-    const updatePointerCapability = () => {
-      setIsFinePointer(mediaQuery.matches && !reducedMotion.matches);
+    const targetPos = { x: -100, y: -100 };
+    const ringPos = { x: -100, y: -100 };
+
+    const updateCursorPosition = (clientX: number, clientY: number, target: EventTarget | null) => {
+      targetPos.x = clientX;
+      targetPos.y = clientY;
+
+      if (!hasInitialized) {
+        hasInitialized = true;
+        ringPos.x = clientX;
+        ringPos.y = clientY;
+        setIsVisible(true);
+        document.documentElement.classList.add('custom-cursor-active');
+      }
+
+      // Update inner precision pointer synchronously for zero input lag
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
+      }
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
+      }
+
+      if (target && target instanceof Element) {
+        const interactiveEl = target.closest(
+          'a, button, input, textarea, select, label, [role="button"], [role="tab"], article'
+        );
+        setIsInteractive(Boolean(interactiveEl));
+      }
     };
 
-    updatePointerCapability();
-    mediaQuery.addEventListener('change', updatePointerCapability);
-    reducedMotion.addEventListener('change', updatePointerCapability);
-
-    return () => {
-      mediaQuery.removeEventListener('change', updatePointerCapability);
-      reducedMotion.removeEventListener('change', updatePointerCapability);
+    const handlePointerMove = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') {
+        setIsTouchDevice(true);
+        document.documentElement.classList.remove('custom-cursor-active');
+        return;
+      }
+      setIsTouchDevice(false);
+      updateCursorPosition(e.clientX, e.clientY, e.target);
     };
-  }, []);
-
-  useEffect(() => {
-    if (!isFinePointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
-
-      const target = e.target as HTMLElement | null;
-      if (target) {
-        const interactive = target.closest(
-          'a, button, input, textarea, select, [role="button"], [role="tab"], article'
-        );
-        setIsHoveringInteractive(Boolean(interactive));
-      }
+      updateCursorPosition(e.clientX, e.clientY, e.target);
     };
 
     const handleMouseDown = () => setIsPressed(true);
     const handleMouseUp = () => setIsPressed(false);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
 
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+      hasInitialized = false;
+      document.documentElement.classList.remove('custom-cursor-active');
+    };
+
+    const handleMouseEnter = (e: MouseEvent) => {
+      updateCursorPosition(e.clientX, e.clientY, e.target);
+      setIsVisible(true);
+      document.documentElement.classList.add('custom-cursor-active');
+    };
+
+    const animateRing = () => {
+      ringPos.x += (targetPos.x - ringPos.x) * 0.24;
+      ringPos.y += (targetPos.y - ringPos.y) * 0.24;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%)`;
+      }
+      rafId = window.requestAnimationFrame(animateRing);
+    };
+
+    rafId = window.requestAnimationFrame(animateRing);
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown, { passive: true });
     window.addEventListener('mouseup', handleMouseUp, { passive: true });
@@ -65,61 +94,86 @@ export const CustomCursor: React.FC = () => {
     document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
+      window.cancelAnimationFrame(rafId);
+      document.documentElement.classList.remove('custom-cursor-active');
+      window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [isFinePointer, isVisible, cursorX, cursorY]);
+  }, []);
 
-  if (!isFinePointer) return null;
+  if (isTouchDevice) return null;
 
   return (
     <div
       aria-hidden="true"
       data-testid="custom-cursor"
-      className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden"
+      className={`pointer-events-none fixed inset-0 z-[99999] overflow-hidden transition-opacity duration-150 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
     >
-      {/* Outer Trailing Cyber Ring */}
-      <motion.div
-        style={{
-          x: ringX,
-          y: ringY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        animate={{
-          width: isPressed ? 26 : isHoveringInteractive ? 46 : 32,
-          height: isPressed ? 26 : isHoveringInteractive ? 46 : 32,
-          opacity: isVisible ? 1 : 0,
-          scale: isPressed ? 0.9 : 1,
-        }}
-        transition={{ type: 'spring', stiffness: 420, damping: 28 }}
-        className={`fixed top-0 left-0 rounded-full border transition-colors duration-150 ${
-          isHoveringInteractive
-            ? 'border-[#06B6D4] dark:border-[#38BDF8] bg-[#4F46E5]/10 dark:bg-[#38BDF8]/15 shadow-[0_0_20px_rgba(6,182,212,0.35)]'
-            : 'border-[#4F46E5]/70 dark:border-[#38BDF8]/70 bg-transparent'
-        }`}
+      {/* Subtle Ambient Aura Follower */}
+      <div
+        ref={glowRef}
+        className="fixed top-0 left-0 w-28 h-28 rounded-full bg-gradient-to-tr from-[#4F46E5]/15 via-[#06B6D4]/15 to-[#10B981]/10 blur-xl will-change-transform"
       />
 
-      {/* Inner Precision Core Dot */}
-      <motion.div
-        style={{
-          x: dotX,
-          y: dotY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        animate={{
-          width: isHoveringInteractive ? 6 : 7,
-          height: isHoveringInteractive ? 6 : 7,
-          opacity: isVisible ? 1 : 0,
-          scale: isPressed ? 1.5 : 1,
-        }}
-        transition={{ type: 'spring', stiffness: 600, damping: 30 }}
-        className="fixed top-0 left-0 rounded-full bg-gradient-to-tr from-[#4F46E5] via-[#06B6D4] to-[#10B981] shadow-[0_0_10px_rgba(79,70,229,0.75)]"
-      />
+      {/* Outer Magnetic Trailing Ring */}
+      <div
+        ref={ringRef}
+        data-testid="custom-cursor-ring"
+        className="fixed top-0 left-0 will-change-transform"
+      >
+        <div
+          className={`rounded-full border transition-all duration-150 flex items-center justify-center ${
+            isPressed
+              ? 'w-7 h-7 border-2 border-[#10B981] bg-[#10B981]/20 scale-90 shadow-[0_0_20px_rgba(16,185,129,0.5)]'
+              : isInteractive
+              ? 'w-12 h-12 border-2 border-[#06B6D4] dark:border-[#38BDF8] bg-[#4F46E5]/15 dark:bg-[#38BDF8]/15 shadow-[0_0_24px_rgba(6,182,212,0.4)]'
+              : 'w-9 h-9 border-[1.5px] border-[#4F46E5]/80 dark:border-[#38BDF8]/80 bg-transparent shadow-[0_0_12px_rgba(79,70,229,0.25)]'
+          }`}
+        />
+      </div>
+
+      {/* Inner Zero-Latency Precision Cyber Pointer (SVG Arrow + Glowing Tip) */}
+      <div
+        ref={dotRef}
+        data-testid="custom-cursor-dot"
+        className="fixed top-0 left-0 will-change-transform"
+      >
+        <div
+          className={`relative -translate-x-1 -translate-y-1 transition-transform duration-100 ${
+            isPressed ? 'scale-90' : isInteractive ? 'scale-110' : 'scale-100'
+          }`}
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="drop-shadow-[0_2px_6px_rgba(6,182,212,0.55)]"
+          >
+            <path
+              d="M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z"
+              fill="url(#cursorGrad)"
+              stroke="#FFFFFF"
+              strokeWidth="1.6"
+              strokeLinejoin="round"
+            />
+            <defs>
+              <linearGradient id="cursorGrad" x1="3.5" y1="2.5" x2="20.5" y2="20.8" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#4F46E5" />
+                <stop offset="55%" stopColor="#06B6D4" />
+                <stop offset="100%" stopColor="#10B981" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
     </div>
   );
 };
