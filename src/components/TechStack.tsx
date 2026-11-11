@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Briefcase, GraduationCap } from 'lucide-react';
 import {
-  SKILL_BARS,
+  COMPETENCY_GROUPS,
   EDUCATION_ITEMS,
   CAREER_MILESTONES,
 } from '../data/portfolioData';
@@ -16,7 +16,7 @@ export const TechStack: React.FC = () => {
 
   return (
     <>
-      {/* 1. Jackson Skills Section (#skills) with Animated Progress Bars */}
+      {/* 1. Skills & Deliverables Section (#skills) — Concrete Deliverable Lists (No Percentage Bars) */}
       <section
         id="skills"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200/80 dark:border-white/[0.08]"
@@ -31,7 +31,7 @@ export const TechStack: React.FC = () => {
             whileHover={{ x: 3 }}
             className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] dark:from-[#38BDF8] dark:to-[#34D399] bg-clip-text text-transparent mb-2"
           >
-            My Specialty
+            Technical Scope
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, x: -12 }}
@@ -40,7 +40,7 @@ export const TechStack: React.FC = () => {
             transition={{ duration: 0.42, delay: 0.05 }}
             className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-4"
           >
-            Core Competencies
+            Skills &amp; Validation Deliverables
           </motion.h2>
 
           <motion.p
@@ -50,50 +50,41 @@ export const TechStack: React.FC = () => {
             transition={{ duration: 0.38, delay: 0.08 }}
             className="font-sans text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-[1.75] max-w-3xl mb-8"
           >
-            Deep hands-on capability across regulatory compliance standards, computerized system
-            validation lifecycle documentation, and enterprise IT General Controls (ITGC).
+            Hands-on deliverables across computerized system validation (CSV), regulatory compliance
+            assessments, and enterprise IT General Controls (ITGC).
           </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {SKILL_BARS.map((skill, idx) => (
+          {COMPETENCY_GROUPS.map((group, idx) => (
             <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 14 }}
+              key={group.id}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.38, delay: idx * 0.06 }}
-              whileHover={{ y: -3, scale: 1.01 }}
-              className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#131C2E]/85 p-5 shadow-2xs hover:border-[#4F46E5]/45 dark:hover:border-[#38BDF8]/45 transition-all"
+              whileHover={{ y: -3 }}
+              className="rounded-2xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white to-slate-50/70 dark:from-[#131C2E] dark:to-[#0D1322] p-6 shadow-2xs hover:shadow-md hover:border-[#4F46E5]/50 dark:hover:border-[#38BDF8]/50 transition-all"
             >
-              <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white mb-2">
-                <h3 className="font-display">{skill.name}</h3>
-                <span className="font-mono text-xs text-[#4F46E5] dark:text-[#38BDF8] tabular-nums">
-                  {skill.percentage}%
-                </span>
-              </div>
-              <div
-                className="w-full h-2 rounded-full bg-slate-100 dark:bg-[#0B0F1A] overflow-hidden"
-                role="progressbar"
-                aria-valuenow={skill.percentage}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label={skill.name}
-              >
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.percentage}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.9, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full rounded-full bg-gradient-to-r from-[#4F46E5] via-[#06B6D4] to-[#10B981]"
-                />
-              </div>
+              <p className="font-mono text-xs font-semibold text-[#059669] dark:text-[#34D399] mb-1">
+                {group.focus}
+              </p>
+              <h3 className="font-display text-base sm:text-lg font-bold text-[#0F172A] dark:text-white mb-3.5">
+                {group.category}
+              </h3>
+              <ul className="space-y-2 font-sans text-xs sm:text-sm text-slate-600 dark:text-slate-300 list-disc pl-4">
+                {group.deliverables.map((item) => (
+                  <li key={item} className="leading-relaxed">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* 2. Jackson Education Accordion Section (#education) */}
+      {/* 2. Education Accordion Section (#education) — VBSPU, Jaunpur */}
       <section
         id="education"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200/80 dark:border-white/[0.08]"
@@ -190,7 +181,7 @@ export const TechStack: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. Jackson Work Experience Section (#experience) */}
+      {/* 3. Work Experience Section (#experience) — 18 Jan 2021 to Present */}
       <section
         id="experience"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200/80 dark:border-white/[0.08]"
@@ -205,7 +196,7 @@ export const TechStack: React.FC = () => {
             whileHover={{ x: 3 }}
             className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] dark:from-[#38BDF8] dark:to-[#34D399] bg-clip-text text-transparent mb-2"
           >
-            Experience
+            Experience · 18 Jan 2021 – Present
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, x: -12 }}

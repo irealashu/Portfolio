@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
 
   return (
     <>
-      {/* 1. Jackson Hero Section (#home) — Balanced height & spacing so nothing clips */}
+      {/* 1. Jackson Hero Section (#home) */}
       <section
         id="home"
         aria-label="Introduction"
@@ -147,17 +147,17 @@ export const Hero: React.FC = () => {
                   variants={slideTextVariants}
                   className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#059669] dark:text-[#34D399] mb-4"
                 >
-                  6 Years · 15+ Enterprise &amp; GxP Systems Qualified
+                  18 Jan 2021 – Present · 15+ Enterprise &amp; GxP Systems Qualified
                 </motion.p>
 
                 <motion.h2
                   custom={0.08}
                   variants={slideTextVariants}
-                  className="font-display text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-[#0F172A] dark:text-white leading-[1.08] mb-5 text-balance"
+                  className="font-display text-4xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight text-[#0F172A] dark:text-white leading-[1.1] mb-5 text-balance"
                 >
-                  Securing Digital{' '}
+                  Computerized System{' '}
                   <span className="bg-gradient-to-r from-[#4F46E5] via-[#06B6D4] to-[#10B981] bg-clip-text text-transparent">
-                    GxP Architectures.
+                    Validation &amp; IT Risk.
                   </span>
                 </motion.h2>
 
@@ -166,9 +166,8 @@ export const Hero: React.FC = () => {
                   variants={slideTextVariants}
                   className="font-sans text-base sm:text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed mb-6 max-w-xl"
                 >
-                  Delivering end-to-end validation lifecycles (URS, FS, IQ, OQ, PQ, RTM, VSR),
-                  audit trail integrity reviews, and zero-finding regulatory readiness across
-                  global pharmaceutical and enterprise environments.
+                  Practical experience across the full validation lifecycle (URS, FS, IQ, OQ, PQ, RTM, VSR),
+                  audit trail reviews, and IT general controls across pharmaceutical and enterprise systems.
                 </motion.p>
 
                 <motion.div
@@ -177,7 +176,7 @@ export const Hero: React.FC = () => {
                   className="grid grid-cols-3 gap-4 max-w-lg pt-2 border-t border-slate-200/80 dark:border-white/10"
                 >
                   {[
-                    { value: '6 Years', label: 'Cyber & GxP' },
+                    { value: '5+ Years', label: 'Since 18 Jan 2021' },
                     { value: '15+ Systems', label: 'End-to-End CSV' },
                     { value: '0 Findings', label: 'Audit Record' },
                   ].map((item) => (
@@ -209,7 +208,7 @@ export const Hero: React.FC = () => {
           >
             {[
               { index: 0 as const, label: '01. Advisory Profile' },
-              { index: 1 as const, label: '02. GxP Assurance' },
+              { index: 1 as const, label: '02. Validation Scope' },
             ].map((tab) => {
               const active = slideIndex === tab.index;
               return (
@@ -242,7 +241,7 @@ export const Hero: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. Jackson About Section (#about) with Proportional Dimensions */}
+      {/* 2. Jackson About Section (#about) */}
       <section
         id="about"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200/80 dark:border-white/[0.08]"
@@ -283,8 +282,8 @@ export const Hero: React.FC = () => {
               <strong className="text-[#4F46E5] dark:text-[#38BDF8] font-semibold">
                 PwC India
               </strong>{' '}
-              with 6 years of combined experience across enterprise IT risk governance, Computerized
-              System Validation (CSV), and regulated pharmaceutical quality operations.
+              with 5+ years of experience (since 18 Jan 2021) across enterprise IT risk governance,
+              Computerized System Validation (CSV), and regulated pharmaceutical quality operations.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -292,10 +291,9 @@ export const Hero: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.38, delay: 0.14 }}
             >
-              My work focuses on evaluating IT General Controls (ITGC), qualifying mission-critical
-              laboratory and enterprise software under GAMP 5 (Second Edition), and enforcing 21 CFR
-              Part 11, EU GMP Annex 11, and ALCOA++ data integrity standards to ensure continuous
-              inspection readiness.
+              My work focuses on testing IT General Controls (ITGC), qualifying laboratory and
+              enterprise software under GAMP 5 (Second Edition), and checking 21 CFR Part 11, EU GMP
+              Annex 11, and ALCOA++ data integrity controls.
             </motion.p>
           </div>
         </motion.div>
@@ -339,10 +337,10 @@ export const Hero: React.FC = () => {
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <span className="inline-block font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-200 mb-1.5">
-                Regulatory &amp; Advisory Track Record
+                18 Jan 2021 – Present · Track Record
               </span>
               <h3 className="font-display text-xl sm:text-2xl font-bold leading-snug max-w-2xl text-balance">
-                6 years of experience &amp; 15+ enterprise systems validated with zero critical audit findings.
+                5+ years of experience &amp; 15+ enterprise systems validated with zero critical audit findings.
               </h3>
             </div>
             <div className="font-mono text-xs text-cyan-100 shrink-0">
