@@ -36,6 +36,22 @@ body::-webkit-scrollbar {
   background: transparent !important;
 }
 
+/* Custom cursor styling on desktop/fine-pointer devices */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [role="tab"],
+  article {
+    cursor: none !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
@@ -43,7 +59,7 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;

@@ -7,6 +7,7 @@ import { RiskAdvisory } from './components/RiskAdvisory';
 import { TechStack } from './components/TechStack';
 import { Projects } from './components/Projects';
 import { Footer } from './components/Footer';
+import { CustomCursor } from './components/CustomCursor';
 
 const SECTION_IDS = [
   'home',
@@ -89,7 +90,10 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4F46E5] selection:text-white antialiased transition-colors duration-300">
+    <div className="min-h-dvh bg-[#F8FAFC] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4F46E5] selection:text-white antialiased transition-colors duration-300">
+      {/* Custom Interactive Cursor */}
+      <CustomCursor />
+
       {/* Skip to Main Content Link */}
       <a
         href="#colorlib-main"
@@ -99,7 +103,7 @@ export const App: React.FC = () => {
       </a>
 
       {/* Centered Jackson 2-Column Container (Left Sticky Sidebar + Right Scrolling Content) */}
-      <div className="max-w-[1220px] mx-auto flex flex-col lg:flex-row min-h-screen">
+      <div className="max-w-[1440px] w-full mx-auto flex flex-col lg:flex-row min-h-dvh">
         <Navbar
           activeSection={activeSection}
           theme={theme}
@@ -108,7 +112,7 @@ export const App: React.FC = () => {
 
         <main
           id="colorlib-main"
-          className="flex-1 min-w-0 pt-16 lg:pt-0 bg-white dark:bg-[#090D16] transition-colors duration-300"
+          className="flex-1 min-w-0 pt-15 lg:pt-0 bg-white dark:bg-[#090D16] transition-colors duration-300"
         >
           <Hero />
           <RiskAdvisory />

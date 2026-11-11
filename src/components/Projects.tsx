@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, X, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import {
   VALIDATED_SYSTEMS,
   SystemCategory,
@@ -42,11 +42,11 @@ const SystemTiltCard: React.FC<SystemTiltCardProps> = ({ system, index, onInspec
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 18, scale: 0.96 }}
+      initial={{ opacity: 0, y: 16, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.94 }}
-      transition={{ duration: 0.3, delay: index * 0.04 }}
-      whileHover={{ y: -5 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.28, delay: index * 0.04 }}
+      whileHover={{ y: -4 }}
       whileTap={{ scale: 0.99 }}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
@@ -55,7 +55,7 @@ const SystemTiltCard: React.FC<SystemTiltCardProps> = ({ system, index, onInspec
         transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
         transition: 'transform 160ms cubic-bezier(0.22, 1, 0.36, 1)',
       }}
-      className="group relative rounded-2xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white to-slate-50/70 dark:from-[#131C2E] dark:to-[#0D1322] p-6 sm:p-7 flex flex-col justify-between hover:border-[#4F46E5]/55 dark:hover:border-[#38BDF8]/55 transition-all cursor-pointer shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 overflow-hidden"
+      className="group relative rounded-2xl border border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-white to-slate-50/70 dark:from-[#131C2E] dark:to-[#0D1322] p-6 flex flex-col justify-between hover:border-[#4F46E5]/55 dark:hover:border-[#38BDF8]/55 transition-all cursor-pointer shadow-2xs hover:shadow-lg hover:shadow-indigo-500/10 overflow-hidden"
     >
       {/* Dynamic Cursor Glare */}
       <div
@@ -66,22 +66,11 @@ const SystemTiltCard: React.FC<SystemTiltCardProps> = ({ system, index, onInspec
       />
 
       <div className="relative z-10">
-        <div className="flex items-center justify-between gap-2 mb-3.5">
-          <motion.span
-            whileHover={{ scale: 1.04 }}
-            className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 font-mono text-[11px] font-semibold text-[#059669] dark:text-[#34D399]"
-          >
-            {system.gampCategory}
-          </motion.span>
-          <motion.div
-            whileHover={{ rotate: 12, scale: 1.15 }}
-            className="w-8 h-8 rounded-xl bg-indigo-500/10 dark:bg-white/[0.06] flex items-center justify-center text-[#4F46E5] dark:text-[#38BDF8]"
-          >
-            <ShieldCheck className="w-4 h-4 shrink-0" />
-          </motion.div>
-        </div>
+        <p className="font-mono text-xs font-semibold text-[#059669] dark:text-[#34D399] mb-2">
+          {system.gampCategory} · {system.category}
+        </p>
 
-        <h3 className="font-display text-lg sm:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#4F46E5] dark:group-hover:text-[#38BDF8] transition-colors mb-2">
+        <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#4F46E5] dark:group-hover:text-[#38BDF8] transition-colors mb-2">
           {system.name}
         </h3>
 
@@ -90,17 +79,14 @@ const SystemTiltCard: React.FC<SystemTiltCardProps> = ({ system, index, onInspec
         </p>
       </div>
 
-      <div className="relative z-10 pt-4 border-t border-slate-200/80 dark:border-white/[0.08] flex items-center justify-between font-mono text-xs">
+      <div className="relative z-10 pt-3.5 border-t border-slate-200/80 dark:border-white/[0.08] flex items-center justify-between font-mono text-xs">
         <span className="text-slate-500 dark:text-slate-400">
           {system.complianceStandards.slice(0, 3).join(' · ')}
         </span>
-        <motion.span
-          whileHover={{ x: 2 }}
-          className="inline-flex items-center gap-1 font-semibold text-[#4F46E5] dark:text-[#38BDF8]"
-        >
+        <span className="inline-flex items-center gap-1 font-semibold text-[#4F46E5] dark:text-[#38BDF8]">
           <span>Inspect Scope</span>
           <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </motion.span>
+        </span>
       </div>
     </motion.article>
   );
@@ -118,17 +104,17 @@ export const Projects: React.FC = () => {
   return (
     <section
       id="work"
-      className="px-6 sm:px-12 lg:px-16 py-20 lg:py-24 border-b border-slate-200/80 dark:border-white/[0.08]"
+      className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200/80 dark:border-white/[0.08]"
     >
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.45 }}
+        transition={{ duration: 0.42 }}
       >
         <motion.span
           whileHover={{ x: 3 }}
-          className="inline-block font-mono text-[11px] font-semibold uppercase tracking-[0.22em] bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] dark:from-[#38BDF8] dark:to-[#34D399] bg-clip-text text-transparent mb-2"
+          className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] dark:from-[#38BDF8] dark:to-[#34D399] bg-clip-text text-transparent mb-2"
         >
           Validated Systems
         </motion.span>
@@ -136,18 +122,18 @@ export const Projects: React.FC = () => {
           initial={{ opacity: 0, x: -12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.05 }}
-          className="font-display text-xl sm:text-2xl font-bold uppercase tracking-[0.14em] text-[#0F172A] dark:text-white mb-8"
+          transition={{ duration: 0.42, delay: 0.05 }}
+          className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-6"
         >
           Qualified Enterprise &amp; GxP Systems
         </motion.h2>
       </motion.div>
 
-      {/* Category Filter Bar with Shared Framer Motion Active Pill */}
+      {/* Category Filter Bar */}
       <div
         role="group"
         aria-label="Filter validated systems by category"
-        className="flex flex-wrap items-center gap-2.5 mb-10"
+        className="flex flex-wrap items-center gap-2 mb-8"
       >
         {CATEGORIES.map((category) => {
           const isActive = selectedCategory === category;
@@ -156,10 +142,10 @@ export const Projects: React.FC = () => {
               key={category}
               type="button"
               aria-pressed={isActive}
-              whileHover={{ scale: 1.04, y: -1 }}
-              whileTap={{ scale: 0.96 }}
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => setSelectedCategory(category)}
-              className={`relative px-4 py-2 rounded-xl font-mono text-xs font-medium transition-colors cursor-pointer ${
+              className={`relative px-4 py-2 rounded-xl font-mono text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
                 isActive
                   ? 'text-white font-semibold'
                   : 'bg-slate-100/80 dark:bg-[#131C2E] text-slate-600 dark:text-slate-300 hover:text-[#4F46E5] dark:hover:text-white border border-slate-200/80 dark:border-white/10'
@@ -168,7 +154,7 @@ export const Projects: React.FC = () => {
               {isActive && (
                 <motion.span
                   layoutId="systems-category-pill"
-                  className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-[#4F46E5] via-[#2563EB] to-[#06B6D4] shadow-md shadow-indigo-500/20"
+                  className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-[#4F46E5] via-[#2563EB] to-[#06B6D4] shadow-sm"
                   transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                 />
               )}
@@ -178,8 +164,8 @@ export const Projects: React.FC = () => {
         })}
       </div>
 
-      {/* 2-Column Validated Systems Grid with 3D Tilt & Layout Animations */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* 2-Column Validated Systems Grid */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <AnimatePresence mode="popLayout">
           {filteredSystems.map((system, idx) => (
             <SystemTiltCard
@@ -192,7 +178,7 @@ export const Projects: React.FC = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* Animated Validation Scope Modal (Single Close Button — No Duplicate Close Triggers) */}
+      {/* Validation Scope Modal */}
       <AnimatePresence>
         {inspectedSystem && (
           <motion.div
@@ -206,18 +192,18 @@ export const Projects: React.FC = () => {
             onClick={() => setInspectedSystem(null)}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 16 }}
+              initial={{ opacity: 0, scale: 0.94, y: 14 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 16 }}
+              exit={{ opacity: 0, scale: 0.94, y: 14 }}
               transition={{ type: 'spring', stiffness: 360, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-xl rounded-2xl bg-white dark:bg-[#0D1322] border border-slate-200 dark:border-white/15 p-6 sm:p-8 shadow-2xl"
             >
               <div className="flex items-start justify-between gap-4 pb-4 mb-5 border-b border-slate-200 dark:border-white/10">
                 <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 font-mono text-xs font-semibold text-[#059669] dark:text-[#34D399] mb-2">
-                    {inspectedSystem.gampCategory}
-                  </span>
+                  <p className="font-mono text-xs font-semibold text-[#059669] dark:text-[#34D399] mb-1">
+                    {inspectedSystem.gampCategory} · {inspectedSystem.category}
+                  </p>
                   <h3
                     id="modal-system-title"
                     className="font-display text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-white"
@@ -241,30 +227,14 @@ export const Projects: React.FC = () => {
                 {inspectedSystem.validationScopeNotes}
               </p>
 
-              <ul className="space-y-2.5 mb-6">
-                {inspectedSystem.controlHighlights.map((item, idx) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.25, delay: idx * 0.05 }}
-                    className="flex items-start gap-2.5 font-sans text-sm text-slate-700 dark:text-slate-200"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </motion.li>
+              <ul className="space-y-2 mb-6 font-sans text-sm text-slate-700 dark:text-slate-200 list-disc pl-5">
+                {inspectedSystem.controlHighlights.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
 
-              <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex flex-wrap items-center gap-2">
-                {inspectedSystem.complianceStandards.map((std) => (
-                  <span
-                    key={std}
-                    className="px-3 py-1 rounded-lg bg-indigo-500/10 dark:bg-cyan-400/10 border border-indigo-500/20 dark:border-cyan-400/20 font-mono text-xs text-[#4F46E5] dark:text-[#38BDF8]"
-                  >
-                    {std}
-                  </span>
-                ))}
+              <div className="pt-4 border-t border-slate-200 dark:border-white/10 font-mono text-xs text-[#4F46E5] dark:text-[#38BDF8]">
+                {inspectedSystem.complianceStandards.join(' · ')}
               </div>
             </motion.div>
           </motion.div>
