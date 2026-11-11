@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export const CustomCursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement | null>(null);
-  const ringRef = useRef<HTMLDivElement | null>(null);
   const glowRef = useRef<HTMLDivElement | null>(null);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -11,25 +10,16 @@ export const CustomCursor: React.FC = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    let rafId = 0;
     let hasInitialized = false;
 
-    const targetPos = { x: -100, y: -100 };
-    const ringPos = { x: -100, y: -100 };
-
     const updateCursorPosition = (clientX: number, clientY: number, target: EventTarget | null) => {
-      targetPos.x = clientX;
-      targetPos.y = clientY;
-
       if (!hasInitialized) {
         hasInitialized = true;
-        ringPos.x = clientX;
-        ringPos.y = clientY;
         setIsVisible(true);
         document.documentElement.classList.add('custom-cursor-active');
       }
 
-      // Update inner precision pointer synchronously for zero input lag
+      // Update precision pointer and ambient shadow synchronously for zero input lag
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
       }
@@ -74,18 +64,6 @@ export const CustomCursor: React.FC = () => {
       document.documentElement.classList.add('custom-cursor-active');
     };
 
-    const animateRing = () => {
-      ringPos.x += (targetPos.x - ringPos.x) * 0.24;
-      ringPos.y += (targetPos.y - ringPos.y) * 0.24;
-
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%)`;
-      }
-      rafId = window.requestAnimationFrame(animateRing);
-    };
-
-    rafId = window.requestAnimationFrame(animateRing);
-
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown, { passive: true });
@@ -94,7 +72,6 @@ export const CustomCursor: React.FC = () => {
     document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
-      window.cancelAnimationFrame(rafId);
       document.documentElement.classList.remove('custom-cursor-active');
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -115,30 +92,13 @@ export const CustomCursor: React.FC = () => {
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      {/* Subtle Ambient Aura Follower */}
+      {/* Subtle Ambient Shadow / Aura Follower */}
       <div
         ref={glowRef}
-        className="fixed top-0 left-0 w-28 h-28 rounded-full bg-gradient-to-tr from-[#4F46E5]/15 via-[#06B6D4]/15 to-[#10B981]/10 blur-xl will-change-transform"
+        className="fixed top-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-[#4F46E5]/15 via-[#06B6D4]/15 to-[#10B981]/10 blur-xl will-change-transform"
       />
 
-      {/* Outer Magnetic Trailing Ring */}
-      <div
-        ref={ringRef}
-        data-testid="custom-cursor-ring"
-        className="fixed top-0 left-0 will-change-transform"
-      >
-        <div
-          className={`rounded-full border transition-all duration-150 flex items-center justify-center ${
-            isPressed
-              ? 'w-7 h-7 border-2 border-[#10B981] bg-[#10B981]/20 scale-90 shadow-[0_0_20px_rgba(16,185,129,0.5)]'
-              : isInteractive
-              ? 'w-12 h-12 border-2 border-[#06B6D4] dark:border-[#38BDF8] bg-[#4F46E5]/15 dark:bg-[#38BDF8]/15 shadow-[0_0_24px_rgba(6,182,212,0.4)]'
-              : 'w-9 h-9 border-[1.5px] border-[#4F46E5]/80 dark:border-[#38BDF8]/80 bg-transparent shadow-[0_0_12px_rgba(79,70,229,0.25)]'
-          }`}
-        />
-      </div>
-
-      {/* Inner Zero-Latency Precision Cyber Pointer (SVG Arrow + Glowing Tip) */}
+      {/* Zero-Latency Precision Cyber Pointer (SVG Arrow + Drop Shadow, No Circle Ring) */}
       <div
         ref={dotRef}
         data-testid="custom-cursor-dot"
