@@ -51,8 +51,7 @@ textarea,
 select,
 label,
 [role="button"],
-[role="tab"],
-article {
+[role="tab"] {
   cursor: var(--custom-interactive-svg);
 }
 
@@ -65,8 +64,7 @@ html.custom-cursor-active input,
 html.custom-cursor-active textarea,
 html.custom-cursor-active select,
 html.custom-cursor-active [role="button"],
-html.custom-cursor-active [role="tab"],
-html.custom-cursor-active article {
+html.custom-cursor-active [role="tab"] {
   cursor: none !important;
 }
 

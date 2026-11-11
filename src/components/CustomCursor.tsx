@@ -28,7 +28,7 @@ export const CustomCursor: React.FC = () => {
 
       if (target && target instanceof Element) {
         const interactiveEl = target.closest(
-          'a, button, input, textarea, select, label, [role="button"], [role="tab"], article'
+          'a, button, input, textarea, select, label, [role="button"], [role="tab"]'
         );
         setIsInteractive(Boolean(interactiveEl));
       }
