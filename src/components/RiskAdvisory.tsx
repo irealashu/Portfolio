@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Lock, Network, CheckCircle2, Building2, Calendar, MapPin, ArrowUpRight } from 'lucide-react';
+import {
+  ShieldCheck,
+  FileCheck2,
+  Lock,
+  CheckCircle2,
+  Building2,
+  Calendar,
+  MapPin,
+  ArrowUpRight,
+} from 'lucide-react';
 import { ADVISORY_DOMAINS, CAREER_MILESTONES } from '../data/portfolioData';
 
 const DOMAIN_ICONS: Record<string, React.ReactNode> = {
   'risk-controls': <ShieldCheck className="w-5 h-5 text-[#2563EB]" />,
-  'zero-trust-client': <Lock className="w-5 h-5 text-[#06B6D4]" />,
-  'infra-network': <Network className="w-5 h-5 text-[#10B981]" />,
+  'csv-gamp5': <FileCheck2 className="w-5 h-5 text-[#06B6D4]" />,
+  'data-integrity': <Lock className="w-5 h-5 text-[#10B981]" />,
 };
 
 export const RiskAdvisory: React.FC = () => {
@@ -24,18 +33,18 @@ export const RiskAdvisory: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-14 border-b border-white/[0.08]">
           <div className="lg:col-span-7">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#06B6D4] mb-3">
-              01 · Enterprise Risk &amp; Advisory Telemetry
+              01 · Cyber &amp; Digital Risk Advisory Practice
             </p>
             <h2
               id="advisory-heading"
               className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-[#F9FAFB] leading-[1.1]"
             >
-              Governance Rigor Meets Systems Engineering.
+              Enterprise Governance, CSV &amp; Data Integrity.
             </h2>
           </div>
           <div className="lg:col-span-5 flex flex-col justify-end">
             <p className="text-base text-[#9CA3AF] leading-relaxed">
-              Bridging enterprise cyber risk advisory, IT general controls (ITGC), and GxP computerized system validation with deterministic, local-first software architecture.
+              Delivering technology risk assurance, IT General Controls (ITGC) evaluations, and end-to-end GAMP 5 Computerized System Validation across regulated enterprise environments.
             </p>
           </div>
         </div>
@@ -60,7 +69,7 @@ export const RiskAdvisory: React.FC = () => {
                     </span>
                     <span className="text-white/20">·</span>
                     <span className="font-mono text-xs text-[#10B981] uppercase tracking-wider">
-                      Verified Practice
+                      Core Practice
                     </span>
                   </div>
                   <div className="w-10 h-10 rounded-xl bg-[#0F1219] border border-white/10 flex items-center justify-center">
@@ -82,11 +91,14 @@ export const RiskAdvisory: React.FC = () => {
                 {/* Deliverables List */}
                 <div className="space-y-3 mb-8">
                   <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#9CA3AF]">
-                    Key Verification Controls
+                    Key Advisory Deliverables
                   </p>
                   <ul className="space-y-2.5">
                     {domain.deliverables.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F9FAFB]/90 leading-relaxed">
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F9FAFB]/90 leading-relaxed"
+                      >
                         <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
@@ -99,7 +111,7 @@ export const RiskAdvisory: React.FC = () => {
               <div className="pt-5 border-t border-white/[0.08]">
                 <div className="mb-3">
                   <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-[#9CA3AF] mb-1">
-                    Regulatory &amp; Technical Alignment
+                    Regulatory &amp; Control Frameworks
                   </span>
                   <p className="font-mono text-xs text-[#F9FAFB] leading-relaxed">
                     {domain.standards.join(' · ')}
@@ -123,7 +135,7 @@ export const RiskAdvisory: React.FC = () => {
                 Institutional Track Record
               </p>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F9FAFB]">
-                Enterprise Advisory &amp; Regulated GxP Experience
+                Advisory &amp; Regulated GxP Career Progression
               </h3>
             </div>
             <a

@@ -8,8 +8,8 @@ interface NavbarProps {
 const NAV_LINKS = [
   { label: 'Overview', href: '#overview', id: 'overview' },
   { label: 'Advisory', href: '#advisory', id: 'advisory' },
-  { label: 'Architecture', href: '#systems', id: 'systems' },
-  { label: 'Projects', href: '#projects', id: 'projects' },
+  { label: 'Lifecycle', href: '#systems', id: 'systems' },
+  { label: 'Validated Systems', href: '#projects', id: 'projects' },
   { label: 'Contact', href: '#contact', id: 'contact' },
 ];
 

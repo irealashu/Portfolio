@@ -1,174 +1,114 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ArrowUpRight,
-  Cpu,
+  FileCheck2,
   CheckCircle2,
   X,
   Layers,
   ShieldCheck,
+  SlidersHorizontal,
 } from 'lucide-react';
-import { PROJECTS, ProjectCategory, ProjectItem } from '../data/portfolioData';
+import {
+  VALIDATED_SYSTEMS,
+  SystemCategory,
+  ValidatedSystemItem,
+} from '../data/portfolioData';
 
-const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden="true"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const CATEGORIES: ProjectCategory[] = [
+const CATEGORIES: SystemCategory[] = [
   'All',
-  'Mobile & Systems',
-  'Networking & Diagnostics',
-  'Client-Side Utilities',
+  'Enterprise & Governance',
+  'Chromatography & Titration',
+  'Spectroscopy & Thermal',
 ];
 
-interface TiltCardProps {
-  project: ProjectItem;
+interface SystemCardProps {
+  system: ValidatedSystemItem;
   index: number;
-  onInspect: (project: ProjectItem) => void;
+  onInspect: (system: ValidatedSystemItem) => void;
 }
 
-const ProjectTiltCard: React.FC<TiltCardProps> = ({ project, index, onInspect }) => {
-  const [tilt, setTilt] = useState<{ rotateX: number; rotateY: number; glareX: number; glareY: number }>({
-    rotateX: 0,
-    rotateY: 0,
-    glareX: 50,
-    glareY: 50,
-  });
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rotateY = (x - 0.5) * 7;
-    const rotateX = (0.5 - y) * 7;
-    setTilt({
-      rotateX,
-      rotateY,
-      glareX: x * 100,
-      glareY: y * 100,
-    });
-  };
-
-  const handlePointerLeave = () => {
-    setTilt({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50 });
-  };
-
+const ValidatedSystemCard: React.FC<SystemCardProps> = ({ system, index, onInspect }) => {
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.3, delay: index * 0.04 }}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      style={{
-        transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
-        transition: 'transform 160ms cubic-bezier(0.22, 1, 0.36, 1)',
-      }}
-      className="group relative rounded-2xl bg-[#161B26]/90 border border-white/10 hover:border-[#06B6D4]/50 p-7 sm:p-8 flex flex-col justify-between overflow-hidden"
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.25, delay: index * 0.04 }}
+      className="group relative rounded-2xl bg-[#161B26]/90 border border-white/10 hover:border-[#06B6D4]/50 p-7 sm:p-8 flex flex-col justify-between transition-colors"
     >
-      {/* Dynamic Cursor Glare */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(420px circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(37, 99, 235, 0.14), transparent 70%)`,
-        }}
-      />
-
-      <div className="relative z-10">
+      <div>
         {/* Top Metadata Row: Unboxed Editorial Separators */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-white/[0.08] font-mono text-xs">
           <div className="flex items-center gap-2 text-[#9CA3AF]">
             <span className="text-[#06B6D4] font-semibold">0{index + 1}</span>
             <span className="text-white/25">·</span>
-            <span>{project.category}</span>
+            <span>{system.category}</span>
           </div>
           <span className="text-[#10B981] font-medium tracking-tight">
-            {project.architectureType}
+            {system.gampCategory}
           </span>
         </div>
 
-        {/* Project Name & Tagline */}
+        {/* System Name & Tagline */}
         <div className="flex items-start justify-between gap-4 mb-3">
           <h3 className="font-display text-2xl font-bold text-[#F9FAFB] tracking-tight group-hover:text-[#06B6D4] transition-colors">
-            {project.name}
+            {system.name}
           </h3>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${project.name} source code on GitHub`}
-            className="p-2 rounded-lg bg-[#0F1219] border border-white/10 text-[#9CA3AF] hover:text-[#F9FAFB] hover:border-white/25 transition-colors shrink-0"
-          >
-            <GithubIcon className="w-4 h-4" />
-          </a>
+          <div className="p-2 rounded-lg bg-[#0F1219] border border-white/10 text-[#06B6D4] shrink-0">
+            <ShieldCheck className="w-4 h-4" />
+          </div>
         </div>
 
         <p className="font-medium text-sm sm:text-base text-[#F9FAFB]/90 mb-3 leading-snug">
-          {project.tagline}
+          {system.tagline}
         </p>
 
         <p className="text-sm text-[#9CA3AF] leading-relaxed mb-6">
-          {project.description}
+          {system.description}
         </p>
 
-        {/* Key Architectural Guarantees */}
+        {/* Key Control & Qualification Highlights */}
         <div className="space-y-2 mb-7 pt-4 border-t border-white/[0.06]">
           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#9CA3AF] mb-2">
-            Engineering &amp; Security Guarantees
+            Verified Controls &amp; Qualification Scope
           </p>
-          {project.keyGuarantees.map((guarantee) => (
-            <div key={guarantee} className="flex items-start gap-2.5 text-xs text-[#F9FAFB]/85 leading-relaxed">
+          {system.controlHighlights.map((highlight) => (
+            <div
+              key={highlight}
+              className="flex items-start gap-2.5 text-xs text-[#F9FAFB]/85 leading-relaxed"
+            >
               <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
-              <span>{guarantee}</span>
+              <span>{highlight}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Bottom Stack & Action Triggers */}
-      <div className="relative z-10 pt-5 border-t border-white/[0.08]">
+      {/* Bottom Standards & Dossier Trigger */}
+      <div className="pt-5 border-t border-white/[0.08]">
         <div className="mb-4">
           <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-[#9CA3AF] mb-1">
-            Stack &amp; Runtime Primitives
+            Compliance &amp; Regulatory Baseline
           </span>
           <p className="font-mono text-xs text-[#06B6D4] leading-relaxed">
-            {project.techStack.join('  /  ')}
+            {system.complianceStandards.join('  /  ')}
           </p>
         </div>
 
         <div className="flex items-center justify-between gap-4 pt-3 border-t border-white/[0.06]">
           <button
             type="button"
-            onClick={() => onInspect(project)}
+            onClick={() => onInspect(system)}
             className="inline-flex items-center gap-2 font-mono text-xs font-medium text-[#F9FAFB] hover:text-[#06B6D4] transition-colors"
           >
-            <Cpu className="w-3.5 h-3.5 text-[#2563EB]" />
-            <span>Inspect System Notes</span>
+            <FileCheck2 className="w-3.5 h-3.5 text-[#2563EB]" />
+            <span>Inspect Validation Dossier</span>
           </button>
 
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors"
-          >
-            <span>Repository</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#06B6D4]" />
-          </a>
+          <span className="font-mono text-[11px] text-[#10B981]">
+            IQ · OQ · PQ Qualified
+          </span>
         </div>
       </div>
     </motion.article>
@@ -176,13 +116,13 @@ const ProjectTiltCard: React.FC<TiltCardProps> = ({ project, index, onInspect })
 };
 
 export const Projects: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
-  const [inspectedProject, setInspectedProject] = useState<ProjectItem | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<SystemCategory>('All');
+  const [inspectedSystem, setInspectedSystem] = useState<ValidatedSystemItem | null>(null);
 
-  const filteredProjects =
+  const filteredSystems =
     selectedCategory === 'All'
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.category === selectedCategory);
+      ? VALIDATED_SYSTEMS
+      : VALIDATED_SYSTEMS.filter((s) => s.category === selectedCategory);
 
   return (
     <section
@@ -195,16 +135,16 @@ export const Projects: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/[0.08]">
           <div className="max-w-2xl">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#06B6D4] mb-3">
-              03 · Systems Engineering &amp; Open-Source Portfolio
+              03 · Qualified Enterprise &amp; GxP Systems Portfolio
             </p>
             <h2
               id="projects-heading"
               className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-[#F9FAFB] leading-[1.1]"
             >
-              Local-First Tools &amp; Mobile Internals.
+              Validated Computerized Systems &amp; Controls.
             </h2>
             <p className="mt-4 text-base text-[#9CA3AF] leading-relaxed">
-              Open-source utilities engineered with strict privacy boundaries, native POSIX/Android execution, and zero cloud dependencies.
+              Representative enterprise, laboratory, and infrastructure platforms qualified under GAMP 5, 21 CFR Part 11, EU Annex 11, and ALCOA++ data integrity mandates.
             </p>
           </div>
 
@@ -212,14 +152,14 @@ export const Projects: React.FC = () => {
           <div
             className="flex flex-wrap gap-2"
             role="tablist"
-            aria-label="Filter projects by engineering category"
+            aria-label="Filter validated systems by domain"
           >
             {CATEGORIES.map((category) => {
               const isActive = selectedCategory === category;
               const count =
                 category === 'All'
-                  ? PROJECTS.length
-                  : PROJECTS.filter((p) => p.category === category).length;
+                  ? VALIDATED_SYSTEMS.length
+                  : VALIDATED_SYSTEMS.filter((s) => s.category === category).length;
 
               return (
                 <button
@@ -242,33 +182,33 @@ export const Projects: React.FC = () => {
           </div>
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Validated Systems Grid */}
         <motion.div
           layout
           className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <ProjectTiltCard
-                key={project.id}
-                project={project}
+            {filteredSystems.map((system, idx) => (
+              <ValidatedSystemCard
+                key={system.id}
+                system={system}
                 index={idx}
-                onInspect={(proj) => setInspectedProject(proj)}
+                onInspect={(sys) => setInspectedSystem(sys)}
               />
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
 
-      {/* System Architecture Inspection Modal */}
+      {/* System Validation Dossier Modal */}
       <AnimatePresence>
-        {inspectedProject && (
+        {inspectedSystem && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="modal-project-title"
-            onClick={() => setInspectedProject(null)}
+            aria-labelledby="modal-system-title"
+            onClick={() => setInspectedSystem(null)}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 12 }}
@@ -281,19 +221,19 @@ export const Projects: React.FC = () => {
               <div className="flex items-start justify-between gap-4 pb-5 mb-6 border-b border-white/[0.08]">
                 <div>
                   <p className="font-mono text-xs text-[#10B981] uppercase tracking-[0.16em] mb-1">
-                    {inspectedProject.architectureType}
+                    {inspectedSystem.gampCategory}
                   </p>
                   <h3
-                    id="modal-project-title"
+                    id="modal-system-title"
                     className="font-display text-2xl font-bold text-[#F9FAFB]"
                   >
-                    {inspectedProject.name} — System Internals
+                    {inspectedSystem.name} — Validation Dossier
                   </h3>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setInspectedProject(null)}
-                  aria-label="Close architecture inspector"
+                  onClick={() => setInspectedSystem(null)}
+                  aria-label="Close validation dossier"
                   className="p-2 rounded-lg bg-[#161B26] border border-white/10 text-[#9CA3AF] hover:text-[#F9FAFB]"
                 >
                   <X className="w-4 h-4" />
@@ -304,20 +244,20 @@ export const Projects: React.FC = () => {
                 <div>
                   <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-[#06B6D4] mb-2 flex items-center gap-2">
                     <Layers className="w-4 h-4" />
-                    <span>Internal Pipeline &amp; Execution Model</span>
+                    <span>Qualification &amp; Technical Control Scope</span>
                   </h4>
-                  <p className="text-sm sm:text-base text-[#F9FAFB]/90 leading-relaxed bg-[#08090C] p-4 rounded-xl border border-white/[0.08] font-mono">
-                    {inspectedProject.systemArchitectureNotes}
+                  <p className="text-sm sm:text-base text-[#F9FAFB]/90 leading-relaxed bg-[#08090C] p-4 rounded-xl border border-white/[0.08]">
+                    {inspectedSystem.validationScopeNotes}
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-[#10B981] mb-3 flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4" />
-                    <span>Security &amp; Zero-Trust Verification</span>
+                    <SlidersHorizontal className="w-4 h-4" />
+                    <span>21 CFR Part 11 &amp; ALCOA++ Controls Verified</span>
                   </h4>
                   <ul className="space-y-2.5">
-                    {inspectedProject.keyGuarantees.map((item) => (
+                    {inspectedSystem.controlHighlights.map((item) => (
                       <li
                         key={item}
                         className="flex items-start gap-2.5 text-sm text-[#9CA3AF]"
@@ -331,18 +271,18 @@ export const Projects: React.FC = () => {
 
                 <div className="pt-5 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
                   <div className="font-mono text-xs text-[#9CA3AF]">
-                    Stack: <span className="text-[#F9FAFB]">{inspectedProject.techStack.join(' · ')}</span>
+                    Standards:{' '}
+                    <span className="text-[#F9FAFB]">
+                      {inspectedSystem.complianceStandards.join(' · ')}
+                    </span>
                   </div>
-                  <a
-                    href={inspectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-xs font-mono font-semibold text-[#F9FAFB] transition-colors"
+                  <button
+                    type="button"
+                    onClick={() => setInspectedSystem(null)}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-xs font-mono font-semibold text-[#F9FAFB] transition-colors"
                   >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>Inspect Source on GitHub</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                    <span>Close Dossier</span>
+                  </button>
                 </div>
               </div>
             </motion.div>
