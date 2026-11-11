@@ -29,6 +29,7 @@ export interface EducationAccordionItem {
 export interface CareerMilestone {
   role: string;
   organization: string;
+  logoUrl: string;
   period: string;
   location: string;
   summary: string;
@@ -173,11 +174,11 @@ export const COMPETENCY_GROUPS: CompetencyGroup[] = [
 export const EDUCATION_ITEMS: EducationAccordionItem[] = [
   {
     id: 'msc-chem',
-    degree: 'Master of Science (M.Sc.) in Chemistry — 8.07 CGPA',
+    degree: 'Master of Science (M.Sc.) in Chemistry',
     institution: 'Veer Bahadur Singh Purvanchal University (VBSPU), Jaunpur',
-    period: '2022 – 2024',
+    period: '2018 – 2020',
     leftColumn:
-      'Completed M.Sc. in Chemistry from VBSPU, Jaunpur with First Division (8.07 CGPA), focusing on analytical instrumentation, spectroscopic and chromatographic methods, and quality assurance.',
+      'Completed M.Sc. in Chemistry from VBSPU, Jaunpur, focusing on analytical instrumentation, spectroscopic and chromatographic methods, and quality assurance.',
     rightColumn:
       'Connected laboratory instrument operations with computerized data acquisition, electronic record controls, and validation practices.',
   },
@@ -185,21 +186,11 @@ export const EDUCATION_ITEMS: EducationAccordionItem[] = [
     id: 'bsc-chem',
     degree: 'Bachelor of Science (B.Sc.) in Chemistry',
     institution: 'Veer Bahadur Singh Purvanchal University (VBSPU), Jaunpur',
-    period: '2017 – 2020',
+    period: '2015 – 2018',
     leftColumn:
       'Completed B.Sc. in Chemistry from VBSPU, Jaunpur with coursework in quantitative chemical analysis, laboratory safety, and experimental documentation.',
     rightColumn:
       'Built the analytical foundation for subsequent roles in pharmaceutical Quality Control (QC), stability testing, and GxP compliance.',
-  },
-  {
-    id: 'certifications',
-    degree: 'Professional Training & Regulatory Frameworks',
-    institution: 'GAMP 5 · 21 CFR Part 11 · ISO/IEC 27001 · Six Sigma',
-    period: 'Continuous Professional Development',
-    leftColumn:
-      'Focused training in Computerized System Validation (GAMP 5 Second Edition), FDA 21 CFR Part 11, EU Annex 11, and ALCOA++ data integrity.',
-    rightColumn:
-      'Trained in Six Sigma quality methodologies and enterprise IT General Controls (ITGC) risk assessment practices.',
   },
 ];
 
@@ -207,6 +198,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
   {
     role: 'Associate — Cyber & Digital Risk Advisory',
     organization: 'PwC India',
+    logoUrl: './logos/pwc.svg',
     period: 'Mar 2026 – Present',
     location: 'Gurugram, Haryana',
     summary:
@@ -219,7 +211,8 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
   },
   {
     role: 'Executive — Computerized System Validation & Quality',
-    organization: 'Jubilant Pharmova Limited',
+    organization: 'Jubilant Generics Limited',
+    logoUrl: './logos/jubilant.svg',
     period: 'Mar 2024 – Nov 2025',
     location: 'Roorkee, Uttarakhand',
     summary:
@@ -233,6 +226,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
   {
     role: 'Junior Officer — Analytical & Stability Operations',
     organization: 'Macleods Pharmaceuticals Ltd.',
+    logoUrl: './logos/macleods.svg',
     period: 'Feb 2023 – Jan 2024',
     location: 'Baddi, Himachal Pradesh',
     summary:
@@ -245,6 +239,7 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
   {
     role: 'Senior Officer & Apprentice — Quality Control',
     organization: 'Alkem Laboratories Ltd.',
+    logoUrl: './logos/alkem.svg',
     period: '18 Jan 2021 – Jan 2023',
     location: 'Baddi, Himachal Pradesh',
     summary:

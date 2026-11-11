@@ -25,17 +25,41 @@ test('competency groups replace percentage bars with concrete deliverables', () 
   }
 });
 
-test('education items specify VBSPU, Jaunpur for M.Sc. and B.Sc. in Chemistry', () => {
-  assert.ok(EDUCATION_ITEMS[0].institution.includes('VBSPU'));
-  assert.ok(EDUCATION_ITEMS[0].institution.includes('Jaunpur'));
-  assert.ok(EDUCATION_ITEMS[1].institution.includes('VBSPU'));
-  assert.ok(EDUCATION_ITEMS[1].institution.includes('Jaunpur'));
+test('education items contain only M.Sc. (2018 – 2020) and B.Sc. (2015 – 2018) from VBSPU, Jaunpur without division or CGPA', () => {
+  assert.equal(EDUCATION_ITEMS.length, 2);
+
+  const msc = EDUCATION_ITEMS[0];
+  assert.equal(msc.degree, 'Master of Science (M.Sc.) in Chemistry');
+  assert.equal(msc.period, '2018 – 2020');
+  assert.ok(msc.institution.includes('VBSPU'));
+  assert.ok(msc.institution.includes('Jaunpur'));
+  assert.ok(!msc.degree.includes('CGPA'));
+  assert.ok(!msc.leftColumn.includes('CGPA'));
+  assert.ok(!msc.leftColumn.includes('First Division'));
+
+  const bsc = EDUCATION_ITEMS[1];
+  assert.equal(bsc.degree, 'Bachelor of Science (B.Sc.) in Chemistry');
+  assert.equal(bsc.period, '2015 – 2018');
+  assert.ok(bsc.institution.includes('VBSPU'));
+  assert.ok(bsc.institution.includes('Jaunpur'));
 });
 
-test('career timeline starts on 18 Jan 2021', () => {
+test('career timeline starts on 18 Jan 2021, uses Jubilant Generics Limited, and includes company logos', () => {
   assert.equal(CAREER_MILESTONES.length, 4);
+  assert.equal(CAREER_MILESTONES[0].organization, 'PwC India');
+  assert.equal(CAREER_MILESTONES[1].organization, 'Jubilant Generics Limited');
+  assert.equal(CAREER_MILESTONES[2].organization, 'Macleods Pharmaceuticals Ltd.');
+  assert.equal(CAREER_MILESTONES[3].organization, 'Alkem Laboratories Ltd.');
+
   const earliestRole = CAREER_MILESTONES[CAREER_MILESTONES.length - 1];
   assert.ok(earliestRole.period.includes('18 Jan 2021'));
+
+  for (const milestone of CAREER_MILESTONES) {
+    assert.ok(
+      milestone.logoUrl.startsWith('./logos/') && milestone.logoUrl.endsWith('.svg'),
+      `Expected SVG logo path for ${milestone.organization}`
+    );
+  }
 });
 
 test('validated systems catalog covers all GxP and enterprise categories', () => {

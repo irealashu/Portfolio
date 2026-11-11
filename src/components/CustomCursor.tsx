@@ -19,7 +19,6 @@ export const CustomCursor: React.FC = () => {
         document.documentElement.classList.add('custom-cursor-active');
       }
 
-      // Update precision pointer and ambient shadow synchronously for zero input lag
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
       }
@@ -95,10 +94,10 @@ export const CustomCursor: React.FC = () => {
       {/* Subtle Ambient Shadow / Aura Follower */}
       <div
         ref={glowRef}
-        className="fixed top-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-[#4F46E5]/15 via-[#06B6D4]/15 to-[#10B981]/10 blur-xl will-change-transform"
+        className="fixed top-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-[#4338CA]/12 to-[#0284C7]/12 blur-xl will-change-transform"
       />
 
-      {/* Zero-Latency Precision Cyber Pointer (SVG Arrow + Drop Shadow, No Circle Ring) */}
+      {/* Zero-Latency Precision Pointer (SVG Arrow + Drop Shadow, No Circle Ring) */}
       <div
         ref={dotRef}
         data-testid="custom-cursor-dot"
@@ -115,7 +114,7 @@ export const CustomCursor: React.FC = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="drop-shadow-[0_2px_6px_rgba(6,182,212,0.55)]"
+            className="drop-shadow-[0_2px_6px_rgba(37,99,235,0.45)]"
           >
             <path
               d="M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z"
@@ -126,9 +125,8 @@ export const CustomCursor: React.FC = () => {
             />
             <defs>
               <linearGradient id="cursorGrad" x1="3.5" y1="2.5" x2="20.5" y2="20.8" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#4F46E5" />
-                <stop offset="55%" stopColor="#06B6D4" />
-                <stop offset="100%" stopColor="#10B981" />
+                <stop offset="0%" stopColor="#4338CA" />
+                <stop offset="100%" stopColor="#0284C7" />
               </linearGradient>
             </defs>
           </svg>

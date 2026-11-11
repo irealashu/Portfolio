@@ -90,14 +90,14 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-dvh bg-[#F8FAFC] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4F46E5] selection:text-white antialiased transition-colors duration-300">
+    <div className="min-h-dvh bg-[#F1F5F9] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4338CA] selection:text-white antialiased transition-colors duration-300">
       {/* Custom Interactive Cursor */}
       <CustomCursor />
 
       {/* Skip to Main Content Link */}
       <a
         href="#colorlib-main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#4F46E5] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#4338CA] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
       >
         Skip to content
       </a>
@@ -133,9 +133,9 @@ export const App: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.94 }}
             transition={{ type: 'spring', stiffness: 420, damping: 28 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border border-indigo-500/40 dark:border-cyan-400/35 text-[#0F172A] dark:text-white text-xs font-medium shadow-2xl"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border border-slate-200 dark:border-white/15 text-[#0F172A] dark:text-white text-xs font-medium shadow-xl"
           >
-            <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+            <CheckCircle2 className="w-4 h-4 text-[#059669] dark:text-[#34D399] shrink-0" />
             <span>{toastMessage}</span>
           </motion.div>
         )}
@@ -150,12 +150,12 @@ export const App: React.FC = () => {
             initial={{ opacity: 0, scale: 0.7, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.7, y: 20 }}
-            whileHover={{ scale: 1.1, y: -3 }}
-            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.08, y: -2 }}
+            whileTap={{ scale: 0.94 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             onClick={scrollToTop}
             aria-label="Scroll back to top"
-            className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-gradient-to-tr from-[#4F46E5] via-[#2563EB] to-[#06B6D4] text-white shadow-lg shadow-indigo-500/25 border border-white/20 cursor-pointer"
+            className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-[#4338CA] dark:bg-[#2563EB] text-white shadow-lg shadow-indigo-900/20 border border-white/20 cursor-pointer"
           >
             <ArrowUp className="w-4 h-4" />
           </motion.button>

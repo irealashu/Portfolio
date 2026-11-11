@@ -9,21 +9,31 @@
     <meta name="author" content="Ashutosh Singh" />
     <meta name="theme-color" content="#06080E" />
 
+    <!-- Robots & Indexing -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
     <!-- OpenGraph Social Cards -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:site_name" content="Ashutosh Singh — irealashu.in" />
     <meta property="og:title" content="Ashutosh Singh — Cyber &amp; Digital Risk Advisory | Systems Engineering" />
     <meta property="og:description" content="Securing Digital Architectures &amp; Validating Regulated GxP Systems. Cyber &amp; Digital Risk Advisory at PwC India." />
-    <meta property="og:image" content="https://irealashu.in/dp.jpg" />
-    <meta property="og:url" content="https://irealashu.in" />
+    <meta property="og:image" content="https://irealashu.in/og-card.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ashutosh Singh — Cyber &amp; Digital Risk Advisory at PwC India | CSV, GAMP 5, 21 CFR Part 11, EU GMP Annex 11" />
+    <meta property="og:url" content="https://irealashu.in/" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ashutosh Singh — Cyber &amp; Digital Risk Advisory | Systems Engineering" />
     <meta name="twitter:description" content="Securing Digital Architectures &amp; Validating Regulated GxP Systems. Cyber &amp; Digital Risk Advisory at PwC India." />
-    <meta name="twitter:image" content="https://irealashu.in/dp.jpg" />
+    <meta name="twitter:image" content="https://irealashu.in/og-card.png" />
+    <meta name="twitter:image:alt" content="Ashutosh Singh — Cyber &amp; Digital Risk Advisory at PwC India" />
 
-    <link rel="canonical" href="https://irealashu.in" />
+    <link rel="canonical" href="https://irealashu.in/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
     <link rel="icon" type="image/svg+xml" href="./icon.svg" />
     <link rel="icon" type="image/png" sizes="192x192" href="./pwa-192x192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="./pwa-512x512.png" />
@@ -34,32 +44,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Schema.org Structured Data -->
+    <!-- Schema.org Structured Data (ProfilePage + Person Graph) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ashutosh Singh",
-      "alternateName": "irealashu",
-      "jobTitle": "Associate — Cyber & Digital Risk Advisory",
-      "image": "https://irealashu.in/dp.jpg",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "PwC India"
-      },
-      "url": "https://irealashu.in",
-      "sameAs": [
-        "https://github.com/irealashu",
-        "https://www.linkedin.com/in/irealashu/"
-      ],
-      "knowsAbout": [
-        "Cyber & Digital Risk Advisory",
-        "Internal Controls & IT GRC",
-        "Computerized System Validation (CSV)",
-        "GAMP 5 (Second Edition)",
-        "21 CFR Part 11 & EU GMP Annex 11",
-        "ALCOA++ Data Integrity"
-      ]
+      "@type": "ProfilePage",
+      "@id": "https://irealashu.in/#profilepage",
+      "url": "https://irealashu.in/",
+      "name": "Ashutosh Singh — Cyber & Digital Risk Advisory | Systems Engineering",
+      "description": "Executive portfolio of Ashutosh Singh — Cyber & Digital Risk Advisory at PwC India specializing in Computerized System Validation (CSV), GAMP 5, 21 CFR Part 11, and IT General Controls.",
+      "inLanguage": "en-IN",
+      "dateModified": "2026-04-20",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://irealashu.in/#person",
+        "name": "Ashutosh Singh",
+        "alternateName": "irealashu",
+        "jobTitle": "Associate — Cyber & Digital Risk Advisory",
+        "description": "Cyber & Digital Risk Advisory consultant at PwC India with 5+ years of experience across Computerized System Validation (CSV), GAMP 5, 21 CFR Part 11, EU GMP Annex 11, ALCOA++ Data Integrity, and IT General Controls.",
+        "image": "https://irealashu.in/dp.jpg",
+        "url": "https://irealashu.in/",
+        "email": "mailto:ashutosh.singh.irealashu@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Gurugram",
+          "addressRegion": "Haryana",
+          "addressCountry": "IN"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PricewaterhouseCoopers (PwC India)",
+          "url": "https://www.pwc.in/"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Veer Bahadur Singh Purvanchal University (VBSPU), Jaunpur"
+        },
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Master of Science (M.Sc.) in Chemistry (2018 – 2020)"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Bachelor of Science (B.Sc.) in Chemistry (2015 – 2018)"
+          }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/irealashu/",
+          "https://github.com/irealashu"
+        ],
+        "knowsAbout": [
+          "Cyber & Digital Risk Advisory",
+          "Internal Controls & IT GRC",
+          "Computerized System Validation (CSV)",
+          "GAMP 5 (Second Edition)",
+          "21 CFR Part 11 & EU GMP Annex 11",
+          "ALCOA++ Data Integrity",
+          "Laboratory Information Management Systems (LIMS)",
+          "Chromatography Data Systems (CDS)"
+        ]
+      }
     }
     </script>
 </head>

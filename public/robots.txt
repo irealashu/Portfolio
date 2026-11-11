@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://irealashu.in/sitemap.xml
+Host: https://irealashu.in
