@@ -1,45 +1,19 @@
 import React, { useState } from 'react';
-import { Mail, Copy, Check, ArrowUpRight } from 'lucide-react';
-
-const LinkedinIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden="true"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden="true"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
+import { motion } from 'framer-motion';
+import { Mail, MapPin, Share2, Copy, Check } from 'lucide-react';
 
 interface FooterProps {
   onCopySuccess?: (message: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
-  const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
 
   const copyEmailToClipboard = async () => {
     try {
@@ -48,127 +22,208 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
       if (onCopySuccess) {
         onCopySuccess('Email address copied to clipboard');
       }
-      window.setTimeout(() => {
-        setCopiedEmail(false);
-      }, 2400);
+      window.setTimeout(() => setCopiedEmail(false), 2400);
     } catch {
-      // Fallback if clipboard permission denied
+      // Ignore clipboard error
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(
+      formData.subject || `Portfolio Inquiry from ${formData.name || 'Visitor'}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    window.location.href = `mailto:kshatriya205902@gmail.com?subject=${subject}&body=${body}`;
+    if (onCopySuccess) {
+      onCopySuccess('Opening mail client to send message');
     }
   };
 
   return (
-    <footer
+    <section
       id="contact"
-      className="py-20 bg-white dark:bg-[#08090C] text-slate-900 dark:text-[#F9FAFB] transition-colors scroll-mt-24"
-      aria-labelledby="contact-heading"
+      className="px-6 sm:px-12 lg:px-16 py-20 lg:py-24"
     >
-      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-10">
-          <h2
-            id="contact-heading"
-            className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-[#F9FAFB] mb-3"
-          >
-            Get in Touch
-          </h2>
-          <p className="text-base text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
-            Connect regarding Cyber &amp; Digital Risk Advisory, Computerized System Validation (CSV), GAMP 5, and 21 CFR Part 11 compliance.
-          </p>
-        </div>
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.4 }}
+      >
+        <span className="block font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2563EB] dark:text-[#06B6D4] mb-2">
+          Get in Touch
+        </span>
+        <h2 className="font-display text-xl sm:text-2xl font-bold uppercase tracking-[0.14em] text-[#0F172A] dark:text-[#F9FAFB] mb-12">
+          Contact
+        </h2>
+      </motion.div>
 
-        {/* 3 Clean Direct Contact Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pb-14 border-b border-slate-200 dark:border-white/[0.08]">
-          {/* Email Card */}
-          <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 flex flex-col justify-between">
-            <div>
-              <Mail className="w-5 h-5 text-blue-600 dark:text-[#2563EB] mb-3" />
-              <h3 className="font-display text-base font-bold text-slate-900 dark:text-[#F9FAFB]">
-                Email
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-[#9CA3AF] truncate mt-1">
-                kshatriya205902@gmail.com
-              </p>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        {/* Left Column: 3 Jackson Icon-Box Contact Rows */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.4 }}
+          className="lg:col-span-5 space-y-7"
+        >
+          {/* Email Row */}
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-[#EBF3FF] dark:bg-[#161B26] border border-blue-200/60 dark:border-white/10 text-[#2563EB] dark:text-[#06B6D4] flex items-center justify-center shrink-0">
+              <Mail className="w-5 h-5" />
             </div>
-
-            <div className="mt-5 pt-3 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between">
+            <div className="min-w-0">
+              <a
+                href="mailto:kshatriya205902@gmail.com"
+                className="font-mono text-sm font-medium text-[#2563EB] dark:text-[#06B6D4] hover:underline block truncate"
+              >
+                kshatriya205902@gmail.com
+              </a>
               <button
                 type="button"
                 onClick={copyEmailToClipboard}
-                className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-blue-600 dark:text-[#06B6D4] hover:underline cursor-pointer"
+                className="inline-flex items-center gap-1 font-mono text-xs text-slate-500 dark:text-[#9CA3AF] hover:text-[#0F172A] dark:hover:text-white mt-1 cursor-pointer"
               >
                 {copiedEmail ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-[#10B981]" />
-                    <span className="text-emerald-600 dark:text-[#10B981]">Copied</span>
+                    <Check className="w-3.5 h-3.5 text-[#10B981]" />
+                    <span className="text-[#10B981]">Copied</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copy Email</span>
+                    <span>Copy email</span>
                   </>
                 )}
               </button>
-
-              <a
-                href="mailto:kshatriya205902@gmail.com"
-                className="font-mono text-xs text-slate-600 dark:text-[#9CA3AF] hover:text-slate-900 dark:hover:text-[#F9FAFB] inline-flex items-center gap-1"
-              >
-                <span>Send Mail</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
             </div>
           </div>
 
-          {/* LinkedIn Card */}
-          <a
-            href="https://www.linkedin.com/in/irealashu/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-6 rounded-2xl bg-slate-50 dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 hover:border-blue-500/60 transition-colors flex flex-col justify-between group"
-          >
+          {/* Location Row */}
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-[#EBF3FF] dark:bg-[#161B26] border border-blue-200/60 dark:border-white/10 text-[#2563EB] dark:text-[#06B6D4] flex items-center justify-center shrink-0">
+              <MapPin className="w-5 h-5" />
+            </div>
             <div>
-              <LinkedinIcon className="w-5 h-5 text-blue-600 dark:text-[#06B6D4] mb-3" />
-              <h3 className="font-display text-base font-bold text-slate-900 dark:text-[#F9FAFB]">
-                LinkedIn
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-[#9CA3AF] mt-1">
+              <p className="font-sans text-sm font-medium text-[#0F172A] dark:text-[#F9FAFB] leading-relaxed">
+                PwC India · Gurugram, Haryana
+                <br />
+                <span className="font-mono text-xs text-slate-500 dark:text-[#9CA3AF]">
+                  Cyber &amp; Digital Risk Advisory
+                </span>
+              </p>
+            </div>
+          </div>
+
+          {/* Professional Links Row (LinkedIn & Minimal GitHub Link) */}
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-[#EBF3FF] dark:bg-[#161B26] border border-blue-200/60 dark:border-white/10 text-[#2563EB] dark:text-[#06B6D4] flex items-center justify-center shrink-0">
+              <Share2 className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col space-y-1 font-mono text-xs sm:text-sm">
+              <a
+                href="https://www.linkedin.com/in/irealashu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#2563EB] dark:text-[#06B6D4] hover:underline font-medium"
+              >
                 linkedin.com/in/irealashu
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-slate-200 dark:border-white/[0.08] font-mono text-xs font-medium text-blue-600 dark:text-[#06B6D4] inline-flex items-center justify-between">
-              <span>View Profile</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-          </a>
-
-          {/* GitHub Profile Card */}
-          <a
-            href="https://github.com/irealashu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-6 rounded-2xl bg-slate-50 dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 hover:border-emerald-500/60 transition-colors flex flex-col justify-between group"
-          >
-            <div>
-              <GithubIcon className="w-5 h-5 text-emerald-600 dark:text-[#10B981] mb-3" />
-              <h3 className="font-display text-base font-bold text-slate-900 dark:text-[#F9FAFB]">
-                GitHub
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-[#9CA3AF] mt-1">
+              </a>
+              <a
+                href="https://github.com/irealashu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-slate-500 dark:text-[#9CA3AF] hover:text-[#2563EB] dark:hover:text-[#06B6D4] transition-colors"
+              >
                 github.com/irealashu
-              </p>
+              </a>
             </div>
-            <div className="mt-5 pt-3 border-t border-slate-200 dark:border-white/[0.08] font-mono text-xs font-medium text-emerald-600 dark:text-[#10B981] inline-flex items-center justify-between">
-              <span>Git Profile</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-          </a>
-        </div>
+          </div>
+        </motion.div>
 
-        {/* Clean Minimal Copyright Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-[#9CA3AF]">
-          <span>© {new Date().getFullYear()} Ashutosh Singh. All rights reserved.</span>
-          <span>Associate — Cyber &amp; Digital Risk Advisory · PwC India</span>
-        </div>
+        {/* Right Column: Jackson Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.4, delay: 0.08 }}
+          className="lg:col-span-7"
+        >
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="contact-name" className="sr-only">
+                Name
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                required
+                placeholder="Name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full rounded-xl bg-[#F8F9FA] dark:bg-[#161B26]/90 border border-slate-200 dark:border-white/10 px-4 py-3.5 font-sans text-sm text-[#0F172A] dark:text-[#F9FAFB] placeholder:text-slate-400 dark:placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#2563EB] dark:focus:border-[#06B6D4] transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="contact-email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                required
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full rounded-xl bg-[#F8F9FA] dark:bg-[#161B26]/90 border border-slate-200 dark:border-white/10 px-4 py-3.5 font-sans text-sm text-[#0F172A] dark:text-[#F9FAFB] placeholder:text-slate-400 dark:placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#2563EB] dark:focus:border-[#06B6D4] transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="contact-subject" className="sr-only">
+                Subject
+              </label>
+              <input
+                id="contact-subject"
+                type="text"
+                required
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                className="w-full rounded-xl bg-[#F8F9FA] dark:bg-[#161B26]/90 border border-slate-200 dark:border-white/10 px-4 py-3.5 font-sans text-sm text-[#0F172A] dark:text-[#F9FAFB] placeholder:text-slate-400 dark:placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#2563EB] dark:focus:border-[#06B6D4] transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="contact-message" className="sr-only">
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                rows={4}
+                required
+                placeholder="Message"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="w-full rounded-xl bg-[#F8F9FA] dark:bg-[#161B26]/90 border border-slate-200 dark:border-white/10 px-4 py-3.5 font-sans text-sm text-[#0F172A] dark:text-[#F9FAFB] placeholder:text-slate-400 dark:placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#2563EB] dark:focus:border-[#06B6D4] transition-colors"
+              />
+            </div>
+
+            <motion.button
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              className="px-6 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-mono text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer shadow-sm"
+            >
+              Send Message
+            </motion.button>
+          </form>
+        </motion.div>
       </div>
-    </footer>
+    </section>
   );
 };

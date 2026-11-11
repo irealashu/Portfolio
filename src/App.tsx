@@ -3,11 +3,20 @@ import { ArrowUp, CheckCircle2 } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { RiskAdvisory } from './components/RiskAdvisory';
-import { Projects } from './components/Projects';
 import { TechStack } from './components/TechStack';
+import { Projects } from './components/Projects';
 import { Footer } from './components/Footer';
 
-const SECTION_IDS = ['overview', 'advisory', 'experience', 'projects', 'contact'];
+const SECTION_IDS = [
+  'home',
+  'about',
+  'services',
+  'skills',
+  'education',
+  'experience',
+  'work',
+  'contact',
+];
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -19,10 +28,10 @@ export const App: React.FC = () => {
     } catch {
       // Ignore storage access errors
     }
-    return 'dark';
+    return 'light';
   });
 
-  const [activeSection, setActiveSection] = useState<string>('overview');
+  const [activeSection, setActiveSection] = useState<string>('home');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -45,12 +54,12 @@ export const App: React.FC = () => {
       const scrollY = window.scrollY;
       setShowBackToTop(scrollY > 520);
 
-      let currentSection = 'overview';
+      let currentSection = 'home';
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 220) {
+          if (rect.top <= 240) {
             currentSection = id;
           }
         }
@@ -79,41 +88,43 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#08090C] text-slate-900 dark:text-[#F9FAFB] selection:bg-blue-600 selection:text-white antialiased transition-colors duration-200">
-      {/* Skip to Main Content Accessibility Link */}
+    <div className="min-h-screen bg-white dark:bg-[#08090C] text-[#0F172A] dark:text-[#F9FAFB] selection:bg-[#2563EB] selection:text-white antialiased transition-colors duration-200">
+      {/* Skip to Main Content Link */}
       <a
-        href="#overview"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-blue-600 focus:text-white focus:font-mono focus:text-xs"
+        href="#colorlib-main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#2563EB] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
       >
-        Skip to main content
+        Skip to content
       </a>
 
-      {/* Global Floating Pill Navigation */}
-      <Navbar
-        activeSection={activeSection}
-        theme={theme}
-        onToggleTheme={toggleTheme}
-      />
+      {/* Centered Jackson 2-Column Container (Left Sticky Sidebar + Right Scrolling Content) */}
+      <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row min-h-screen">
+        <Navbar
+          activeSection={activeSection}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
 
-      {/* Main Single-Page Application Content */}
-      <main>
-        <Hero />
-        <RiskAdvisory />
-        <Projects />
-        <TechStack />
-      </main>
+        <main
+          id="colorlib-main"
+          className="flex-1 min-w-0 pt-16 lg:pt-0 bg-white dark:bg-[#08090C] transition-colors"
+        >
+          <Hero />
+          <RiskAdvisory />
+          <TechStack />
+          <Projects />
+          <Footer onCopySuccess={triggerToast} />
+        </main>
+      </div>
 
-      {/* Contact Footer */}
-      <Footer onCopySuccess={triggerToast} />
-
-      {/* Clipboard Verification Toast */}
+      {/* Clipboard / Form Toast */}
       {toastMessage && (
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white dark:bg-[#161B26] border border-emerald-500/50 text-slate-900 dark:text-[#F9FAFB] font-mono text-xs shadow-xl backdrop-blur-xl"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#0066FF]/40 text-[#111111] dark:text-white text-xs font-medium shadow-xl"
         >
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-[#10B981] shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -123,7 +134,7 @@ export const App: React.FC = () => {
         type="button"
         onClick={scrollToTop}
         aria-label="Scroll back to top"
-        className={`fixed bottom-6 right-6 z-40 p-3 rounded-xl bg-white dark:bg-[#161B26]/90 hover:bg-blue-600 hover:text-white text-slate-900 dark:text-[#F9FAFB] border border-slate-200 dark:border-white/15 shadow-lg backdrop-blur-md transition-all duration-300 cursor-pointer ${
+        className={`fixed bottom-6 right-6 z-40 p-3 rounded-full bg-white dark:bg-[#1E1E1E] hover:bg-[#0066FF] hover:text-white text-[#111111] dark:text-white border border-[#E5E5E5] dark:border-[#333333] shadow-md transition-all duration-300 cursor-pointer ${
           showBackToTop
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-4 pointer-events-none'
