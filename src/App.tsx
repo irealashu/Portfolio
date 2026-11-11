@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, CheckCircle2 } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -28,7 +29,7 @@ export const App: React.FC = () => {
     } catch {
       // Ignore storage access errors
     }
-    return 'light';
+    return 'dark';
   });
 
   const [activeSection, setActiveSection] = useState<string>('home');
@@ -88,17 +89,17 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#08090C] text-[#0F172A] dark:text-[#F9FAFB] selection:bg-[#2563EB] selection:text-white antialiased transition-colors duration-200">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4F46E5] selection:text-white antialiased transition-colors duration-300">
       {/* Skip to Main Content Link */}
       <a
         href="#colorlib-main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#2563EB] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#4F46E5] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
       >
         Skip to content
       </a>
 
       {/* Centered Jackson 2-Column Container (Left Sticky Sidebar + Right Scrolling Content) */}
-      <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row min-h-screen">
+      <div className="max-w-[1220px] mx-auto flex flex-col lg:flex-row min-h-screen">
         <Navbar
           activeSection={activeSection}
           theme={theme}
@@ -107,7 +108,7 @@ export const App: React.FC = () => {
 
         <main
           id="colorlib-main"
-          className="flex-1 min-w-0 pt-16 lg:pt-0 bg-white dark:bg-[#08090C] transition-colors"
+          className="flex-1 min-w-0 pt-16 lg:pt-0 bg-white dark:bg-[#090D16] transition-colors duration-300"
         >
           <Hero />
           <RiskAdvisory />
@@ -117,31 +118,45 @@ export const App: React.FC = () => {
         </main>
       </div>
 
-      {/* Clipboard / Form Toast */}
-      {toastMessage && (
-        <div
-          role="status"
-          aria-live="polite"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#0066FF]/40 text-[#111111] dark:text-white text-xs font-medium shadow-xl"
-        >
-          <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+      {/* Animated Clipboard / Form Toast */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            key="status-toast"
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, y: 24, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.94 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 28 }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border border-indigo-500/40 dark:border-cyan-400/35 text-[#0F172A] dark:text-white text-xs font-medium shadow-2xl"
+          >
+            <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Back to Top Button */}
-      <button
-        type="button"
-        onClick={scrollToTop}
-        aria-label="Scroll back to top"
-        className={`fixed bottom-6 right-6 z-40 p-3 rounded-full bg-white dark:bg-[#1E1E1E] hover:bg-[#0066FF] hover:text-white text-[#111111] dark:text-white border border-[#E5E5E5] dark:border-[#333333] shadow-md transition-all duration-300 cursor-pointer ${
-          showBackToTop
-            ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
-      >
-        <ArrowUp className="w-4 h-4" />
-      </button>
+      {/* Animated Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            key="back-to-top"
+            type="button"
+            initial={{ opacity: 0, scale: 0.7, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.7, y: 20 }}
+            whileHover={{ scale: 1.1, y: -3 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            onClick={scrollToTop}
+            aria-label="Scroll back to top"
+            className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-gradient-to-tr from-[#4F46E5] via-[#2563EB] to-[#06B6D4] text-white shadow-lg shadow-indigo-500/25 border border-white/20 cursor-pointer"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

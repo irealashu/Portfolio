@@ -17,6 +17,25 @@
   color-scheme: dark;
 }
 
+/* Globally hide all scrollbars across every element and browser while preserving smooth scrolling */
+*,
+*::before,
+*::after,
+html,
+body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
@@ -47,22 +66,22 @@ code, pre, .font-mono {
 }
 
 ::selection {
-  background-color: #2563EB;
+  background-color: #4F46E5;
   color: #FFFFFF;
 }
 
-/* Subtle Swiss architectural grid background */
+/* Modern Swiss architectural grid background */
 .bg-swiss-grid {
-  background-size: 48px 48px;
+  background-size: 44px 44px;
   background-image:
-    linear-gradient(to right, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(79, 70, 229, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 70, 229, 0.045) 1px, transparent 1px);
 }
 
 .dark .bg-swiss-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
 }
 
 @media (prefers-reduced-motion: reduce) {

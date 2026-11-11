@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06080E" />
+      <stop offset="50%" stop-color="#0D1322" />
+      <stop offset="100%" stop-color="#111A2E" />
+    </linearGradient>
+    <linearGradient id="accent" x1="96" y1="64" x2="416" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+    <linearGradient id="emerald" x1="180" y1="160" x2="340" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <path
+    d="M256 76L404 136V248C404 345.5 340.8 429.2 256 456C171.2 429.2 108 345.5 108 248V136L256 76Z"
+    stroke="url(#accent)"
+    stroke-width="22"
+    stroke-linejoin="round"
+    fill="#0B1120"
+  />
+  <path
+    d="M204 262L240 298L316 218"
+    stroke="url(#emerald)"
+    stroke-width="26"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
