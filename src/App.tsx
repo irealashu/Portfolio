@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { ArrowUp, CheckCircle2 } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { RiskAdvisory } from './components/RiskAdvisory';
-import { TechStack } from './components/TechStack';
-import { Projects } from './components/Projects';
-import { Footer } from './components/Footer';
-import { CustomCursor } from './components/CustomCursor';
+
+const RiskAdvisory = lazy(() => import('./components/RiskAdvisory'));
+const TechStack = lazy(() => import('./components/TechStack'));
+const Projects = lazy(() => import('./components/Projects'));
+const Footer = lazy(() => import('./components/Footer'));
+const CustomCursor = lazy(() => import('./components/CustomCursor'));
 
 const SECTION_IDS = [
   'home',
@@ -90,9 +90,11 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-dvh bg-[#F1F5F9] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4338CA] selection:text-white antialiased transition-colors duration-300">
-      {/* Custom Interactive Cursor */}
-      <CustomCursor />
+    <div className="min-h-dvh bg-[#F1F5F9] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4338CA] selection:text-white antialiased">
+      {/* Custom Interactive Cursor (Lazy-loaded so it never blocks FCP/LCP) */}
+      <Suspense fallback={null}>
+        <CustomCursor />
+      </Suspense>
 
       {/* Skip to Main Content Link */}
       <a
@@ -112,55 +114,41 @@ export const App: React.FC = () => {
 
         <main
           id="colorlib-main"
-          className="flex-1 min-w-0 pt-15 lg:pt-0 bg-white dark:bg-[#090D16] transition-colors duration-300"
+          className="flex-1 min-w-0 pt-15 lg:pt-0 bg-white dark:bg-[#090D16]"
         >
           <Hero />
-          <RiskAdvisory />
-          <TechStack />
-          <Projects />
-          <Footer onCopySuccess={triggerToast} />
+          <Suspense fallback={<div className="min-h-[600px]" aria-hidden="true" />}>
+            <RiskAdvisory />
+            <TechStack />
+            <Projects />
+            <Footer onCopySuccess={triggerToast} />
+          </Suspense>
         </main>
       </div>
 
-      {/* Animated Clipboard / Form Toast */}
-      <AnimatePresence>
-        {toastMessage && (
-          <motion.div
-            key="status-toast"
-            role="status"
-            aria-live="polite"
-            initial={{ opacity: 0, y: 24, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.94 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 28 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border border-slate-200 dark:border-white/15 text-[#0F172A] dark:text-white text-xs font-medium shadow-xl"
-          >
-            <CheckCircle2 className="w-4 h-4 text-[#059669] dark:text-[#34D399] shrink-0" />
-            <span>{toastMessage}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* GPU-Composited Clipboard Toast */}
+      {toastMessage && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border border-slate-200 dark:border-white/15 text-[#0F172A] dark:text-white text-xs font-medium shadow-xl animate-gpu-fade-up"
+        >
+          <CheckCircle2 className="w-4 h-4 text-[#059669] dark:text-[#34D399] shrink-0" />
+          <span>{toastMessage}</span>
+        </div>
+      )}
 
-      {/* Animated Back to Top Button */}
-      <AnimatePresence>
-        {showBackToTop && (
-          <motion.button
-            key="back-to-top"
-            type="button"
-            initial={{ opacity: 0, scale: 0.7, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.7, y: 20 }}
-            whileHover={{ scale: 1.08, y: -2 }}
-            whileTap={{ scale: 0.94 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            onClick={scrollToTop}
-            aria-label="Scroll back to top"
-            className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-[#4338CA] dark:bg-[#2563EB] text-white shadow-lg shadow-indigo-900/20 border border-white/20 cursor-pointer"
-          >
-            <ArrowUp className="w-4 h-4" />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {/* GPU-Composited Back to Top Button */}
+      {showBackToTop && (
+        <button
+          type="button"
+          onClick={scrollToTop}
+          aria-label="Scroll back to top"
+          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-[#4338CA] dark:bg-[#2563EB] text-white shadow-lg shadow-indigo-900/20 border border-white/20 transition-transform duration-150 hover:scale-108 hover:-translate-y-0.5 active:scale-95 cursor-pointer animate-gpu-scale-in"
+        >
+          <ArrowUp className="w-4 h-4" />
+        </button>
+      )}
     </div>
   );
 };

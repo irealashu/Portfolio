@@ -118,6 +118,46 @@ code, pre, .font-mono {
     linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
 }
 
+/* Strictly GPU-composited animations (transform & opacity only) to pass Lighthouse non-composited animation audits */
+@keyframes gpuFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gpuScaleIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.96, 0.96, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.animate-gpu-fade-up {
+  animation: gpuFadeUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.animate-gpu-scale-in {
+  animation: gpuScaleIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gpu-fade-up,
+  .animate-gpu-scale-in {
+    animation: none !important;
+  }
+}
+
 /* Clean print / Save-as-PDF layout for recruiters and hiring teams */
 @media print {
   html,
@@ -128,7 +168,7 @@ code, pre, .font-mono {
   }
 
   nav,
-  button[aria-label="Scroll to top"],
+  button[aria-label="Scroll back to top"],
   button[aria-label*="Switch to"] {
     display: none !important;
   }
@@ -139,4 +179,5 @@ code, pre, .font-mono {
     padding-bottom: 1.5rem !important;
   }
 }
+
 

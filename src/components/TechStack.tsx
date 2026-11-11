@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, GraduationCap } from 'lucide-react';
 import {
   COMPETENCY_GROUPS,
@@ -21,50 +20,25 @@ export const TechStack: React.FC = () => {
         id="skills"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200 dark:border-white/[0.08]"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.42 }}
-        >
-          <motion.span
-            whileHover={{ x: 3 }}
-            className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2"
-          >
+        <div>
+          <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
             Technical Scope
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, x: -12 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.42, delay: 0.05 }}
-            className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-4"
-          >
+          </span>
+          <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-4">
             Skills &amp; Validation Deliverables
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.38, delay: 0.08 }}
-            className="font-sans text-[15px] sm:text-base text-slate-700 dark:text-slate-300 leading-[1.75] max-w-3xl mb-8"
-          >
+          <p className="font-sans text-[15px] sm:text-base text-slate-700 dark:text-slate-300 leading-[1.75] max-w-3xl mb-8">
             Hands-on deliverables across computerized system validation (CSV), regulatory compliance
             assessments, and enterprise IT General Controls (ITGC).
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {COMPETENCY_GROUPS.map((group, idx) => (
-            <motion.div
+          {COMPETENCY_GROUPS.map((group) => (
+            <div
               key={group.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.38, delay: idx * 0.06 }}
-              whileHover={{ y: -3 }}
-              className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-[#131C2E] p-6 shadow-2xs hover:bg-white dark:hover:bg-[#162036] hover:shadow-md hover:border-[#4338CA]/50 dark:hover:border-[#38BDF8]/50 transition-all"
+              className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-[#131C2E] p-6 shadow-2xs hover:bg-white dark:hover:bg-[#162036] hover:shadow-md hover:border-[#4338CA]/50 dark:hover:border-[#38BDF8]/50 transition-transform duration-200 ease-out hover:-translate-y-1 will-change-transform"
             >
               <p className="font-mono text-xs font-semibold text-[#4338CA] dark:text-[#38BDF8] mb-1">
                 {group.focus}
@@ -79,7 +53,7 @@ export const TechStack: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -89,52 +63,33 @@ export const TechStack: React.FC = () => {
         id="education"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200 dark:border-white/[0.08]"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.42 }}
-        >
-          <motion.span
-            whileHover={{ x: 3 }}
-            className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2"
-          >
+        <div>
+          <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
             Academic Background
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, x: -12 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.42, delay: 0.05 }}
-            className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-8"
-          >
+          </span>
+          <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-8">
             Education
-          </motion.h2>
-        </motion.div>
+          </h2>
+        </div>
 
         <div className="space-y-3.5">
-          {EDUCATION_ITEMS.map((item, idx) => {
+          {EDUCATION_ITEMS.map((item) => {
             const isOpen = openAccordionId === item.id;
             return (
-              <motion.div
+              <div
                 key={item.id}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.38, delay: idx * 0.07 }}
-                className={`rounded-2xl border overflow-hidden transition-colors ${
+                className={`rounded-2xl border overflow-hidden ${
                   isOpen
                     ? 'border-[#4338CA]/45 dark:border-[#38BDF8]/45 bg-white dark:bg-[#131C2E] shadow-xs'
                     : 'border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-[#131C2E]/80'
                 }`}
               >
                 <h3 className="m-0">
-                  <motion.button
+                  <button
                     type="button"
                     aria-expanded={isOpen}
-                    whileTap={{ scale: 0.995 }}
                     onClick={() => toggleAccordion(item.id)}
-                    className={`w-full flex items-center justify-between px-6 py-4 text-left font-display text-sm sm:text-base font-bold transition-colors cursor-pointer ${
+                    className={`w-full flex items-center justify-between px-6 py-4 text-left font-display text-sm sm:text-base font-bold cursor-pointer ${
                       isOpen
                         ? 'bg-indigo-50/70 dark:bg-sky-500/10 text-[#4338CA] dark:text-[#38BDF8]'
                         : 'text-[#0F172A] dark:text-white hover:bg-slate-100/80 dark:hover:bg-white/[0.03]'
@@ -148,39 +103,29 @@ export const TechStack: React.FC = () => {
                       <span className="hidden sm:inline-block font-mono text-xs font-semibold text-slate-600 dark:text-slate-300">
                         {item.period}
                       </span>
-                      <motion.span
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="w-7 h-7 rounded-full bg-slate-200/70 dark:bg-white/10 flex items-center justify-center shrink-0"
+                      <span
+                        className={`w-7 h-7 rounded-full bg-slate-200/70 dark:bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : 'rotate-0'
+                        }`}
                       >
                         <ChevronDown className="w-4 h-4" />
-                      </motion.span>
+                      </span>
                     </div>
-                  </motion.button>
+                  </button>
                 </h3>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div className="p-6 bg-white dark:bg-[#0D1322]/90 border-t border-slate-200 dark:border-white/10">
-                        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#4338CA] dark:text-[#38BDF8] mb-3">
-                          {item.institution} · {item.period}
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                          <p>{item.leftColumn}</p>
-                          <p>{item.rightColumn}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                {isOpen && (
+                  <div className="p-6 bg-white dark:bg-[#0D1322]/90 border-t border-slate-200 dark:border-white/10 animate-gpu-fade-up">
+                    <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#4338CA] dark:text-[#38BDF8] mb-3">
+                      {item.institution} · {item.period}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                      <p>{item.leftColumn}</p>
+                      <p>{item.rightColumn}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -191,45 +136,30 @@ export const TechStack: React.FC = () => {
         id="experience"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200 dark:border-white/[0.08]"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.42 }}
-        >
-          <motion.span
-            whileHover={{ x: 3 }}
-            className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2"
-          >
+        <div>
+          <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
             Experience · 18 Jan 2021 – Present
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, x: -12 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.42, delay: 0.05 }}
-            className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-8"
-          >
+          </span>
+          <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-8">
             Work Experience
-          </motion.h2>
-        </motion.div>
+          </h2>
+        </div>
 
         <div className="space-y-6">
-          {CAREER_MILESTONES.map((milestone, idx) => (
-            <motion.article
+          {CAREER_MILESTONES.map((milestone) => (
+            <article
               key={milestone.organization}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.4, delay: idx * 0.07 }}
-              whileHover={{ y: -3 }}
-              className="rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/50 dark:hover:border-[#38BDF8]/50 p-6 sm:p-7 shadow-2xs hover:shadow-md transition-all"
+              className="rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/50 dark:hover:border-[#38BDF8]/50 p-6 sm:p-7 shadow-2xs hover:shadow-md transition-transform duration-200 ease-out hover:-translate-y-1 will-change-transform"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-4">
                   <img
                     src={milestone.logoUrl}
                     alt={`${milestone.organization} logo`}
+                    width={80}
+                    height={48}
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-20 h-12 object-contain rounded-xl border border-slate-200 dark:border-white/15 bg-white shrink-0 shadow-2xs"
                   />
@@ -256,10 +186,12 @@ export const TechStack: React.FC = () => {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>
     </>
   );
 };
+
+export default TechStack;

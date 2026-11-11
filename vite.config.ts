@@ -86,12 +86,16 @@ export default defineConfig({
       workbox: {
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,woff,woff2}'],
+        globIgnores: ['**/assets/aistudio/**'],
       },
       devOptions: {
         enabled: false,
       },
     }),
   ],
+  build: {
+    cssCodeSplit: true,
+  },
   server: {
     port: 3000,
     host: '0.0.0.0',

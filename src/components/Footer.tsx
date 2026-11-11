@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, MapPin, Check, Copy, ArrowUpRight } from 'lucide-react';
 
 interface FooterProps {
@@ -60,59 +59,36 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
       id="contact"
       className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.42 }}
-      >
-        <motion.span
-          whileHover={{ x: 3 }}
-          className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2"
-        >
+      <div>
+        <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
           Get in Touch
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, x: -12 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.42, delay: 0.05 }}
-          className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-4"
-        >
+        </span>
+        <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-4">
           Contact
-        </motion.h2>
+        </h2>
         <p className="font-sans text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl mb-8">
           Direct channels for Cyber &amp; Digital Risk Advisory, Computerized System Validation (CSV),
           and professional inquiries.
         </p>
-      </motion.div>
+      </div>
 
       {/* 2x2 Grid of Direct Contact Cards (No Mailto Form) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* 1. Direct Email (Click to Copy) Card */}
-        <motion.button
+        <button
           type="button"
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.38 }}
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 0.98 }}
           onClick={copyEmailToClipboard}
-          className="w-full text-left flex items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/55 dark:hover:border-[#38BDF8]/55 shadow-2xs hover:shadow-md transition-all cursor-pointer group"
+          className="w-full text-left flex items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/55 dark:hover:border-[#38BDF8]/55 shadow-2xs hover:shadow-md transition-transform duration-200 ease-out hover:-translate-y-1 active:scale-98 will-change-transform cursor-pointer group"
         >
           <div className="flex items-center gap-4 min-w-0">
-            <motion.div
-              whileHover={{ scale: 1.06 }}
-              className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0"
-            >
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105">
               <Mail className="w-5 h-5" />
-            </motion.div>
+            </div>
             <div className="min-w-0">
               <span className="block font-mono text-[10px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
                 Direct Email (Click to Copy)
               </span>
-              <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] transition-colors block truncate mt-0.5">
+              <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] block truncate mt-0.5">
                 kshatriya205902@gmail.com
               </span>
             </div>
@@ -124,87 +100,59 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
               <Copy className="w-4 h-4" />
             )}
           </span>
-        </motion.button>
+        </button>
 
         {/* 2. LinkedIn Card */}
-        <motion.a
+        <a
           href="https://www.linkedin.com/in/irealashu/"
           target="_blank"
           rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.38, delay: 0.05 }}
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full flex items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/55 dark:hover:border-[#38BDF8]/55 shadow-2xs hover:shadow-md transition-all group"
+          className="w-full flex items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/55 dark:hover:border-[#38BDF8]/55 shadow-2xs hover:shadow-md transition-transform duration-200 ease-out hover:-translate-y-1 active:scale-98 will-change-transform group"
         >
           <div className="flex items-center gap-4 min-w-0">
-            <motion.div
-              whileHover={{ scale: 1.06 }}
-              className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0"
-            >
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105">
               <LinkedinIcon className="w-5 h-5" />
-            </motion.div>
+            </div>
             <div className="min-w-0">
               <span className="block font-mono text-[10px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
                 LinkedIn Profile
               </span>
-              <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] transition-colors block truncate mt-0.5">
+              <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] block truncate mt-0.5">
                 linkedin.com/in/irealashu
               </span>
             </div>
           </div>
-          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
-        </motion.a>
+          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150 shrink-0" />
+        </a>
 
         {/* 3. GitHub Profile Card */}
-        <motion.a
+        <a
           href="https://github.com/irealashu"
           target="_blank"
           rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.38, delay: 0.1 }}
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full flex items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/55 dark:hover:border-[#38BDF8]/55 shadow-2xs hover:shadow-md transition-all group"
+          className="w-full flex items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-[#162036] hover:border-[#4338CA]/55 dark:hover:border-[#38BDF8]/55 shadow-2xs hover:shadow-md transition-transform duration-200 ease-out hover:-translate-y-1 active:scale-98 will-change-transform group"
         >
           <div className="flex items-center gap-4 min-w-0">
-            <motion.div
-              whileHover={{ scale: 1.06 }}
-              className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0"
-            >
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105">
               <GithubIcon className="w-5 h-5" />
-            </motion.div>
+            </div>
             <div className="min-w-0">
               <span className="block font-mono text-[10px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
                 Git Profile
               </span>
-              <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] transition-colors block truncate mt-0.5">
+              <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] block truncate mt-0.5">
                 github.com/irealashu
               </span>
             </div>
           </div>
-          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
-        </motion.a>
+          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150 shrink-0" />
+        </a>
 
         {/* 4. Location Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.38, delay: 0.15 }}
-          whileHover={{ y: -3 }}
-          className="w-full flex items-center gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 shadow-2xs"
-        >
-          <motion.div
-            whileHover={{ scale: 1.06 }}
-            className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0"
-          >
+        <div className="w-full flex items-center gap-4 p-5 rounded-2xl bg-slate-50/70 dark:bg-[#131C2E] border border-slate-200 dark:border-white/10 shadow-2xs transition-transform duration-200 ease-out hover:-translate-y-1 will-change-transform">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/[0.06] border border-indigo-200/70 dark:border-white/10 text-[#4338CA] dark:text-[#38BDF8] flex items-center justify-center shrink-0">
             <MapPin className="w-5 h-5" />
-          </motion.div>
+          </div>
           <div>
             <span className="block font-mono text-[10px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
               Advisory Location
@@ -213,8 +161,10 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
               PwC India · Gurugram, Haryana
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
+
+export default Footer;
