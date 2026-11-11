@@ -1,14 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Mail,
-  Copy,
-  Check,
-  ArrowUpRight,
-  Clock,
-  ShieldCheck,
-  Building2,
-  MapPin,
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Copy, Check, ArrowUpRight } from 'lucide-react';
 
 const LinkedinIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
   <svg
@@ -49,27 +40,6 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
-  const [istTime, setIstTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateClock = () => {
-      try {
-        const formatter = new Intl.DateTimeFormat('en-IN', {
-          timeZone: 'Asia/Kolkata',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        });
-        setIstTime(`${formatter.format(new Date())} IST (UTC+05:30)`);
-      } catch {
-        setIstTime('IST (UTC+05:30)');
-      }
-    };
-    updateClock();
-    const timer = window.setInterval(updateClock, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   const copyEmailToClipboard = async () => {
     try {
@@ -89,200 +59,114 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
   return (
     <footer
       id="contact"
-      className="relative pt-24 pb-16 bg-[#08090C] text-[#F9FAFB]"
+      className="py-20 bg-white dark:bg-[#08090C] text-slate-900 dark:text-[#F9FAFB] transition-colors scroll-mt-24"
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
-        {/* Top Executive Contact Callout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-16 border-b border-white/[0.08]">
-          {/* Left 7 Columns: Status & Direct Channels */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-10">
+          <h2
+            id="contact-heading"
+            className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-[#F9FAFB] mb-3"
+          >
+            Get in Touch
+          </h2>
+          <p className="text-base text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
+            Connect regarding Cyber &amp; Digital Risk Advisory, Computerized System Validation (CSV), GAMP 5, and 21 CFR Part 11 compliance.
+          </p>
+        </div>
+
+        {/* 3 Clean Direct Contact Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pb-14 border-b border-slate-200 dark:border-white/[0.08]">
+          {/* Email Card */}
+          <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2.5 font-mono text-xs text-[#10B981] uppercase tracking-[0.18em] mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                <span>Available for Cyber &amp; Digital Risk Advisory</span>
-              </div>
-
-              <h2
-                id="contact-heading"
-                className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F9FAFB] leading-[1.08] mb-5"
-              >
-                Connect for Advisory &amp; Assurance.
-              </h2>
-
-              <p className="text-base sm:text-lg text-[#9CA3AF] max-w-2xl leading-relaxed mb-8">
-                Open to professional discussions regarding Cyber &amp; Digital Risk Advisory, IT General Controls (ITGC), Computerized System Validation (CSV), GAMP 5, and 21 CFR Part 11 data integrity governance.
+              <Mail className="w-5 h-5 text-blue-600 dark:text-[#2563EB] mb-3" />
+              <h3 className="font-display text-base font-bold text-slate-900 dark:text-[#F9FAFB]">
+                Email
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-[#9CA3AF] truncate mt-1">
+                kshatriya205902@gmail.com
               </p>
             </div>
 
-            {/* 3 Direct Channel Action Cards (Email, LinkedIn, Minimal GitHub Profile Link) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {/* Email Card with Instant Copy */}
-              <div className="p-5 rounded-2xl bg-[#161B26]/85 border border-white/10 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <Mail className="w-4 h-4 text-[#2563EB]" />
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-[#9CA3AF]">
-                      Direct Mail
-                    </span>
-                  </div>
-                  <p className="font-display text-sm font-semibold text-[#F9FAFB] truncate">
-                    kshatriya205902@gmail.com
-                  </p>
-                  <p className="font-mono text-[11px] text-[#9CA3AF] mt-1">
-                    Primary Advisory Inbox
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-white/[0.08] flex items-center justify-between gap-2">
-                  <button
-                    type="button"
-                    onClick={copyEmailToClipboard}
-                    className="inline-flex items-center gap-1.5 font-mono text-xs text-[#06B6D4] hover:text-[#F9FAFB] transition-colors"
-                  >
-                    {copiedEmail ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-[#10B981]" />
-                        <span className="text-[#10B981]">Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Copy Address</span>
-                      </>
-                    )}
-                  </button>
-
-                  <a
-                    href="mailto:kshatriya205902@gmail.com"
-                    className="font-mono text-xs text-[#9CA3AF] hover:text-[#F9FAFB] inline-flex items-center gap-1"
-                  >
-                    <span>Compose</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-
-              {/* LinkedIn Card */}
-              <a
-                href="https://www.linkedin.com/in/irealashu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-[#161B26]/85 border border-white/10 hover:border-[#2563EB]/60 transition-colors flex flex-col justify-between group"
+            <div className="mt-5 pt-3 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between">
+              <button
+                type="button"
+                onClick={copyEmailToClipboard}
+                className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-blue-600 dark:text-[#06B6D4] hover:underline cursor-pointer"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <LinkedinIcon className="w-4 h-4 text-[#06B6D4]" />
-                    <ArrowUpRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#F9FAFB] transition-colors" />
-                  </div>
-                  <p className="font-display text-sm font-semibold text-[#F9FAFB]">
-                    linkedin.com/in/irealashu
-                  </p>
-                  <p className="font-mono text-[11px] text-[#9CA3AF] mt-1">
-                    PwC India · Executive Profile
-                  </p>
-                </div>
-                <div className="mt-5 pt-3 border-t border-white/[0.08] font-mono text-xs text-[#06B6D4] group-hover:text-[#F9FAFB] transition-colors">
-                  Connect on LinkedIn →
-                </div>
-              </a>
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-[#10B981]" />
+                    <span className="text-emerald-600 dark:text-[#10B981]">Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy Email</span>
+                  </>
+                )}
+              </button>
 
-              {/* Minimal GitHub Profile Card */}
               <a
-                href="https://github.com/irealashu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-[#161B26]/85 border border-white/10 hover:border-[#10B981]/60 transition-colors flex flex-col justify-between group"
+                href="mailto:kshatriya205902@gmail.com"
+                className="font-mono text-xs text-slate-600 dark:text-[#9CA3AF] hover:text-slate-900 dark:hover:text-[#F9FAFB] inline-flex items-center gap-1"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <GithubIcon className="w-4 h-4 text-[#10B981]" />
-                    <ArrowUpRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#F9FAFB] transition-colors" />
-                  </div>
-                  <p className="font-display text-sm font-semibold text-[#F9FAFB]">
-                    github.com/irealashu
-                  </p>
-                  <p className="font-mono text-[11px] text-[#9CA3AF] mt-1">
-                    Git Profile &amp; Scripts
-                  </p>
-                </div>
-                <div className="mt-5 pt-3 border-t border-white/[0.08] font-mono text-xs text-[#10B981] group-hover:text-[#F9FAFB] transition-colors">
-                  View GitHub Profile →
-                </div>
+                <span>Send Mail</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
-          {/* Right 5 Columns: Advisory Profile & Location Summary */}
-          <div className="lg:col-span-5 rounded-2xl bg-[#0F1219] border border-white/10 p-6 sm:p-8 flex flex-col justify-between">
+          {/* LinkedIn Card */}
+          <a
+            href="https://www.linkedin.com/in/irealashu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-6 rounded-2xl bg-slate-50 dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 hover:border-blue-500/60 transition-colors flex flex-col justify-between group"
+          >
             <div>
-              <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">
-                <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#06B6D4]">
-                  Advisory Practice Summary
-                </span>
-                <span className="font-mono text-[11px] text-[#10B981]">
-                  PwC India
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-[#08090C] border border-white/[0.08]">
-                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#9CA3AF] mb-1">
-                    <Building2 className="w-3.5 h-3.5 text-[#2563EB]" />
-                    <span>Current Role &amp; Practice</span>
-                  </div>
-                  <p className="text-sm font-semibold text-[#F9FAFB]">
-                    Associate — Cyber &amp; Digital Risk Advisory
-                  </p>
-                  <p className="font-mono text-xs text-[#9CA3AF] mt-0.5">
-                    PricewaterhouseCoopers (PwC India)
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#08090C] border border-white/[0.08]">
-                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#9CA3AF] mb-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#10B981]" />
-                    <span>Core Specializations</span>
-                  </div>
-                  <p className="font-mono text-xs text-[#F9FAFB] leading-relaxed">
-                    Computerized System Validation (CSV) · GAMP 5 · 21 CFR Part 11 · EU Annex 11 · ALCOA++ · IT General Controls (ITGC)
-                  </p>
-                </div>
-              </div>
+              <LinkedinIcon className="w-5 h-5 text-blue-600 dark:text-[#06B6D4] mb-3" />
+              <h3 className="font-display text-base font-bold text-slate-900 dark:text-[#F9FAFB]">
+                LinkedIn
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-[#9CA3AF] mt-1">
+                linkedin.com/in/irealashu
+              </p>
             </div>
-
-            {/* Bottom Live IST Telemetry */}
-            <div className="mt-6 pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9CA3AF]">
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#06B6D4]" />
-                <span>Gurugram / New Delhi</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-[#F9FAFB] tabular-nums">
-                <Clock className="w-3.5 h-3.5 text-[#10B981]" />
-                <span>{istTime}</span>
-              </span>
+            <div className="mt-5 pt-3 border-t border-slate-200 dark:border-white/[0.08] font-mono text-xs font-medium text-blue-600 dark:text-[#06B6D4] inline-flex items-center justify-between">
+              <span>View Profile</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </div>
-          </div>
+          </a>
+
+          {/* GitHub Profile Card */}
+          <a
+            href="https://github.com/irealashu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-6 rounded-2xl bg-slate-50 dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 hover:border-emerald-500/60 transition-colors flex flex-col justify-between group"
+          >
+            <div>
+              <GithubIcon className="w-5 h-5 text-emerald-600 dark:text-[#10B981] mb-3" />
+              <h3 className="font-display text-base font-bold text-slate-900 dark:text-[#F9FAFB]">
+                GitHub
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-[#9CA3AF] mt-1">
+                github.com/irealashu
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-slate-200 dark:border-white/[0.08] font-mono text-xs font-medium text-emerald-600 dark:text-[#10B981] inline-flex items-center justify-between">
+              <span>Git Profile</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </div>
+          </a>
         </div>
 
-        {/* Bottom Colophon */}
-        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-[#9CA3AF]">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="text-[#F9FAFB] font-semibold">
-              © {new Date().getFullYear()} Ashutosh Singh (irealashu.in)
-            </span>
-            <span className="text-white/20">·</span>
-            <span>All rights reserved.</span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[#9CA3AF]">
-            <span className="inline-flex items-center gap-1.5 text-[#10B981]">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Cyber &amp; Digital Risk Advisory</span>
-            </span>
-            <span className="text-white/20">·</span>
-            <span>CSV &amp; GxP Assurance</span>
-          </div>
+        {/* Clean Minimal Copyright Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-[#9CA3AF]">
+          <span>© {new Date().getFullYear()} Ashutosh Singh. All rights reserved.</span>
+          <span>Associate — Cyber &amp; Digital Risk Advisory · PwC India</span>
         </div>
       </div>
     </footer>

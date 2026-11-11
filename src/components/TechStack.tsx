@@ -1,100 +1,60 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Shield, Wrench } from 'lucide-react';
+import { Shield, FileCheck2, Wrench } from 'lucide-react';
 import { COMPETENCY_GROUPS } from '../data/portfolioData';
 
 const GROUP_ICONS: Record<string, React.ReactNode> = {
-  '01': <Code2 className="w-5 h-5 text-[#2563EB]" />,
-  '02': <Shield className="w-5 h-5 text-[#10B981]" />,
-  '03': <Wrench className="w-5 h-5 text-[#06B6D4]" />,
+  '01': <Shield className="w-5 h-5 text-blue-600 dark:text-[#2563EB]" />,
+  '02': <FileCheck2 className="w-5 h-5 text-emerald-600 dark:text-[#10B981]" />,
+  '03': <Wrench className="w-5 h-5 text-cyan-600 dark:text-[#06B6D4]" />,
 };
 
 export const TechStack: React.FC = () => {
   return (
     <section
-      className="relative py-24 lg:py-32 border-b border-white/[0.08] bg-[#0F1219]/40"
+      className="py-20 lg:py-24 border-b border-slate-200 dark:border-white/[0.08] bg-slate-100/60 dark:bg-[#0F1219]/40 transition-colors"
       aria-labelledby="competency-heading"
     >
-      <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-white/[0.08]">
-          <div className="lg:col-span-7">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#06B6D4] mb-3">
-              04 · Technical Competency Matrix
-            </p>
-            <h2
-              id="competency-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-[#F9FAFB] leading-[1.1]"
-            >
-              Production Stack &amp; Regulatory Standards.
-            </h2>
-          </div>
-          <div className="lg:col-span-5 flex flex-col justify-end">
-            <p className="text-base text-[#9CA3AF] leading-relaxed">
-              Structured engineering capabilities spanning native Android internals, zero-backend web applications, and regulated enterprise risk governance.
-            </p>
-          </div>
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-10">
+          <h2
+            id="competency-heading"
+            className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-[#F9FAFB]"
+          >
+            Core Competencies &amp; Standards
+          </h2>
+          <p className="mt-2 text-base text-slate-600 dark:text-[#9CA3AF]">
+            Regulatory frameworks, validation lifecycle deliverables, and technical controls.
+          </p>
         </div>
 
-        {/* 3-Column Swiss Hairline Competency Grid */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 border border-white/10 rounded-2xl overflow-hidden bg-[#08090C] divide-y lg:divide-y-0 lg:divide-x divide-white/10">
-          {COMPETENCY_GROUPS.map((group, groupIdx) => (
-            <motion.div
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {COMPETENCY_GROUPS.map((group) => (
+            <div
               key={group.index}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: groupIdx * 0.08 }}
-              className="flex flex-col justify-between"
+              className="rounded-2xl bg-white dark:bg-[#161B26]/85 border border-slate-200 dark:border-white/10 p-6 sm:p-7 shadow-sm transition-colors"
             >
-              {/* Column Header */}
-              <div>
-                <div className="p-6 sm:p-8 bg-[#161B26]/60 border-b border-white/10">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#06B6D4]">
-                      Matrix {group.index}
-                    </span>
-                    <div className="w-9 h-9 rounded-lg bg-[#08090C] border border-white/10 flex items-center justify-center">
-                      {GROUP_ICONS[group.index]}
-                    </div>
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-[#F9FAFB] mb-2">
-                    {group.category}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
-                    {group.summary}
-                  </p>
+              <div className="flex items-center gap-3 pb-4 mb-5 border-b border-slate-200 dark:border-white/[0.08]">
+                <div className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-[#08090C] border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0">
+                  {GROUP_ICONS[group.index]}
                 </div>
-
-                {/* Hairline Matrix Cells */}
-                <div className="divide-y divide-white/[0.08]">
-                  {group.items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="p-6 sm:px-8 hover:bg-[#161B26]/35 transition-colors"
-                    >
-                      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1.5">
-                        <h4 className="font-display text-base font-semibold text-[#F9FAFB]">
-                          {item.name}
-                        </h4>
-                        <span className="font-mono text-[11px] text-[#10B981]">
-                          {item.domain}
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
-                        {item.application}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <h3 className="font-display text-lg font-bold text-slate-900 dark:text-[#F9FAFB]">
+                  {group.category}
+                </h3>
               </div>
 
-              {/* Column Footer */}
-              <div className="px-6 sm:px-8 py-4 bg-[#0F1219] border-t border-white/[0.08] flex items-center justify-between font-mono text-[11px] text-[#9CA3AF]">
-                <span>VERIFIED CAPABILITY</span>
-                <span className="text-[#F9FAFB] tabular-nums">{group.items.length} DOMAINS</span>
-              </div>
-            </motion.div>
+              <ul className="space-y-4">
+                {group.items.map((item) => (
+                  <li key={item.name}>
+                    <h4 className="font-display text-sm sm:text-base font-semibold text-slate-900 dark:text-[#F9FAFB]">
+                      {item.name}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-[#9CA3AF] mt-0.5 leading-relaxed">
+                      {item.application}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
