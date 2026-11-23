@@ -26,10 +26,10 @@ export const RiskAdvisory: React.FC = () => {
     >
       <div>
         <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
-          What I Do
+          Focus Areas
         </span>
         <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-8">
-          Core Advisory &amp; Validation Expertise
+          What I Work On
         </h2>
       </div>
 

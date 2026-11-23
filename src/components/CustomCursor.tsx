@@ -1,18 +1,57 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+const isDesktopPointer = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+  window.innerWidth >= 1024;
+
 export const CustomCursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement | null>(null);
   const glowRef = useRef<HTMLDivElement | null>(null);
 
+  const [enabled, setEnabled] = useState<boolean>(isDesktopPointer);
   const [isVisible, setIsVisible] = useState(false);
   const [isInteractive, setIsInteractive] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    const updateEnabled = () => {
+      const next = mediaQuery.matches && window.innerWidth >= 1024;
+      setEnabled(next);
+      if (!next) {
+        setIsVisible(false);
+        document.documentElement.classList.remove('custom-cursor-active');
+      }
+    };
+
+    updateEnabled();
+    mediaQuery.addEventListener('change', updateEnabled);
+    window.addEventListener('resize', updateEnabled, { passive: true });
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateEnabled);
+      window.removeEventListener('resize', updateEnabled);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) {
+      document.documentElement.classList.remove('custom-cursor-active');
+      return;
+    }
+
     let hasInitialized = false;
 
-    const updateCursorPosition = (clientX: number, clientY: number, target: EventTarget | null) => {
+    const handlePointerMove = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') {
+        setIsVisible(false);
+        hasInitialized = false;
+        document.documentElement.classList.remove('custom-cursor-active');
+        return;
+      }
+
       if (!hasInitialized) {
         hasInitialized = true;
         setIsVisible(true);
@@ -20,36 +59,25 @@ export const CustomCursor: React.FC = () => {
       }
 
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
+        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       }
       if (glowRef.current) {
-        glowRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
+        glowRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
       }
 
-      if (target && target instanceof Element) {
-        const interactiveEl = target.closest(
+      if (e.target && e.target instanceof Element) {
+        const interactiveEl = e.target.closest(
           'a, button, input, textarea, select, label, [role="button"], [role="tab"]'
         );
         setIsInteractive(Boolean(interactiveEl));
       }
     };
 
-    const handlePointerMove = (e: PointerEvent) => {
-      if (e.pointerType === 'touch') {
-        setIsTouchDevice(true);
-        document.documentElement.classList.remove('custom-cursor-active');
-        return;
-      }
-      setIsTouchDevice(false);
-      updateCursorPosition(e.clientX, e.clientY, e.target);
+    const handlePointerDown = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse') setIsPressed(true);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      updateCursorPosition(e.clientX, e.clientY, e.target);
-    };
-
-    const handleMouseDown = () => setIsPressed(true);
-    const handleMouseUp = () => setIsPressed(false);
+    const handlePointerUp = () => setIsPressed(false);
 
     const handleMouseLeave = () => {
       setIsVisible(false);
@@ -57,31 +85,21 @@ export const CustomCursor: React.FC = () => {
       document.documentElement.classList.remove('custom-cursor-active');
     };
 
-    const handleMouseEnter = (e: MouseEvent) => {
-      updateCursorPosition(e.clientX, e.clientY, e.target);
-      setIsVisible(true);
-      document.documentElement.classList.add('custom-cursor-active');
-    };
-
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('mousedown', handleMouseDown, { passive: true });
-    window.addEventListener('mouseup', handleMouseUp, { passive: true });
+    window.addEventListener('pointerdown', handlePointerDown, { passive: true });
+    window.addEventListener('pointerup', handlePointerUp, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
       document.documentElement.classList.remove('custom-cursor-active');
       window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('pointerup', handlePointerUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, []);
+  }, [enabled]);
 
-  if (isTouchDevice) return null;
+  if (!enabled) return null;
 
   return (
     <div
@@ -97,7 +115,7 @@ export const CustomCursor: React.FC = () => {
         className="fixed top-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-[#4338CA]/12 to-[#0284C7]/12 blur-xl will-change-transform"
       />
 
-      {/* Zero-Latency Precision Pointer (SVG Arrow + Drop Shadow, No Circle Ring) */}
+      {/* Precision Pointer (SVG Arrow + Drop Shadow, No Circle Ring) */}
       <div
         ref={dotRef}
         data-testid="custom-cursor-dot"

@@ -95,9 +95,12 @@ export const Projects: React.FC = () => {
         <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
           Validated Systems
         </span>
-        <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-6">
-          Qualified Enterprise &amp; GxP Systems
+        <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-3">
+          Systems I&apos;ve Validated
         </h2>
+        <p className="font-sans text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl mb-6">
+          A few of the 15+ lab and enterprise systems I&apos;ve qualified across pharma and advisory work.
+        </p>
       </div>
 
       {/* Category Filter Bar */}

@@ -67,8 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
           Contact
         </h2>
         <p className="font-sans text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl mb-8">
-          Direct channels for Cyber &amp; Digital Risk Advisory, Computerized System Validation (CSV),
-          and professional inquiries.
+          Feel free to reach out for advisory work, CSV discussions, or to connect.
         </p>
       </div>
 
@@ -86,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
             </div>
             <div className="min-w-0">
               <span className="block font-mono text-[10px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                Direct Email (Click to Copy)
+                Email (Tap to Copy)
               </span>
               <span className="font-mono text-xs sm:text-sm font-semibold text-[#0F172A] dark:text-white group-hover:text-[#4338CA] dark:group-hover:text-[#38BDF8] block truncate mt-0.5">
                 kshatriya205902@gmail.com
@@ -155,10 +154,10 @@ export const Footer: React.FC<FooterProps> = ({ onCopySuccess }) => {
           </div>
           <div>
             <span className="block font-mono text-[10px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-400">
-              Advisory Location
+              Location
             </span>
             <p className="font-sans text-sm font-semibold text-[#0F172A] dark:text-white mt-0.5">
-              PwC India · Gurugram, Haryana
+              Gurugram, Haryana · PwC India
             </p>
           </div>
         </div>

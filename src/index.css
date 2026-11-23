@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -38,34 +37,36 @@ body::-webkit-scrollbar {
   background: transparent !important;
 }
 
-/* Fallback custom SVG cursor before pointer enters, and hide native cursor when interactive DOM CustomCursor is active */
-html,
-body {
-  cursor: var(--custom-pointer-svg);
-}
+/* Apply custom cursor only on desktop/mouse devices (never on mobile/touch) */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    cursor: var(--custom-pointer-svg);
+  }
 
-a,
-button,
-input,
-textarea,
-select,
-label,
-[role="button"],
-[role="tab"] {
-  cursor: var(--custom-interactive-svg);
-}
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  [role="button"],
+  [role="tab"] {
+    cursor: var(--custom-interactive-svg);
+  }
 
-html.custom-cursor-active,
-html.custom-cursor-active body,
-html.custom-cursor-active *,
-html.custom-cursor-active a,
-html.custom-cursor-active button,
-html.custom-cursor-active input,
-html.custom-cursor-active textarea,
-html.custom-cursor-active select,
-html.custom-cursor-active [role="button"],
-html.custom-cursor-active [role="tab"] {
-  cursor: none !important;
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active *,
+  html.custom-cursor-active a,
+  html.custom-cursor-active button,
+  html.custom-cursor-active input,
+  html.custom-cursor-active textarea,
+  html.custom-cursor-active select,
+  html.custom-cursor-active [role="button"],
+  html.custom-cursor-active [role="tab"] {
+    cursor: none !important;
+  }
 }
 
 html {
@@ -139,6 +140,26 @@ code, pre, .font-mono {
   }
 }
 
+@keyframes gpuFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gpuSlideInRight {
+  from {
+    opacity: 0.6;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .animate-gpu-fade-up {
   animation: gpuFadeUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity;
@@ -149,9 +170,21 @@ code, pre, .font-mono {
   will-change: transform, opacity;
 }
 
+.animate-gpu-fade-in {
+  animation: gpuFadeIn 0.2s ease-out both;
+  will-change: opacity;
+}
+
+.animate-gpu-slide-right {
+  animation: gpuSlideInRight 0.26s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-gpu-fade-up,
-  .animate-gpu-scale-in {
+  .animate-gpu-scale-in,
+  .animate-gpu-fade-in,
+  .animate-gpu-slide-right {
     animation: none !important;
   }
 }
@@ -159,22 +192,53 @@ code, pre, .font-mono {
 /* Clean print / Save-as-PDF layout for recruiters and hiring teams */
 @media print {
   html,
-  body {
+  body,
+  main,
+  section,
+  article,
+  div {
     background: #FFFFFF !important;
+    background-image: none !important;
     color: #0F172A !important;
+    border-color: #CBD5E1 !important;
+    box-shadow: none !important;
     cursor: auto !important;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  strong {
+    color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
+  }
+
+  p,
+  li,
+  span,
+  a {
+    color: #1E293B !important;
+  }
+
+  aside,
+  header,
   nav,
+  [data-testid="custom-cursor"],
   button[aria-label="Scroll back to top"],
-  button[aria-label*="Switch to"] {
+  button[aria-label*="Switch to"],
+  button[aria-label="Toggle navigation drawer"] {
     display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
   }
 
   section {
     break-inside: avoid-page;
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
   }
 }
 

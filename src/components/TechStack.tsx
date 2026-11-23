@@ -22,15 +22,14 @@ export const TechStack: React.FC = () => {
       >
         <div>
           <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
-            Technical Scope
+            Core Skills
           </span>
           <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-4">
-            Skills &amp; Validation Deliverables
+            Skills &amp; Deliverables
           </h2>
 
           <p className="font-sans text-[15px] sm:text-base text-slate-700 dark:text-slate-300 leading-[1.75] max-w-3xl mb-8">
-            Hands-on deliverables across computerized system validation (CSV), regulatory compliance
-            assessments, and enterprise IT General Controls (ITGC).
+            Day-to-day documents, assessments, and controls I prepare and test across CSV and ITGC work.
           </p>
         </div>
 
@@ -114,31 +113,33 @@ export const TechStack: React.FC = () => {
                   </button>
                 </h3>
 
-                {isOpen && (
-                  <div className="p-6 bg-white dark:bg-[#0D1322]/90 border-t border-slate-200 dark:border-white/10 animate-gpu-fade-up">
-                    <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#4338CA] dark:text-[#38BDF8] mb-3">
-                      {item.institution} · {item.period}
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                      <p>{item.leftColumn}</p>
-                      <p>{item.rightColumn}</p>
-                    </div>
+                <div
+                  className={`${
+                    isOpen ? 'block' : 'hidden print:block'
+                  } p-6 bg-white dark:bg-[#0D1322]/90 border-t border-slate-200 dark:border-white/10 animate-gpu-fade-up`}
+                >
+                  <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#4338CA] dark:text-[#38BDF8] mb-3">
+                    {item.institution} · {item.period}
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                    <p>{item.leftColumn}</p>
+                    <p>{item.rightColumn}</p>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
         </div>
       </section>
 
-      {/* 3. Work Experience Section (#experience) — 18 Jan 2021 to Present */}
+      {/* 3. Work Experience Section (#experience) */}
       <section
         id="experience"
         className="px-6 sm:px-12 lg:px-16 py-16 lg:py-20 border-b border-slate-200 dark:border-white/[0.08]"
       >
         <div>
           <span className="inline-block font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#4338CA] dark:text-[#38BDF8] mb-2">
-            Experience · 18 Jan 2021 – Present
+            Experience
           </span>
           <h2 className="font-display text-2xl sm:text-[26px] font-bold tracking-tight text-[#0F172A] dark:text-white mb-8">
             Work Experience

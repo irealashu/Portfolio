@@ -48,19 +48,17 @@ export interface ValidatedSystemItem {
   category: Exclude<SystemCategory, 'All'>;
   gampCategory: string;
   description: string;
-  complianceStandards: string[];
   controlHighlights: string[];
-  validationScopeNotes: string;
 }
 
 export const EXECUTIVE_METRICS: ExecutiveMetric[] = [
   {
     value: '5+',
-    label: 'Years Experience (Since Jan 2021)',
+    label: 'Years of Experience',
   },
   {
     value: '15+',
-    label: 'Enterprise Systems Validated',
+    label: 'Systems Validated',
   },
   {
     value: '0',
@@ -68,13 +66,13 @@ export const EXECUTIVE_METRICS: ExecutiveMetric[] = [
   },
   {
     value: 'ALCOA++',
-    label: 'Data Integrity Standard',
+    label: 'Data Integrity Focus',
   },
 ];
 
 export const ABOUT_PILLARS = [
-  { title: 'Cyber & IT Risk (ITGC)', icon: 'shield' as const },
-  { title: 'GAMP 5 CSV Lifecycle', icon: 'check' as const },
+  { title: 'IT Risk & ITGC', icon: 'shield' as const },
+  { title: 'GAMP 5 Validation', icon: 'check' as const },
   { title: '21 CFR Part 11 & Annex 11', icon: 'lock' as const },
   { title: 'ALCOA++ Data Integrity', icon: 'database' as const },
 ];
@@ -82,44 +80,44 @@ export const ABOUT_PILLARS = [
 export const EXPERTISE_ITEMS: ExpertiseItem[] = [
   {
     id: 'cyber-risk',
-    title: 'Cyber & Digital Risk Advisory',
+    title: 'Cyber & IT Risk Advisory',
     description:
-      'Reviewing enterprise IT risks, testing IT General Controls (ITGC), and checking user access and change management against ISO/IEC 27001.',
+      'Testing IT General Controls (ITGC), user access, and change management for enterprise clients against ISO/IEC 27001 and regulatory requirements.',
     iconName: 'shield',
   },
   {
     id: 'csv-gamp5',
     title: 'Computerized System Validation',
     description:
-      'Writing and executing GAMP 5 (2nd Ed.) validation deliverables including URS, Functional Risk Assessments, IQ/OQ/PQ protocols, and Traceability Matrices.',
+      'Writing and running GAMP 5 (2nd Ed.) validation packages—URS, risk assessments, IQ/OQ/PQ test scripts, traceability matrices, and summary reports.',
     iconName: 'check',
   },
   {
     id: 'part11-annex11',
     title: '21 CFR Part 11 & EU Annex 11',
     description:
-      'Running gap assessments for electronic signatures, password rules, session timeouts, and record protection on regulated systems.',
+      'Checking electronic signatures, password rules, session lockouts, and record security on regulated lab and plant applications.',
     iconName: 'lock',
   },
   {
     id: 'alcoa-data',
     title: 'ALCOA++ Data Integrity',
     description:
-      'Checking computer-generated audit trails, time synchronization, and periodic data integrity review logs across laboratory systems.',
+      'Reviewing audit trails, system clock sync, and periodic data integrity checks so electronic records hold up during inspections.',
     iconName: 'database',
   },
   {
     id: 'rbac-access',
-    title: 'Access Control & Segregation of Duties',
+    title: 'Access Controls & SoD',
     description:
-      'Defining Role-Based Access Control (RBAC) matrices, separating IT Admin and QA/QC roles, and locking local Windows data folders.',
+      'Setting up role-based access matrices, separating IT Admin and QA/QC permissions, and locking down local Windows data folders.',
     iconName: 'users',
   },
   {
     id: 'audit-backup',
-    title: 'Audit Support & Backup Verification',
+    title: 'Audit Support & Backups',
     description:
-      'Supporting regulatory audits with clean documentation and testing database backup, restore, and recovery procedures.',
+      'Walking auditors through validation documentation during inspections and running regular database backup and restore tests.',
     iconName: 'server',
   },
 ];
@@ -127,46 +125,46 @@ export const EXPERTISE_ITEMS: ExpertiseItem[] = [
 export const COMPETENCY_GROUPS: CompetencyGroup[] = [
   {
     id: 'csv-deliverables',
-    category: 'Validation Lifecycle Deliverables',
-    focus: 'GAMP 5 (Second Edition) V-Model Qualification',
+    category: 'Validation Documentation',
+    focus: 'GAMP 5 (2nd Ed.) V-Model',
     deliverables: [
-      'Validation Plan (VP) & User Requirements Specification (URS)',
-      'Functional Specification (FS) & Functional Risk Assessment (FRA)',
-      'Installation, Operational & Performance Qualification (IQ / OQ / PQ)',
-      'Requirements Traceability Matrix (RTM) & Validation Summary Report (VSR)',
+      'Validation Plan (VP) and User Requirements Specification (URS)',
+      'Functional Specification (FS) and Functional Risk Assessment (FRA)',
+      'IQ, OQ, and PQ protocol authoring and execution',
+      'Requirements Traceability Matrix (RTM) and Validation Summary Report (VSR)',
     ],
   },
   {
     id: 'regulatory-frameworks',
-    category: 'Regulatory & Compliance Standards',
-    focus: 'Electronic Records, Signatures & Quality Guidelines',
+    category: 'Regulatory Standards',
+    focus: 'GxP & Information Security',
     deliverables: [
-      'US FDA 21 CFR Part 11 (Electronic Records & Electronic Signatures)',
+      'US FDA 21 CFR Part 11 (Electronic Records and Signatures)',
       'EU GMP Annex 11 (Computerised Systems)',
-      'ALCOA+ / ALCOA++ Data Integrity & Audit Trail Review',
-      'ISO/IEC 27001 Information Security & ICH Q1A (R2) Stability Guidelines',
+      'ALCOA+ / ALCOA++ Data Integrity and audit trail review',
+      'ISO/IEC 27001 controls and ICH Q1A (R2) stability guidelines',
     ],
   },
   {
     id: 'itgc-security',
-    category: 'IT General Controls (ITGC) & Access Security',
-    focus: 'System Hardening & Segregation of Duties',
+    category: 'IT General Controls & Access',
+    focus: 'Hardening & Segregation of Duties',
     deliverables: [
-      'Role-Based Access Control (RBAC) Matrix Design & Periodic Access Review',
-      'Segregation of Duties (SoD) between IT Administrators and QA/QC Users',
-      'Windows Group Policy (GPO) & NTFS Local Directory Locks',
-      'Change Management, Incident Logging & Patch Impact Evaluation',
+      'Role-Based Access Control (RBAC) design and periodic access reviews',
+      'Segregation of Duties (SoD) between IT Admins and QA/QC users',
+      'Windows Group Policy (GPO) and NTFS local folder restrictions',
+      'Change control, incident tracking, and patch impact reviews',
     ],
   },
   {
     id: 'backup-continuity',
-    category: 'Backup, Archival & Audit Readiness',
-    focus: 'Database Resilience & Inspection Support',
+    category: 'Backups & Audit Readiness',
+    focus: 'Data Resilience & Inspections',
     deliverables: [
-      'Automated SQL & Flat-File Backup Scheduling Qualification',
-      'Periodic Backup Restoration Drills & Checksum Verification',
-      'Store-and-Forward Buffer Recovery & NTP Clock Synchronization',
-      'Periodic System Evaluation & External Regulatory Audit Support',
+      'Automated SQL and flat-file backup schedule qualification',
+      'Routine backup restore tests and file integrity checks',
+      'Store-and-forward buffer recovery and NTP clock synchronization',
+      'Periodic system reviews and external regulatory audit support',
     ],
   },
 ];
@@ -178,9 +176,9 @@ export const EDUCATION_ITEMS: EducationAccordionItem[] = [
     institution: 'Veer Bahadur Singh Purvanchal University (VBSPU), Jaunpur',
     period: '2018 – 2020',
     leftColumn:
-      'Completed M.Sc. in Chemistry from VBSPU, Jaunpur, focusing on analytical instrumentation, spectroscopic and chromatographic methods, and quality assurance.',
+      'Postgraduate degree in Chemistry with a focus on analytical instrumentation, spectroscopy, chromatography, and laboratory quality practices.',
     rightColumn:
-      'Connected laboratory instrument operations with computerized data acquisition, electronic record controls, and validation practices.',
+      'This lab background later helped bridge instrument operation with computerized data acquisition, electronic record controls, and CSV work.',
   },
   {
     id: 'bsc-chem',
@@ -188,9 +186,9 @@ export const EDUCATION_ITEMS: EducationAccordionItem[] = [
     institution: 'Veer Bahadur Singh Purvanchal University (VBSPU), Jaunpur',
     period: '2015 – 2018',
     leftColumn:
-      'Completed B.Sc. in Chemistry from VBSPU, Jaunpur with coursework in quantitative chemical analysis, laboratory safety, and experimental documentation.',
+      'Undergraduate coursework in quantitative analysis, chemical testing, lab safety, and experimental record-keeping.',
     rightColumn:
-      'Built the analytical foundation for subsequent roles in pharmaceutical Quality Control (QC), stability testing, and GxP compliance.',
+      'Built the technical base for my early roles in pharmaceutical Quality Control, stability testing, and GxP compliance.',
   },
 ];
 
@@ -202,11 +200,11 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     period: 'Mar 2026 – Present',
     location: 'Gurugram, Haryana',
     summary:
-      'Working with enterprise clients on IT risk governance, IT General Controls (ITGC), and computerized system validation.',
+      'Part of the Cyber & Digital Risk Advisory team working on IT risk governance, IT General Controls (ITGC), and computerized system validation.',
     highlights: [
-      'Test IT general controls (ITGC), user access provisioning, and change management processes against ISO/IEC 27001 and regulatory standards.',
-      'Apply GAMP 5 validation practices to enterprise applications and regulated cloud systems.',
-      'Document control gaps and work with client teams on practical remediation plans.',
+      'Test IT general controls, user access management, and change processes against ISO/IEC 27001 and regulatory requirements.',
+      'Apply GAMP 5 validation reviews to enterprise applications and regulated cloud systems.',
+      'Document control gaps clearly and work with client IT and quality teams to close them.',
     ],
   },
   {
@@ -216,11 +214,11 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     period: 'Mar 2024 – Nov 2025',
     location: 'Roorkee, Uttarakhand',
     summary:
-      'Handled qualification, validation, and data integrity controls for analytical laboratory software and plant systems.',
+      'Managed validation, qualification, and data integrity controls for analytical laboratory software and plant systems.',
     highlights: [
-      'Prepared and executed URS, Risk Assessment, IQ, OQ, and PQ protocols for Metrohm Tiamo 2.5, PerkinElmer Spectrum IR, Eurotherm Data Reviewer, and eLogbook.',
-      'Set up role-based access control (RBAC) matrices, Windows folder restrictions, and scheduled database backup/restore checks.',
-      'Presented computerized system validation records during external regulatory inspections with zero critical findings.',
+      'Authored and executed URS, Risk Assessment, IQ, OQ, and PQ packages for Metrohm Tiamo 2.5, PerkinElmer Spectrum IR, Eurotherm Data Reviewer, and eLogbook.',
+      'Set up RBAC matrices, Windows folder locks, and scheduled database backup and restore verification.',
+      'Walked external regulatory auditors through CSV documentation with zero critical findings.',
     ],
   },
   {
@@ -230,23 +228,23 @@ export const CAREER_MILESTONES: CareerMilestone[] = [
     period: 'Feb 2023 – Jan 2024',
     location: 'Baddi, Himachal Pradesh',
     summary:
-      'Performed analytical testing and stability studies for commercial pharmaceutical products under cGMP guidelines.',
+      'Handled routine analytical testing and stability studies for commercial pharmaceutical products under cGMP.',
     highlights: [
       'Ran calibrated instrument analysis and maintained electronic and paper batch records.',
-      'Checked audit trails and followed Good Laboratory Practice (GLP) controls across stability chambers and chromatography systems.',
+      'Reviewed audit trails and followed GLP controls across stability chambers and chromatography systems.',
     ],
   },
   {
     role: 'Senior Officer & Apprentice — Quality Control',
     organization: 'Alkem Laboratories Ltd.',
     logoUrl: './logos/alkem.svg',
-    period: '18 Jan 2021 – Jan 2023',
+    period: 'Jan 2021 – Jan 2023',
     location: 'Baddi, Himachal Pradesh',
     summary:
-      'Started career on 18 Jan 2021 in pharmaceutical quality control, handling routine instrument analysis, GxP documentation, and lab compliance.',
+      'Worked in pharmaceutical Quality Control covering routine instrument analysis, GxP documentation, and lab compliance.',
     highlights: [
-      'Performed pharmacopeial assay testing, dissolution profiling, and instrument calibrations for commercial batches.',
-      'Reviewed raw analytical logs and stability data packages before Quality Assurance release.',
+      'Performed assay testing, dissolution profiling, and instrument calibrations for commercial batches.',
+      'Checked raw analytical logs and stability data packages prior to Quality Assurance release.',
     ],
   },
 ];
@@ -258,15 +256,12 @@ export const VALIDATED_SYSTEMS: ValidatedSystemItem[] = [
     category: 'Chromatography & Titration',
     gampCategory: 'GAMP 5 Cat 4 · Client/Server',
     description:
-      'Completed full-lifecycle qualification (URS, FRA, IQ, OQ, PQ) and 21 CFR Part 11 configuration checks for centralized titration data acquisition and SQL database storage.',
-    complianceStandards: ['21 CFR Part 11', 'GAMP 5 Cat 4', 'ALCOA++', 'Client/Server SQL'],
+      'Qualified the client/server titration setup (URS, FRA, IQ, OQ, PQ) and checked 21 CFR Part 11 settings for centralized SQL data storage.',
     controlHighlights: [
-      'Set up user group permissions separating System Admin, Method Developer, and QC Analyst roles',
-      'Verified audit trail capture across method changes, manual re-integrations, and result sign-offs',
-      'Tested automated database backup schedules and verified full record restoration',
+      'Separated System Admin, Method Developer, and QC Analyst roles in user groups',
+      'Verified audit trail capture for method edits, manual re-integrations, and result sign-offs',
+      'Tested automated SQL backups and full record restoration',
     ],
-    validationScopeNotes:
-      'Covered centralized database server installation qualification, instrument RS-232/USB connectivity checks, custom calculation formula verification, and electronic signature workflows.',
   },
   {
     id: 'perkinelmer-spectrum',
@@ -274,31 +269,25 @@ export const VALIDATED_SYSTEMS: ValidatedSystemItem[] = [
     category: 'Spectroscopy & Thermal',
     gampCategory: 'GAMP 5 Cat 4 · Enhanced Security',
     description:
-      'Completed validation and data integrity setup for FT-IR spectral acquisition, library matching, and electronic signatures.',
-    complianceStandards: ['21 CFR Part 11 ES', 'EU Annex 11', 'GAMP 5 Cat 4', 'USP <854>'],
+      'Validated Enhanced Security settings for FT-IR spectral acquisition, library matching, and electronic signatures.',
     controlHighlights: [
-      'Configured mandatory reason-for-change prompts for baseline and ATR correction actions',
-      'Restricted Windows OS local folders to prevent deletion or renaming of .sp spectral files',
-      'Checked checksum protection and version control across reference spectral libraries',
+      'Configured mandatory reason-for-change prompts on baseline and ATR corrections',
+      'Locked local Windows folders so .sp spectral files cannot be renamed or deleted',
+      'Checked version control and checksum protection on reference spectral libraries',
     ],
-    validationScopeNotes:
-      'Verified Enhanced Security (ES) domain login, polystyrene reference wavelength/transmittance checks, and locked PDF report generation with signature history.',
   },
   {
     id: 'eurotherm-reviewer',
-    name: 'Eurotherm Data Reviewer & iTools',
+    name: 'Eurotherm Data Reviewer',
     category: 'Enterprise & Governance',
     gampCategory: 'GAMP 5 Cat 4 · Telemetry & EMS',
     description:
-      'Qualified continuous temperature and relative humidity (RH) monitoring for stability chambers with alarm logging.',
-    complianceStandards: ['ICH Q1A (R2)', '21 CFR Part 11', 'EU Annex 11', 'NTP Time Sync'],
+      'Qualified continuous temperature and humidity monitoring for stability chambers along with alarm logging.',
     controlHighlights: [
-      'Tested store-and-forward buffer recovery so no data is lost during brief network drops',
-      'Verified high/low alarm limits, acknowledgment audit trails, and electronic review sign-offs',
-      'Synced recorder clocks with central NTP time servers for accurate timestamps',
+      'Tested store-and-forward buffer recovery to confirm no data loss during short network drops',
+      'Checked high/low alarm limits, acknowledgment audit trails, and electronic review sign-offs',
+      'Synced recorder clocks with central NTP time servers for consistent timestamps',
     ],
-    validationScopeNotes:
-      'Covered paperless graphic recorders, encrypted .uhh file transfer checks, and Eurotherm Data Reviewer SQL database qualification.',
   },
   {
     id: 'enterprise-elogbook',
@@ -306,15 +295,12 @@ export const VALIDATED_SYSTEMS: ValidatedSystemItem[] = [
     category: 'Enterprise & Governance',
     gampCategory: 'GAMP 5 Cat 4/5 · Web Enterprise',
     description:
-      'Prepared requirements, functional risk assessments, and PQ test scripts to move paper lab and cleanroom logbooks to a validated digital system.',
-    complianceStandards: ['GAMP 5 Cat 4/5', '21 CFR Part 11', 'ALCOA++', 'Active Directory'],
+      'Wrote URS, risk assessments, and PQ test scripts to replace paper lab and cleanroom logbooks with a validated digital workflow.',
     controlHighlights: [
-      'Set up workflow checks that block analytical runs on instruments with overdue calibration',
-      'Tested dual-signature (Performed By / Verified By) steps and automatic timestamping',
-      'Ran negative boundary tests for concurrent sessions, required fields, and audit trail filters',
+      'Added checks that block runs on instruments with overdue calibration',
+      'Tested dual-signature (Performed By / Verified By) steps and automatic timestamps',
+      'Ran negative tests for concurrent sessions, mandatory fields, and audit trail filters',
     ],
-    validationScopeNotes:
-      'Included Active Directory login testing, browser session timeout checks, form template qualification, and archive retrieval verification.',
   },
   {
     id: 'toc-analytical-suite',
@@ -322,30 +308,24 @@ export const VALIDATED_SYSTEMS: ValidatedSystemItem[] = [
     category: 'Chromatography & Titration',
     gampCategory: 'GAMP 5 Cat 3/4 · Analytical QC',
     description:
-      'Prepared validation protocols, periodic review checklists, and data integrity controls across Total Organic Carbon (TOC), Karl Fischer, and pH/Conductivity instruments.',
-    complianceStandards: ['USP <643>', 'GAMP 5 Cat 3/4', 'GLP / cGMP', 'Data Integrity'],
+      'Prepared validation protocols, periodic reviews, and data integrity controls for TOC, Karl Fischer, and pH/Conductivity instruments.',
     controlHighlights: [
-      'Set up hybrid controls and secure print/PDF archival workflows for Category 3 instruments',
-      'Checked calibration curve linearity, system suitability lockouts, and user role access',
-      'Completed periodic validation reviews and closed audit trail and password policy gaps',
+      'Set up hybrid controls and locked print/PDF archival steps for Category 3 instruments',
+      'Verified calibration linearity, system suitability lockouts, and user role access',
+      'Closed periodic review gaps across audit trails and password policies',
     ],
-    validationScopeNotes:
-      'Checked firmware version records, memory retention during power loss, and secure data transfer procedures.',
   },
   {
     id: 'windows-itgc-infra',
-    name: 'Windows OS Hardening & RBAC Infrastructure',
+    name: 'Windows OS Hardening & RBAC Setup',
     category: 'Enterprise & Governance',
     gampCategory: 'ITGC & GxP Infrastructure',
     description:
-      'Set up and reviewed IT General Controls (ITGC) for laboratory workstations, removing shared local admin rights and locking raw data folders.',
-    complianceStandards: ['ISO/IEC 27001', 'ITGC', '21 CFR Part 11', 'Disaster Recovery'],
+      'Configured and reviewed workstation IT General Controls across labs, removing shared local admin access and protecting raw data directories.',
     controlHighlights: [
-      'Applied Windows Group Policy (GPO) rules blocking USB drives, clock changes, and local file deletion',
-      'Separated IT System Administrator and Quality Assurance reviewer permissions (Segregation of Duties)',
-      'Ran scheduled backup restoration tests and checked file integrity of archived GxP databases',
+      'Applied Windows GPO rules to block USB storage, clock changes, and local file deletion',
+      'Separated IT Administrator and Quality Assurance reviewer access (Segregation of Duties)',
+      'Ran scheduled backup restore drills and verified archived GxP database integrity',
     ],
-    validationScopeNotes:
-      'Covered workstation IQ baselines, NTFS folder permission checks, SQL Server backup monitoring, and change control documentation.',
   },
 ];

@@ -39,10 +39,13 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     const root = document.documentElement;
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (theme === 'dark') {
       root.classList.add('dark');
+      themeMeta?.setAttribute('content', '#06080E');
     } else {
       root.classList.remove('dark');
+      themeMeta?.setAttribute('content', '#F1F5F9');
     }
     try {
       localStorage.setItem('theme-preference', theme);
@@ -53,25 +56,93 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setShowBackToTop(scrollY > 520);
-
-      let currentSection = 'home';
-      for (const id of SECTION_IDS) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 240) {
-            currentSection = id;
-          }
-        }
+      setShowBackToTop(window.scrollY > 520);
+      if (window.scrollY < 120) {
+        setActiveSection('home');
       }
-      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const visibleSections = new Map<string, IntersectionObserverEntry>();
+    const observed = new Set<string>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        }
+
+        if (visibleSections.size > 0) {
+          const topMost = Array.from(visibleSections.values()).sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+          )[0];
+          if (topMost?.target.id) {
+            setActiveSection(topMost.target.id);
+          }
+        }
+      },
+      {
+        rootMargin: '-18% 0px -55% 0px',
+        threshold: 0,
+      }
+    );
+
+    const observeAvailableSections = () => {
+      for (const id of SECTION_IDS) {
+        if (observed.has(id)) continue;
+        const el = document.getElementById(id);
+        if (el) {
+          observer.observe(el);
+          observed.add(id);
+        }
+      }
+    };
+
+    observeAvailableSections();
+
+    const mainEl = document.getElementById('colorlib-main');
+    const mutationObserver = new MutationObserver(() => {
+      observeAvailableSections();
+      if (observed.size === SECTION_IDS.length) {
+        mutationObserver.disconnect();
+      }
+    });
+
+    if (mainEl && observed.size < SECTION_IDS.length) {
+      mutationObserver.observe(mainEl, { childList: true, subtree: true });
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, []);
+
+  const [isDesktopMouse, setIsDesktopMouse] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+      window.innerWidth >= 1024
+    );
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const sync = () => setIsDesktopMouse(mq.matches && window.innerWidth >= 1024);
+    sync();
+    mq.addEventListener('change', sync);
+    window.addEventListener('resize', sync, { passive: true });
+    return () => {
+      mq.removeEventListener('change', sync);
+      window.removeEventListener('resize', sync);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -91,10 +162,12 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-dvh bg-[#F1F5F9] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4338CA] selection:text-white antialiased">
-      {/* Custom Interactive Cursor (Lazy-loaded so it never blocks FCP/LCP) */}
-      <Suspense fallback={null}>
-        <CustomCursor />
-      </Suspense>
+      {/* Custom Cursor (Desktop mouse only — never loaded on mobile/touch) */}
+      {isDesktopMouse && (
+        <Suspense fallback={null}>
+          <CustomCursor />
+        </Suspense>
+      )}
 
       {/* Skip to Main Content Link */}
       <a

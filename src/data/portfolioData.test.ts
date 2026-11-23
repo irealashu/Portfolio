@@ -10,7 +10,7 @@ import {
   VALIDATED_SYSTEMS,
 } from './portfolioData';
 
-test('executive metrics reflect 18 Jan 2021 - Present timeline', () => {
+test('executive metrics contain 4 core indicators', () => {
   assert.equal(EXECUTIVE_METRICS.length, 4);
   assert.equal(EXECUTIVE_METRICS[0].value, '5+');
   assert.equal(EXECUTIVE_METRICS[1].value, '15+');
@@ -44,7 +44,7 @@ test('education items contain only M.Sc. (2018 – 2020) and B.Sc. (2015 – 201
   assert.ok(bsc.institution.includes('Jaunpur'));
 });
 
-test('career timeline starts on 18 Jan 2021, uses Jubilant Generics Limited, and includes company logos', () => {
+test('career timeline starts in Jan 2021, uses Jubilant Generics Limited, and includes company logos', () => {
   assert.equal(CAREER_MILESTONES.length, 4);
   assert.equal(CAREER_MILESTONES[0].organization, 'PwC India');
   assert.equal(CAREER_MILESTONES[1].organization, 'Jubilant Generics Limited');
@@ -52,7 +52,9 @@ test('career timeline starts on 18 Jan 2021, uses Jubilant Generics Limited, and
   assert.equal(CAREER_MILESTONES[3].organization, 'Alkem Laboratories Ltd.');
 
   const earliestRole = CAREER_MILESTONES[CAREER_MILESTONES.length - 1];
-  assert.ok(earliestRole.period.includes('18 Jan 2021'));
+  assert.equal(earliestRole.period, 'Jan 2021 – Jan 2023');
+  assert.ok(!earliestRole.period.includes('18 Jan'));
+  assert.ok(!earliestRole.summary.includes('18 Jan'));
 
   for (const milestone of CAREER_MILESTONES) {
     assert.ok(
