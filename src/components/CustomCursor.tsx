@@ -112,7 +112,7 @@ export const CustomCursor: React.FC = () => {
       {/* Subtle Ambient Shadow / Aura Follower */}
       <div
         ref={glowRef}
-        className="fixed top-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-[#4338CA]/12 to-[#0284C7]/12 blur-xl will-change-transform"
+        className="fixed top-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-[#3A4556]/10 to-[#647084]/10 blur-xl will-change-transform"
       />
 
       {/* Precision Pointer (SVG Arrow + Drop Shadow, No Circle Ring) */}
@@ -132,7 +132,7 @@ export const CustomCursor: React.FC = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="drop-shadow-[0_2px_6px_rgba(37,99,235,0.45)]"
+            className="drop-shadow-[0_2px_6px_rgba(30,36,46,0.38)]"
           >
             <path
               d="M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z"
@@ -143,8 +143,8 @@ export const CustomCursor: React.FC = () => {
             />
             <defs>
               <linearGradient id="cursorGrad" x1="3.5" y1="2.5" x2="20.5" y2="20.8" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#4338CA" />
-                <stop offset="100%" stopColor="#0284C7" />
+                <stop offset="0%" stopColor="#3A4556" />
+                <stop offset="100%" stopColor="#1E242E" />
               </linearGradient>
             </defs>
           </svg>

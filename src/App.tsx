@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { ArrowUp, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
+import { ArrowUp, CheckCircle2, WifiOff } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { useOnlineStatus } from './hooks/usePWAInstall';
 
 const RiskAdvisory = lazy(() => import('./components/RiskAdvisory'));
 const TechStack = lazy(() => import('./components/TechStack'));
@@ -21,44 +22,26 @@ const SECTION_IDS = [
 ];
 
 export const App: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    try {
-      const saved = localStorage.getItem('theme-preference');
-      if (saved === 'light' || saved === 'dark') {
-        return saved;
-      }
-    } catch {
-      // Ignore storage access errors
-    }
-    return 'dark';
-  });
-
   const [activeSection, setActiveSection] = useState<string>('home');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      themeMeta?.setAttribute('content', '#06080E');
-    } else {
-      root.classList.remove('dark');
-      themeMeta?.setAttribute('content', '#F1F5F9');
-    }
-    try {
-      localStorage.setItem('theme-preference', theme);
-    } catch {
-      // Ignore storage access errors
-    }
-  }, [theme]);
+  const toastTimerRef = useRef<number | null>(null);
+  const isOnline = useOnlineStatus();
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 520);
-      if (window.scrollY < 120) {
+      const scrollY = window.scrollY;
+      setShowBackToTop(scrollY > 520);
+
+      if (scrollY < 120) {
         setActiveSection('home');
+        return;
+      }
+
+      const nearBottom =
+        window.innerHeight + scrollY >= document.documentElement.scrollHeight - 48;
+      if (nearBottom) {
+        setActiveSection('contact');
       }
     };
 
@@ -76,6 +59,13 @@ export const App: React.FC = () => {
           } else {
             visibleSections.delete(entry.target.id);
           }
+        }
+
+        const nearBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 48;
+        if (nearBottom) {
+          setActiveSection('contact');
+          return;
         }
 
         if (visibleSections.size > 0) {
@@ -106,7 +96,7 @@ export const App: React.FC = () => {
 
     observeAvailableSections();
 
-    const mainEl = document.getElementById('colorlib-main');
+    const mainEl = document.getElementById('main-content');
     const mutationObserver = new MutationObserver(() => {
       observeAvailableSections();
       if (observed.size === SECTION_IDS.length) {
@@ -122,6 +112,14 @@ export const App: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
       mutationObserver.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current !== null) {
+        window.clearTimeout(toastTimerRef.current);
+      }
     };
   }, []);
 
@@ -145,23 +143,24 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
   const triggerToast = (message: string) => {
     setToastMessage(message);
-    window.setTimeout(() => {
-      setToastMessage((prev) => (prev === message ? null : prev));
+    if (toastTimerRef.current !== null) {
+      window.clearTimeout(toastTimerRef.current);
+    }
+    toastTimerRef.current = window.setTimeout(() => {
+      setToastMessage(null);
+      toastTimerRef.current = null;
     }, 3000);
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   };
 
   return (
-    <div className="min-h-dvh bg-[#F1F5F9] dark:bg-[#06080E] text-[#0F172A] dark:text-[#F8FAFC] selection:bg-[#4338CA] selection:text-white antialiased">
+    <div className="min-h-dvh bg-[#E0E5EC] text-[#1D222B] selection:bg-[#2E3746] selection:text-white antialiased">
       {/* Custom Cursor (Desktop mouse only — never loaded on mobile/touch) */}
       {isDesktopMouse && (
         <Suspense fallback={null}>
@@ -171,23 +170,19 @@ export const App: React.FC = () => {
 
       {/* Skip to Main Content Link */}
       <a
-        href="#colorlib-main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#4338CA] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-[#2E3746] focus:text-white focus:font-mono focus:text-xs focus:font-semibold"
       >
         Skip to content
       </a>
 
-      {/* Centered Jackson 2-Column Container (Left Sticky Sidebar + Right Scrolling Content) */}
+      {/* Unified Neumorphic 2-Column Container */}
       <div className="max-w-[1440px] w-full mx-auto flex flex-col lg:flex-row min-h-dvh">
-        <Navbar
-          activeSection={activeSection}
-          theme={theme}
-          onToggleTheme={toggleTheme}
-        />
+        <Navbar activeSection={activeSection} />
 
         <main
-          id="colorlib-main"
-          className="flex-1 min-w-0 pt-15 lg:pt-0 bg-white dark:bg-[#090D16]"
+          id="main-content"
+          className="flex-1 min-w-0 pt-[calc(4rem+env(safe-area-inset-top))] lg:pt-0 pb-[env(safe-area-inset-bottom)]"
         >
           <Hero />
           <Suspense fallback={<div className="min-h-[600px]" aria-hidden="true" />}>
@@ -199,25 +194,37 @@ export const App: React.FC = () => {
         </main>
       </div>
 
-      {/* GPU-Composited Clipboard Toast */}
+      {/* Subtle Offline Notice (only shown when network disconnects) */}
+      {!isOnline && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-5 z-50 flex items-center gap-2 px-4 py-2.5 rounded-2xl neu-raised text-[#1D222B] font-mono text-[11px] font-semibold animate-gpu-fade-up"
+        >
+          <WifiOff className="w-3.5 h-3.5 text-[#5E6878] shrink-0" />
+          <span>Offline · Viewing cached copy</span>
+        </div>
+      )}
+
+      {/* Neumorphic Clipboard Toast */}
       {toastMessage && (
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border border-slate-200 dark:border-white/15 text-[#0F172A] dark:text-white text-xs font-medium shadow-xl animate-gpu-fade-up"
+          className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl neu-raised text-[#1D222B] text-xs font-semibold animate-gpu-fade-up"
         >
-          <CheckCircle2 className="w-4 h-4 text-[#059669] dark:text-[#34D399] shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-[#2E3746] shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
 
-      {/* GPU-Composited Back to Top Button */}
+      {/* Neumorphic Back to Top Button */}
       {showBackToTop && (
         <button
           type="button"
           onClick={scrollToTop}
           aria-label="Scroll back to top"
-          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-[#4338CA] dark:bg-[#2563EB] text-white shadow-lg shadow-indigo-900/20 border border-white/20 transition-transform duration-150 hover:scale-108 hover:-translate-y-0.5 active:scale-95 cursor-pointer animate-gpu-scale-in"
+          className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-6 z-40 w-12 h-12 inline-flex items-center justify-center rounded-full neu-btn text-[#1D222B] transition-transform duration-150 hover:scale-105 hover:-translate-y-0.5 active:scale-95 cursor-pointer animate-gpu-scale-in"
         >
           <ArrowUp className="w-4 h-4" />
         </button>

@@ -1,26 +1,16 @@
 # Ashutosh Singh Portfolio
 
-A modern personal portfolio website for Ashutosh Singh, highlighting his experience in computerized system validation, GxP compliance, data integrity, and cyber & digital risk advisory.
+Personal portfolio for Ashutosh Singh covering Computerized System Validation (CSV), GxP compliance, data integrity and Cyber & Digital Risk Advisory.
 
-This site is built with React, TypeScript, and Vite, and presents a professional overview of:
-
-- career history and work experience
-- core expertise and risk advisory focus areas
-- validated systems and compliance case studies
-- contact information and professional links
-
-## Live portfolio
-
-The site is designed as a responsive single-page portfolio and can be served locally or deployed to any static hosting provider.
+Built with React, TypeScript, Tailwind CSS and Vite.
 
 ## Highlights
 
-- responsive portfolio layout for desktop and mobile
-- dark/light theme toggle with smooth transitions
-- active section navigation and smooth scroll behavior
-- experience timeline and expertise cards
-- validated systems modal with detailed compliance context
-- contact links for email, GitHub, LinkedIn, and location
+- Light-only monochrome neumorphic layout for desktop and mobile
+- Active section scroll-spy navigation with dedicated mobile slide-over drawer
+- Work experience timeline, education accordion and skills overview
+- Filterable validated systems showcase with inline compliance highlights
+- Tap-to-copy email, LinkedIn, GitHub and location cards
 
 ## Project structure
 
@@ -33,26 +23,14 @@ The site is designed as a responsive single-page portfolio and can be served loc
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
-├── .env.example
 ├── CNAME
 ├── index.html
 ├── metadata.json
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
-├── README.md
-└── package-lock.json
+└── README.md
 ```
-
-## Notes
-
-The content in this portfolio reflects professional experience in:
-
-- Computerized System Validation (CSV)
-- GxP and regulatory compliance
-- Data integrity and ALCOA++ principles
-- IT risk assessments and cyber governance
-- lab systems validation across pharmaceutical environments
 
 ## Contact
 

@@ -38,13 +38,13 @@ test('education items contain only M.Sc. (2018 – 2020) and B.Sc. (2015 – 201
   assert.ok(!msc.leftColumn.includes('First Division'));
 
   const bsc = EDUCATION_ITEMS[1];
-  assert.equal(bsc.degree, 'Bachelor of Science (B.Sc.) in Chemistry');
+  assert.equal(bsc.degree, 'Bachelor of Science (B.Sc.) in Physics, Chemistry and Mathematics');
   assert.equal(bsc.period, '2015 – 2018');
   assert.ok(bsc.institution.includes('VBSPU'));
   assert.ok(bsc.institution.includes('Jaunpur'));
 });
 
-test('career timeline starts in Jan 2021, uses Jubilant Generics Limited, and includes company logos', () => {
+test('career timeline starts in Jan 2021, uses Jubilant Generics Limited and includes company logos', () => {
   assert.equal(CAREER_MILESTONES.length, 4);
   assert.equal(CAREER_MILESTONES[0].organization, 'PwC India');
   assert.equal(CAREER_MILESTONES[1].organization, 'Jubilant Generics Limited');

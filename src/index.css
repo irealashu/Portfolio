@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'DM Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -9,13 +7,15 @@
 }
 
 :root {
-  color-scheme: light;
-  --custom-pointer-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z' fill='%234F46E5' stroke='%23FFFFFF' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto;
-  --custom-interactive-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z' fill='%2306B6D4' stroke='%23FFFFFF' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer;
-}
-
-.dark {
-  color-scheme: dark;
+  color-scheme: only light;
+  --neu-bg: #E0E5EC;
+  --neu-shadow-dark: rgba(163, 173, 190, 0.60);
+  --neu-shadow-dark-soft: rgba(163, 173, 190, 0.48);
+  --neu-shadow-light: rgba(255, 255, 255, 0.88);
+  --neu-edge-light: rgba(255, 255, 255, 0.56);
+  --neu-edge-subtle: rgba(255, 255, 255, 0.36);
+  --custom-pointer-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z' fill='%232B3340' stroke='%23FFFFFF' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto;
+  --custom-interactive-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3.5 2.5L20.5 10.2L12.6 12.9L9.8 20.8L3.5 2.5Z' fill='%23181D25' stroke='%23FFFFFF' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer;
 }
 
 /* Globally hide all scrollbars across every element and browser while preserving smooth scrolling */
@@ -73,6 +73,9 @@ html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
+  background-color: var(--neu-bg);
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -80,8 +83,11 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
+  background-color: var(--neu-bg);
+  color: #1D222B;
   font-family: var(--font-sans);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -99,25 +105,103 @@ code, pre, .font-mono {
 }
 
 ::selection {
-  background-color: #4F46E5;
+  background-color: #2E3746;
   color: #FFFFFF;
 }
 
-/* Modern Swiss architectural grid background */
-.bg-swiss-grid {
-  background-size: 44px 44px;
-  background-image:
-    linear-gradient(to right, rgba(79, 70, 229, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(79, 70, 229, 0.045) 1px, transparent 1px);
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #2E3746;
+  outline-offset: 2px;
 }
 
-.dark .bg-swiss-grid {
-  background-image:
-    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+/* =========================================================
+   Monochromatic Dove-Silver Neumorphism Primitives
+   Inspired by soft matte sculpted single-material extrusions
+   ========================================================= */
+
+/* Standard extruded card surface (same base tone as canvas) */
+.neu-surface {
+  background: linear-gradient(145deg, #E5E9F0, #DCE1E9);
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-dark-soft),
+    -8px -8px 16px var(--neu-shadow-light);
+  border: 1px solid var(--neu-edge-light);
 }
 
-/* Strictly GPU-composited animations (transform & opacity only) to pass Lighthouse non-composited animation audits */
+/* Pronounced extruded hero / feature / panel block */
+.neu-raised {
+  background: linear-gradient(145deg, #E6EAF1, #DBE0E8);
+  box-shadow:
+    12px 12px 24px var(--neu-shadow-dark),
+    -12px -12px 24px var(--neu-shadow-light);
+  border: 1px solid var(--neu-edge-light);
+}
+
+/* Concave recessed groove for active nav items, trays & metric troughs */
+.neu-inset {
+  background: #DCE1E9;
+  box-shadow:
+    inset 4px 4px 8px var(--neu-shadow-dark-soft),
+    inset -4px -4px 8px var(--neu-shadow-light);
+  border: 1px solid var(--neu-edge-subtle);
+}
+
+/* Tighter sculpted icon housing */
+.neu-icon-well {
+  background: linear-gradient(145deg, #E6EAF1, #DBE0E8);
+  box-shadow:
+    4px 4px 9px rgba(163, 173, 190, 0.50),
+    -4px -4px 9px rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+}
+
+/* Raised tactile button / switch */
+.neu-btn {
+  background: linear-gradient(145deg, #E7EBF2, #DCE1E9);
+  box-shadow:
+    5px 5px 10px var(--neu-shadow-dark-soft),
+    -5px -5px 10px var(--neu-shadow-light);
+  border: 1px solid var(--neu-edge-light);
+}
+
+.neu-btn:active {
+  background: #DCE1E9;
+  box-shadow:
+    inset 3px 3px 7px var(--neu-shadow-dark-soft),
+    inset -3px -3px 7px var(--neu-shadow-light);
+}
+
+/* Sculpted dark-graphite focal control (high-contrast monochrome accent) */
+.neu-btn-accent {
+  background: linear-gradient(145deg, #3A4352, #252C38);
+  box-shadow:
+    5px 5px 12px rgba(96, 108, 128, 0.36),
+    -4px -4px 10px rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* Sculpted double-bevel circular portrait frame */
+.neu-avatar-ring {
+  background: linear-gradient(145deg, #EDF0F5, #D5DCE6);
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-dark),
+    -8px -8px 16px var(--neu-shadow-light);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+}
+
+/* Subtle embossed hairline groove divider */
+.neu-divider {
+  height: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(163, 173, 190, 0.38),
+    rgba(255, 255, 255, 0.88)
+  );
+  border-radius: 9999px;
+}
+
+/* Strictly GPU-composited animations (transform & opacity only) */
 @keyframes gpuFadeUp {
   from {
     opacity: 0;
@@ -189,7 +273,7 @@ code, pre, .font-mono {
   }
 }
 
-/* Clean print / Save-as-PDF layout for recruiters and hiring teams */
+/* Clean print / Save-as-PDF layout */
 @media print {
   html,
   body,
@@ -226,7 +310,6 @@ code, pre, .font-mono {
   nav,
   [data-testid="custom-cursor"],
   button[aria-label="Scroll back to top"],
-  button[aria-label*="Switch to"],
   button[aria-label="Toggle navigation drawer"] {
     display: none !important;
   }
@@ -241,5 +324,3 @@ code, pre, .font-mono {
     padding-bottom: 1.25rem !important;
   }
 }
-
-

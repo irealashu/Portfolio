@@ -56,10 +56,13 @@ export default defineConfig({
         id: '/',
         name: 'Ashutosh Singh — Portfolio',
         short_name: 'Ashutosh',
-        description: 'Cyber & Digital Risk Advisory portfolio of Ashutosh Singh, specializing in Computerized System Validation (CSV), GAMP 5, and GxP compliance.',
-        theme_color: '#08090C',
-        background_color: '#08090C',
+        description: 'Cyber & Digital Risk Advisory portfolio of Ashutosh Singh covering Computerized System Validation (CSV), GAMP 5 and GxP compliance.',
+        theme_color: '#E0E5EC',
+        background_color: '#E0E5EC',
         display: 'standalone',
+        display_override: ['window-controls-overlay', 'standalone'],
+        orientation: 'any',
+        categories: ['business', 'portfolio'],
         start_url: './',
         scope: './',
         icons: [
@@ -84,9 +87,38 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
+        maximumFileSizeToCacheInBytes: 2 * 1024 * 1024,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,woff,woff2}'],
-        globIgnores: ['**/assets/aistudio/**'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-stylesheets',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-webfonts',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
       },
       devOptions: {
         enabled: false,
